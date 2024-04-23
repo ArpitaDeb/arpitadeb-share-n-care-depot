@@ -117,7 +117,7 @@ Cleaning supplies (grill brush, cleaner)
 
 Volunteers are what continue to make the Depot a success! Join our team and help us build a more resilient community.
 
-### Donate Funds
+### Donate Funds with stripe
 
 ### Users and admin profile
 
@@ -180,7 +180,9 @@ adminname
 paswd
 
 location
+
 id
+name
 contact info
 address
 inventoryId
@@ -218,15 +220,21 @@ OAuth, JWT
 
 Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
 
-** adding inventory with images and location, user and admin profile, donate funds/things, Faqs, edit/delete items, arranging pickup /drop of time, chat with us/schedule using calendar to borrow?
+** adding inventory with images and location, user and admin profile, donate funds using stripe/things sending request form, edit/delete items, arranging pickup /drop of time, chat with us/schedule using calendar to borrow?
+
+*** storing images,  
 
 ## Nice-to-haves
 
 Your project will be marked based on what you committed to in the above document. Under nice-to-haves, you can list any additional features you may complete if you have extra time, or after finishing.
 
+deploying app with cloud storage?,
 user should be able to like and make comments on the items?
 Would like to volunteer with us? volunteers page
+FAQs, Guidelines for donation
 
 https://libraryofthingsyxe.com/
+
 https://karrotmarket.com/?in=toronto-11052
+
 https://brainstation.io/hiring-brainstation-graduates
