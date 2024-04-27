@@ -1,0 +1,226 @@
+@import '../../styles/partials/global';
+
+.itemForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.itemForm__panel{
+    background-color: $graphite;
+    width: 100%;
+    z-index: 1;
+}
+
+.itemForm__header-container{
+    background-color: $white;
+    width: 90%;
+    margin: 0 auto;
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+}
+
+.itemForm__header{
+    background: url('../../assets/icons/arrow_back-24px.svg') no-repeat left 1.5rem;
+    padding: 1rem 1rem 1rem 1.875rem;
+    margin: 1rem;
+}
+
+.itemForm__border{
+    border-bottom: 2px solid $cloud;
+    &-vertical{
+    @include tablet{
+        margin: 1.5rem 0rem;
+        width: 1px;
+        background-color: $cloud;
+    }
+}
+}
+
+.itemForm__form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+
+.itemForm__content{
+    display: flex; 
+    flex-direction: column;
+    gap: 1.5rem;
+    @include tablet{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+}
+
+.details,.avail{
+    margin: 1rem;
+    @include tablet{
+        width: 50%;
+        margin: 2rem;
+    }
+    @include desktop{
+        margin: 4rem;
+    }
+}
+
+
+.details__title{
+    margin-bottom: 1rem;
+}
+
+.details__input,
+.details__textarea,
+.details__dropdown,
+.avail__dropdown,
+.avail__input-quantity{
+    display: block;
+    color: $black;
+    font-size: $p1-mobile;
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 2.25rem;
+    padding: 0rem 1rem;
+    border-radius: 20px;
+    border: 1px solid $cloud;
+}
+
+.details__container{
+    margin-top: 1rem;
+}
+
+label{
+    font-size: $h3-mobile;
+    font-weight: 600;
+}
+
+.details__textarea{
+    height: 7.5rem;
+    width: 100%;
+    max-height: 7.5rem;
+    padding-top: 0.5rem;
+    margin: auto;
+    resize: none;
+}
+
+::placeholder{
+    color: $slate;
+    font-size: 15.04px;
+    font-family: 'Titillium';
+}
+
+.details__dropdown, .avail__dropdown{
+    font-size: $p1-mobile;
+    width: 100%;
+    height: 2.25rem;
+    padding: 0rem 1rem;
+    appearance: none;
+    background-image: url('../../assets/icons/arrow_drop_down-24px.svg');
+    background-repeat: no-repeat;
+    background-position: 96% 50%;
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+}
+
+.avail__title{
+    margin-bottom: 1rem;
+}
+
+.avail__container{
+    margin-top: 1rem;
+}
+
+.avail__status{
+    display: flex;
+    gap: 25%;
+}
+
+.avail__status-container{
+    display: flex;
+    align-items: center;
+}
+
+.avail__label-stock{
+    padding-left: 0.5rem;
+    font-size: $p1-mobile;
+    font-weight: 400;
+}
+
+.itemForm__buttons{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.5rem 0rem;
+}
+
+.itemForm__btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: $light-grey;
+    @include tablet{
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding: 1rem 2rem;
+    }
+    @include desktop{
+        padding: 1rem 4rem;
+    }
+    &-link{
+        background-color: $white;
+        height: 2.50rem;
+        width: 48%;
+        max-height: 2.25rem;
+        margin-bottom: 16px;
+        color: $slate;
+        border-radius: 20px;
+        border: 1px solid $cloud;
+        text-align: center;
+        padding-top: 4px;
+        @include tablet {
+            width: 12%;
+                }
+            }
+    &-save{
+        background-color:$indigo;
+        color:$white;
+        height:2.25rem;
+        max-height:2.25rem;
+        border-radius:20px;
+        width:48%;
+        border:none;
+        @include tablet {
+            width:10%;
+                }
+        }
+    &-add{
+        height:2.25rem;
+        max-height:2.25rem;
+        background-color:$indigo;
+        color:$white;
+        border-radius:20px;
+        width:48%;
+        border:none;
+        @include tablet {
+            width:15%;
+                }
+        }
+    }
+
+.itemForm__error{
+    background: url('../../assets/icons/error-24px.svg') no-repeat 0rem;
+    background-size: contain;
+    padding-left: 1.25rem;
+    margin: 0.25rem 0rem;
+    color: $red;
+    font-size: $p3-mobile;
+}

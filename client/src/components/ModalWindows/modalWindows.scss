@@ -1,0 +1,100 @@
+@import '../../styles/partials/global';
+
+.modal {
+  &__active {
+    @include tablet {
+      background-color: rgba(19, 24, 44, 0.7);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding-top: 11.563rem;
+    }
+  }
+
+  &__wrapper {
+    background-color: $white;
+    padding: 1rem 1rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 41.688rem;
+    border-radius: 4px;
+
+    @include tablet {
+      width: 42rem;
+      height: 16.375rem;
+      padding: 1rem 1rem 2.5rem 4rem;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include tablet {
+      gap: 0;
+    }
+  }
+
+  &__close {
+    align-self: flex-end;
+    cursor: pointer;
+  }
+
+  &__title {
+    @include tablet {
+      margin-bottom: 1rem;
+      padding-right: 3rem;
+    }
+  }
+
+  &__text {
+    @include tablet {
+      padding-right: 3rem;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    @include tablet {
+      justify-content: end;
+      padding-right: 3rem;
+    }
+  }
+
+  &__cancel,
+  &__delete {
+    cursor: pointer;
+    width: 10.188rem;
+    height: 2.25rem;
+    border-radius: 1.25rem;
+
+    @include tablet {
+      width: 4.5rem;
+      height: 2.375rem;
+    }
+  }
+
+  &__cancel {
+    border: 1px solid $cloud;
+    color: $slate;
+  }
+
+  &__cancel:hover {
+    border: 1px solid $indigo;
+    color: $indigo;
+  }
+
+  &__delete {
+    background-color: $red;
+    color: $white;
+  }
+
+  &__delete:hover {
+    background-color: $graphite;
+  }
+}

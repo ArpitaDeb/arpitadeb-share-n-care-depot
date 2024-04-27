@@ -1,0 +1,8 @@
+@import "../../styles/partials/global";
+.isLoading {
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+  background-color: $light-grey;
+  padding: 1rem 0;
+}

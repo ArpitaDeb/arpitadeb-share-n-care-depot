@@ -1,0 +1,79 @@
+@import '../../styles/partials/global';
+
+.site-header{
+  background-color: $graphite;
+  @include tablet {
+  flex-direction: row;
+  justify-content: space-between;
+  }
+}
+
+.site-header__container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  @include tablet{
+    flex-direction: row;
+    padding: 0;
+  }
+}
+
+.site-header__logo-container{
+  display: flex;
+  justify-content: center;
+}
+
+.site-header__logo{
+  padding: 1.5rem 2rem;
+  @include desktop{
+    padding: 2rem 4rem;
+  }
+}
+
+.site-header__navbar{
+  width: 100%;
+  padding: 0rem 1rem;
+  @include tablet{
+    padding: 0rem;
+  }
+  @include desktop{
+    padding: 0rem 1rem;
+  }
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-evenly;
+  justify-items: center;
+  padding-bottom: 1.5rem;
+  gap: 1rem;
+  @include tablet{
+    justify-content: end;
+    padding: 1rem 0rem;
+  }
+}
+
+.navbar__btn{
+  color: $cloud;
+  width: 50%;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  &:hover {
+    background-color: #13182c;
+    color: $white;
+    border-radius: 20px;
+   }
+   @include tablet{
+    width: 15%;
+    padding: 0.5rem;
+   }
+   @include desktop{
+    width: 10%;
+   }
+}
+
+
+
+
+
