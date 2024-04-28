@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "migrate": "knex migrate:latest",
+    "migrate:down": "knex migrate:down",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +19,9 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "mysql2": "^3.9.4",
+    "knex": "^3.1.0"
   },
   "devDependencies": {
     "@types/multer": "^1.4.11"

@@ -3,700 +3,212 @@
  * @returns { Promise<void> }
  */
 module.exports = [
-    {
-      id: 1,
-      warehouse_id: 1,
-      item_name: 'Television',
-      description:
-        'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 500,
-    },
-    {
-      id: 2,
-      warehouse_id: 1,
-      item_name: 'Gym Bag',
-      description:
-        'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
-      category: 'Gear',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 3,
-      warehouse_id: 1,
-      item_name: 'Hoodie',
-      description:
-        'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 4,
-      warehouse_id: 1,
-      item_name: 'Keychain',
-      description:
-        'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
-      category: 'Accessories',
-      status: 'In Stock',
-      quantity: 2000,
-    },
-    {
-      id: 5,
-      warehouse_id: 1,
-      item_name: 'Shampoo',
-      description: 'Natural shampoo made from 99% biodegradable ingredients.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 4350,
-    },
-    {
-      id: 6,
-      warehouse_id: 1,
-      item_name: 'Phone Charger',
-      description:
-        'This USB-C phone charger features fast charging for the latest devices.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 10000,
-    },
-    {
-      id: 7,
-      warehouse_id: 1,
-      item_name: 'Tent',
-      description:
-        'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 800,
-    },
-    {
-      id: 8,
-      warehouse_id: 1,
-      item_name: 'Winter Jacket',
-      description:
-        'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. breathable layers without a ton of vents and perforations.',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 9,
-      warehouse_id: 1,
-      item_name: 'Watch',
-      description:
-        'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
-      category: 'Accessories',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 10,
-      warehouse_id: 1,
-      item_name: 'Soap',
-      description:
-        'Organic and hypoallergenic, this soap is safe to use for all skin types.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 12500,
-    },
-    {
-      id: 11,
-      warehouse_id: 2,
-      item_name: 'Monitor',
-      description:
-        'A 32" IPS LED ultrawide monitor, perfect for work or gaming.',
-      category: 'Electronics',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 12,
-      warehouse_id: 2,
-      item_name: 'Backpack',
-      description:
-        'This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.',
-      category: 'Gear',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 13,
-      warehouse_id: 2,
-      item_name: 'T-Shirt',
-      description:
-        'Breathable, and made of 100% organic cotton, this is an essential piece for any wardrobe',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 14,
-      warehouse_id: 2,
-      item_name: 'Belt',
-      description:
-        'Made from 100% full grain leather this belt will go with any dress or casual outfit.',
-      category: 'Accessories',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 15,
-      warehouse_id: 2,
-      item_name: 'Toothpaste',
-      description:
-        'This toothpaste is specially formulated to protect enamel and whiten teeth with natural ingredients.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 4000,
-    },
-    {
-      id: 16,
-      warehouse_id: 2,
-      item_name: 'Mouse',
-      description:
-        'With a 1-month battery life this mouse is perfect for travel and productivity.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 785,
-    },
-    {
-      id: 17,
-      warehouse_id: 2,
-      item_name: 'Sleeping Bag',
-      description:
-        'This ultra-light sleeping bag is packed with an eco-friendly fill. Best used in spring or summer temperatures.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 987,
-    },
-    {
-      id: 18,
-      warehouse_id: 2,
-      item_name: 'Windbreaker',
-      description:
-        'Made from waterproof material, this windbreaker is best layered on top of a sweater to keep warm in inclement conditions.',
-      category: 'Apparel',
-      status: 'In Stock',
-      quantity: 1185,
-    },
-    {
-      id: 19,
-      warehouse_id: 2,
-      item_name: 'Water Bottle',
-      description:
-        'With a 1-litre capacity and BPA-free, this water-bottle is perfect for long days out.',
-      category: 'Accessories',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 20,
-      warehouse_id: 2,
-      item_name: 'Protein Powder',
-      description:
-        '100% natural plant-based protein powder from organic ingredients.',
-      category: 'Health',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 21,
-      warehouse_id: 3,
-      item_name: 'Television',
-      description:
-        'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
-      category: 'Electronics',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 22,
-      warehouse_id: 3,
-      item_name: 'Gym Bag',
-      description:
-        'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 565,
-    },
-    {
-      id: 23,
-      warehouse_id: 3,
-      item_name: 'Hoodie',
-      description:
-        'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
-      category: 'Apparel',
-      status: 'In Stock',
-      quantity: 245,
-    },
-    {
-      id: 24,
-      warehouse_id: 3,
-      item_name: 'Keychain',
-      description:
-        'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
-      category: 'Accessories',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 25,
-      warehouse_id: 3,
-      item_name: 'Shampoo',
-      description: 'Natural shampoo made from 99% biodegradable ingredients.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 209,
-    },
-    {
-      id: 26,
-      warehouse_id: 3,
-      item_name: 'Phone Charger',
-      description:
-        'This USB-C phone charger features fast charging for the latest devices.',
-      category: 'Electronics',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 27,
-      warehouse_id: 3,
-      item_name: 'Tent',
-      description:
-        'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
-      category: 'Gear',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 28,
-      warehouse_id: 3,
-      item_name: 'Winter Jacket',
-      description:
-        'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ',
-      category: 'Apparel',
-      status: 'In Stock',
-      quantity: 125,
-    },
-    {
-      id: 29,
-      warehouse_id: 3,
-      item_name: 'Watch',
-      description:
-        'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
-      category: 'Accessories',
-      status: 'In Stock',
-      quantity: 123,
-    },
-    {
-      id: 30,
-      warehouse_id: 3,
-      item_name: 'Soap',
-      description:
-        'Organic and hypoallergenic, this soap is safe to use for all skin types.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 863,
-    },
-    {
-      id: 31,
-      warehouse_id: 4,
-      item_name: 'Monitor',
-      description:
-        'A 32" IPS LED ultrawide monitor, perfect for work or gaming.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 50,
-    },
-    {
-      id: 32,
-      warehouse_id: 4,
-      item_name: 'Backpack',
-      description:
-        'This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.',
-      category: 'Gear',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 33,
-      warehouse_id: 4,
-      item_name: 'T-Shirt',
-      description:
-        'Breathable, and made of 100% organic cotton, this is an essential piece for any wardrobe',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 34,
-      warehouse_id: 4,
-      item_name: 'Belt',
-      description:
-        'Made from 100% full grain leather this belt will go with any dress or casual outfit.',
-      category: 'Accessories',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 35,
-      warehouse_id: 4,
-      item_name: 'Toothpaste',
-      description:
-        'This toothpaste is specially formulated to protect enamel and whiten teeth with natural ingredients.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 400,
-    },
-    {
-      id: 36,
-      warehouse_id: 4,
-      item_name: 'Mouse',
-      description:
-        'With a 1-month battery life this mouse is perfect for travel and productivity.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 1275,
-    },
-    {
-      id: 37,
-      warehouse_id: 4,
-      item_name: 'Sleeping Bag',
-      description:
-        'This ultra-light sleeping bag is packed with an eco-friendly fill. Best used in spring or summer temperatures.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 5672,
-    },
-    {
-      id: 38,
-      warehouse_id: 4,
-      item_name: 'Windbreaker',
-      description:
-        'Made from waterproof material, this windbreaker is best layered on top of a sweater to keep warm in inclement conditions.',
-      category: 'Apparel',
-      status: 'In Stock',
-      quantity: 374,
-    },
-    {
-      id: 39,
-      warehouse_id: 4,
-      item_name: 'Water Bottle',
-      description:
-        'With a 1-litre capacity and BPA-free, this water-bottle is perfect for long days out.',
-      category: 'Accessories',
-      status: 'In Stock',
-      quantity: 9875,
-    },
-    {
-      id: 40,
-      warehouse_id: 4,
-      item_name: 'Protein Powder',
-      description:
-        '100% natural plant-based protein powder from organic ingredients.',
-      category: 'Health',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 41,
-      warehouse_id: 5,
-      item_name: 'Television',
-      description:
-        'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
-      category: 'Electronics',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 42,
-      warehouse_id: 5,
-      item_name: 'Gym Bag',
-      description:
-        'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 1895,
-    },
-    {
-      id: 43,
-      warehouse_id: 5,
-      item_name: 'Hoodie',
-      description:
-        'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 44,
-      warehouse_id: 5,
-      item_name: 'Keychain',
-      description:
-        'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
-      category: 'Accessories',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 45,
-      warehouse_id: 5,
-      item_name: 'Shampoo',
-      description: 'Natural shampoo made from 99% biodegradable ingredients.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 4774,
-    },
-    {
-      id: 46,
-      warehouse_id: 5,
-      item_name: 'Phone Charger',
-      description:
-        'This USB-C phone charger features fast charging for the latest devices.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 9872,
-    },
-    {
-      id: 47,
-      warehouse_id: 5,
-      item_name: 'Tent',
-      description:
-        'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 3349,
-    },
-    {
-      id: 48,
-      warehouse_id: 5,
-      item_name: 'Winter Jacket',
-      description:
-        'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 49,
-      warehouse_id: 5,
-      item_name: 'Watch',
-      description:
-        'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
-      category: 'Accessories',
-      status: 'In Stock',
-      quantity: 2997,
-    },
-    {
-      id: 50,
-      warehouse_id: 5,
-      item_name: 'Soap',
-      description:
-        'Organic and hypoallergenic, this soap is safe to use for all skin types.',
-      category: 'Health',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 51,
-      warehouse_id: 6,
-      item_name: 'Monitor',
-      description:
-        'A 32" IPS LED ultrawide monitor, perfect for work or gaming.',
-      category: 'Electronics',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 52,
-      warehouse_id: 6,
-      item_name: 'Backpack',
-      description:
-        'This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 607,
-    },
-    {
-      id: 53,
-      warehouse_id: 6,
-      item_name: 'T-Shirt',
-      description:
-        'Breathable, and made of 100% organic cotton, this is an essential piece for any wardrobe',
-      category: 'Apparel',
-      status: 'In Stock',
-      quantity: 1205,
-    },
-    {
-      id: 54,
-      warehouse_id: 6,
-      item_name: 'Belt',
-      description:
-        'Made from 100% full grain leather this belt will go with any dress or casual outfit.',
-      category: 'Accessories',
-      status: 'In Stock',
-      quantity: 9863,
-    },
-    {
-      id: 55,
-      warehouse_id: 6,
-      item_name: 'Toothpaste',
-      description:
-        'This toothpaste is specially formulated to protect enamel and whiten teeth with natural ingredients.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 1230,
-    },
-    {
-      id: 56,
-      warehouse_id: 6,
-      item_name: 'Mouse',
-      description:
-        'With a 1-month battery life this mouse is perfect for travel and productivity.',
-      category: 'Electronics',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 57,
-      warehouse_id: 6,
-      item_name: 'Sleeping Bag',
-      description:
-        'This ultra-light sleeping bag is packed with an eco-friendly fill. Best used in spring or summer temperatures.',
-      category: 'Gear',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 58,
-      warehouse_id: 6,
-      item_name: 'Windbreaker',
-      description:
-        'Made from waterproof material, this windbreaker is best layered on top of a sweater to keep warm in inclement conditions.',
-      category: 'Apparel',
-      status: 'In Stock',
-      quantity: 4508,
-    },
-    {
-      id: 59,
-      warehouse_id: 6,
-      item_name: 'Water Bottle',
-      description:
-        'With a 1-litre capacity and BPA-free, this water-bottle is perfect for long days out.',
-      category: 'Accessories',
-      status: 'In Stock',
-      quantity: 2500,
-    },
-    {
-      id: 60,
-      warehouse_id: 6,
-      item_name: 'Protein Powder',
-      description:
-        '100% natural plant-based protein powder from organic ingredients.',
-      category: 'Health',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 61,
-      warehouse_id: 7,
-      item_name: 'Television',
-      description:
-        'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 1300,
-    },
-    {
-      id: 62,
-      warehouse_id: 7,
-      item_name: 'Gym Bag',
-      description:
-        'Made out of military-grade synthetic materials, this gym bag is highly durable, water resistant, and easy to clean.',
-      category: 'Gear',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 63,
-      warehouse_id: 7,
-      item_name: 'Hoodie',
-      description:
-        'A simple 100% cotton hoodie, this is an essential piece for any wardrobe.',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 64,
-      warehouse_id: 7,
-      item_name: 'Keychain',
-      description:
-        'Made from 100% genuine leather, this keychain will keep your keys organized while keeping a classic, professional look.',
-      category: 'Accessories',
-      status: 'In Stock',
-      quantity: 298,
-    },
-    {
-      id: 65,
-      warehouse_id: 7,
-      item_name: 'Shampoo',
-      description: 'Natural shampoo made from 99% biodegradable ingredients.',
-      category: 'Health',
-      status: 'In Stock',
-      quantity: 2888,
-    },
-    {
-      id: 66,
-      warehouse_id: 7,
-      item_name: 'Phone Charger',
-      description:
-        'This USB-C phone charger features fast charging for the latest devices.',
-      category: 'Electronics',
-      status: 'In Stock',
-      quantity: 983,
-    },
-    {
-      id: 67,
-      warehouse_id: 7,
-      item_name: 'Tent',
-      description:
-        'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
-      category: 'Gear',
-      status: 'In Stock',
-      quantity: 1406,
-    },
-    {
-      id: 68,
-      warehouse_id: 7,
-      item_name: 'Winter Jacket',
-      description:
-        'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ',
-      category: 'Apparel',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 69,
-      warehouse_id: 7,
-      item_name: 'Watch',
-      description:
-        'Crafted from premium materials including a full-grain leather strap and a stainless steel case, this watch features swiss movement and is waterproof up to 5 ATM.',
-      category: 'Accessories',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-    {
-      id: 70,
-      warehouse_id: 7,
-      item_name: 'Soap',
-      description:
-        'Organic and hypoallergenic, this soap is safe to use for all skin types.',
-      category: 'Health',
-      status: 'Out of Stock',
-      quantity: 0,
-    },
-  ];
+  {
+    id: 1,
+    category_id: 1,
+    item_name: 'Television',
+    description:
+      'This 50", 4K LED TV provides a crystal-clear picture and vivid colors.',
+    is_permanent: true,
+    quantity: 2,
+    image_url: 'https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 2,
+    category_id: 1,
+    item_name: 'Projector',
+    description: 'High-definition projector for home theater experience.',
+    is_permanent: true,
+    quantity: 1,
+    image_url: 'https://images.pexels.com/photos/2507025/pexels-photo-2507025.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 3,
+    category_id: 2,
+    item_name: 'Tent',
+    description: 'Spacious 4-person camping tent with waterproof material.',
+    is_permanent: true,
+    quantity: 3,
+    image_url: 'https://images.pexels.com/photos/1687845/pexels-photo-1687845.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 4,
+    category_id: 3,
+    item_name: 'Telescope',
+    description: 'Powerful telescope for stargazing and celestial observation.',
+    is_permanent: true,
+    quantity: 1,
+    image_url: 'https://images.pexels.com/photos/1484791/pexels-photo-1484791.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 5,
+    category_id: 4,
+    item_name: 'Ice Cream Maker',
+    description: 'Make delicious homemade ice cream with this easy-to-use ice cream maker.',
+    is_permanent: true,
+    quantity: 2,
+    image_url: 'https://images.pexels.com/photos/5061192/pexels-photo-5061192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 6,
+    category_id: 2,
+    item_name: 'Sleeping bag',
+    description: 'This ultra-light sleeping bag is packed with an eco-friendly fill. Best used in spring or summer temperatures.',
+    is_permanent: true,
+    quantity: 5,
+    image_url: 'https://images.pexels.com/photos/10772129/pexels-photo-10772129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 7,
+    category_id: 1,
+    item_name: 'Mouse',
+    description: 'With a 1-month battery life this mouse is perfect for travel and productivity.',
+    is_permanent: true,
+    quantity: 2,
+    image_url: 'https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 8,
+    category_id: 4,
+    item_name: 'Windbreaker',
+    description: 'Made from waterproof material, this windbreaker is best layered on top of a sweater to keep warm in inclement conditions.',
+    is_permanent: true,
+    quantity: 2,
+    image_url: 'https://images.pexels.com/photos/18372685/pexels-photo-18372685/free-photo-of-person-wearing-a-yellow-windbreaker-texting-during-a-storm-standing-on-rocky-seashore.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 9,
+    category_id: 5,
+    item_name: 'Water Bottle',
+    description: 'With a 10-litre capacity and BPA-free, this water-bottle is perfect for long days out.',
+    is_permanent: true,
+    quantity: 5,
+    image_url: 'https://images.pexels.com/photos/8074426/pexels-photo-8074426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 10,
+    category_id: 2,
+    item_name: 'Tent',
+    description: 'Perfect for spring or summer camping, this 1-person tent is easy to pack and has the option to become modular when used with other products.',
+    is_permanent: true,
+    quantity: 5,
+    image_url: 'https://images.pexels.com/photos/2819554/pexels-photo-2819554.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 11,
+    category_id: 4,
+    item_name: 'Winter Jacket',
+    description: 'Made with a durable 100% waterproof shell, and breathable layers without a ton of vents and perforations. ',
+    is_permanent: true,
+    quantity: 4,
+    image_url: 'https://images.pexels.com/photos/311070/pexels-photo-311070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 12,
+    category_id: 1,
+    item_name: 'Monitor',
+    description: 'A 32" IPS LED ultrawide monitor, perfect for work or gaming.',
+    is_permanent: true,
+    quantity: 1,
+    image_url: 'https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 13,
+    category_id: 6,
+    item_name: 'Stainless Steel BBQ Spatula',
+    description: 'Durable spatula with a comfortable handle, perfect for flipping burgers and steaks on the grill.',
+    is_permanent: true,
+    quantity: 10,
+    image_url: 'https://images.pexels.com/photos/15245008/pexels-photo-15245008/free-photo-of-close-up-of-black-cooking-utensils-lying-on-a-wooden-table-with-pink-pots-in-the-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 14,
+    category_id: 6,
+    item_name: 'Long-Handled BBQ Tongs',
+    description: 'Heavy-duty tongs made from stainless steel, ideal for gripping and turning meats while grilling.',
+    is_permanent: true,
+    quantity: 10,
+    image_url: 'https://images.pexels.com/photos/5908046/pexels-photo-5908046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 15,
+    category_id: 7,
+    item_name: 'Brass Bristle BBQ Brush',
+    description: 'Essential cleaning tool with sturdy brass bristles for scrubbing grates and removing stubborn residue.',
+    is_permanent: true,
+    quantity: 10,
+    image_url: 'https://images.pexels.com/photos/8523526/pexels-photo-8523526.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 16,
+    category_id: 8,
+    item_name: 'Non-Stick Grilling Basket',
+    description: 'Convenient grilling basket with a non-stick surface, perfect for cooking delicate foods like vegetables and seafood.',
+    is_permanent: true,
+    quantity: 20,
+    image_url: 'https://images.pexels.com/photos/4916562/pexels-photo-4916562.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 17,
+    category_id: 7,
+    item_name: 'Heavy-Duty Grill Cleaner',
+    description: 'Powerful cleaner formulated to remove grease, grime, and carbon buildup from grill surfaces, extending their lifespan.',
+    is_permanent: true,
+    quantity: 25,
+    image_url: 'https://media.istockphoto.com/id/1368782164/photo/stove-being-cleaned-in-the-kitchen.jpg?s=2048x2048&w=is&k=20&c=VEp9G8zsTphk8y9wl4i2iq6f13W_Do9GBEwTdEZRIvw='
+  },
+  {
+    id: 18,
+    category_id: 9,
+    item_name: 'Youth Helmet with Protective Padding',
+    description: 'Safety helmet specially designed for young skaters, featuring impact-absorbing padding and adjustable straps.',
+    is_permanent: true,
+    quantity: 10,
+    image_url: 'https://images.pexels.com/photos/3932846/pexels-photo-3932846.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 19,
+    category_id: 10,
+    item_name: 'Adjustable Kids Inline Skates',
+    description: 'High-quality inline skates designed specifically for children, featuring adjustable sizing for growing feet',
+    is_permanent: true,
+    quantity: 6,
+    image_url: 'https://images.pexels.com/photos/7519638/pexels-photo-7519638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 20,
+    category_id: 10,
+    item_name: 'Women Roller Skates',
+    description: 'Classic-style roller skates designed for women, featuring durable wheels and a stylish, retro design.',
+    is_permanent: true,
+    quantity: 5,
+    image_url: 'https://images.pexels.com/photos/7335042/pexels-photo-7335042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 21,
+    category_id: 11,
+    item_name: 'Portable Propane Camp Stove',
+    description: 'Compact and lightweight camp stove fueled by propane, ideal for outdoor cooking while camping or hiking',
+    is_permanent: true,
+    quantity: 4,
+    image_url: 'https://images.pexels.com/photos/6324178/pexels-photo-6324178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 22,
+    category_id: 12,
+    item_name: 'Foldable Charcoal Portable Grill',
+    description: 'Foldable grill with a charcoal cooking surface, perfect for picnics, tailgating, and camping trips.',
+    is_permanent: true,
+    quantity: 10,
+    image_url: 'https://images.pexels.com/photos/1857732/pexels-photo-1857732.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+  {
+    id: 23,
+    category_id: 2,
+    item_name: 'Backpack',
+    description: 'This sleek, 40L backpack is completely waterproof making it perfect for adventures or the daily commute.',
+    is_permanent: true,
+    quantity: 3,
+    image_url: 'https://images.pexels.com/photos/19762536/pexels-photo-19762536/free-photo-of-hiker-looking-at-mountain-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  },
+];

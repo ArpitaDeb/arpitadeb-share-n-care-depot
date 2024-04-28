@@ -6,8 +6,7 @@ Share 'n' Care Depot
 
 What is your app? Brief description in a couple of sentences.
 Introducing "Share 'n' Care Depot," an app designed for neighbors to donate or borrow various items for free. Whether it's a camping tent for a week or furniture for permanent use, users can select from a diverse range of offerings based on availability.
-There is a physical space and an online catalogue of things that people can borrow locally
-/ have forever.
+There is a physical space and an online catalogue of things that people can borrow locally / have forever.
 
 ### Problem
 
@@ -205,6 +204,7 @@ inventory id
 user_id
 
 status : borrowed, will be available at a later date i.e. april 29th
+show due date
 
 category table
 id
