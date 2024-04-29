@@ -2,27 +2,6 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-const sharp = require('sharp');
-const axios = require('axios');
-const fs = require('fs');
-const knex = require('knex')(require('../knexfile'));
-
-// async function processImage(imageUrl, width, height, quality) {
-//   try {
-//       const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-//       console.log('Received image data for', imageUrl);
-//       const imageData = Buffer.from(response.data, 'binary');
-//       const resizedImageBuffer = await sharp(imageData)
-//           .resize({ width, height })
-//           .jpeg({ quality })
-//           .toBuffer();
-//       console.log('Processed image for', imageUrl);
-//       return resizedImageBuffer;
-//   } catch (error) {
-//       console.error('Error processing image:', imageUrl, error);
-//       throw error;
-//   }
-// }
 
 module.exports = [
   {
@@ -234,47 +213,3 @@ module.exports = [
     image_url: 'https://images.pexels.com/photos/19762536/pexels-photo-19762536/free-photo-of-hiker-looking-at-mountain-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
   },
 ];
-// module.exports = Promise.all(seedData.map(async (item) => {
-//   try {
-//       const resizedImageBuffer = await processImage(item.image_url, 300, 200, 80);
-//       console.log('Processed image for', item.item_name);
-//       await knex('inventories').insert({
-//           category_id: item.category_id,
-//           item_name: item.item_name,
-//           description: item.description,
-//           is_permanent: item.is_permanent,
-//           quantity: item.quantity,
-//           image: resizedImageBuffer
-//       });
-//       console.log('Inserted item:', item.item_name);
-//   } catch (error) {
-//       console.error('Error processing item:', item.item_name, error);
-//   }
-// }));
-// async function processImage(imageUrl, width, height, quality) {
-//   try {
-//       console.log('Attempting to fetch image:', imageUrl);
-//       const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-//       console.log('Received image data');
-//       const imageData = Buffer.from(response.data, 'binary');
-//       const resizedImageBuffer = await sharp(imageData)
-//           .resize({ width, height })
-//           .jpeg({ quality })
-//           .toBuffer();
-//       console.log('Processed image');
-//       return resizedImageBuffer;
-//   } catch (error) {
-//       console.error('Error processing image:', error);
-//       throw error;
-//   }
-// }
-
-// (async () => {
-//   try {
-//       const imageUrl = 'https://images.pexels.com/photos/2251206/pexels-photo-2251206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'; // Use a valid image URL
-//       const resizedImageBuffer = await processImage(imageUrl, 300, 200, 80);
-//       console.log('Resized image buffer:', resizedImageBuffer);
-//   } catch (error) {
-//       console.error('Error:', error);
-//   }
-// })();

@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Inventory from './pages/Inventory/Inventory';
+import Login from "./pages/Login/Login";
+import Profile from "./pages/Profile/Profile";
 // import { WarehousePage } from './pages/Warehouse/WarehousePage';
 import { AddWarehouse } from './components/WarehouseComponent/addWarehouse';
 import EditWarehouse from './components/WarehouseComponent/editWarehouse';
@@ -14,12 +17,20 @@ import { DeleteInventory } from './components/ModalWindows/deleteInventory';
 import './styles/partials/_global.scss';
 
 function App() {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(
+    !!localStorage.getItem("authToken")
+  );
   return (
     <div className="App">
       <BrowserRouter>
         <header>
           <Navbar />
         </header>
+        {isUserLoggedIn ? (
+        <Profile setIsUserLoggedIn={setIsUserLoggedIn} />
+      ) : (
+        <Login setIsUserLoggedIn={setIsUserLoggedIn} />
+      )}
         <Routes>
           <Route path="/" element={<Home />} />
 

@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const userRoutes = require('./routes/user-routes');
 const inventoriesRoutes = require('./routes/inventories-routes');
+const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
 
 const PORT = process.env.PORT;
 
@@ -18,6 +20,8 @@ app.get('/', (req, res) => {
 app.use('/api', userRoutes);
 
 app.use('/api', inventoriesRoutes);
+app.use("/auth", authRouter);
+app.use("/profile", profileRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is listening on ${PORT}`);

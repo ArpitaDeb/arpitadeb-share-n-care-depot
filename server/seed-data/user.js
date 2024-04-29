@@ -1,11 +1,11 @@
 module.exports = [
   {
     id: 1,
-    name: "Nester Brookfield",
-    email: "nbrookfield0@feedburner.com",
-    password: "password123",
-    phone: '+1 (646) 123-1234',
-    role: "user",
+    name: "Arpita Deb",
+    email: "Arpitadeb1990@gmail.com",
+    password: "strongpass",
+    phone: '+1 (306) 241-4180',
+    role: "admin",
   },
   {
     id: 2,
@@ -25,10 +25,10 @@ module.exports = [
   },
   {
     id: 4,
-    name: "Arpita Deb",
-    email: "hdalyiel3@fc2.com",
-    password: "strongpass",
-    phone: '+1 (306) 241-4180',
+    name: "Nester Brookfield",
+    email: "nbrookfield0@feedburner.com",
+    password: "password123",
+    phone: '+1 (646) 123-1234',
     role: "user",
   },
   {
@@ -37,6 +37,6 @@ module.exports = [
     email: "mnibley4@marketwatch.com",
     password: "password1234",
     phone: '+1 (306) 241-4180',
-    role: "admin",
+    role: "user",
   }
 ];
