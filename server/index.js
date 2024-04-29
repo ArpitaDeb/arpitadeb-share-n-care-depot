@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
-const warehousesRoutes = require('./routes/warehouses-routes');
+const userRoutes = require('./routes/user-routes');
 const inventoriesRoutes = require('./routes/inventories-routes');
 
 const PORT = process.env.PORT;
@@ -15,7 +15,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-app.use('/api', warehousesRoutes);
+app.use('/api', userRoutes);
 
 app.use('/api', inventoriesRoutes);
 

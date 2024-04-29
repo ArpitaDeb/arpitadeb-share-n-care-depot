@@ -30,12 +30,10 @@ Key features include:
 
 Featured items showcased on the main page for easy browsing.
 Can search items/ Category filters/ sort items enabling users to find specific items quickly.
-Like/favorite functionality for users to save items for future reference by creating a profile.
-Direct messaging capability for expressing interest in items.
+
 Registered users can borrow up to three items simultaneously to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know. Renewals are always accommodated as long as no one else has requested or reserved the item.
 Return the borrowed item.
-That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to any of our locations, everyday evning 5 to 7pm.
-Option for users/donors to donate funds for facility maintenance using their cards.
+That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evning 5 to 7pm.
 
 Admin privileges include:
 
@@ -43,8 +41,7 @@ Uploading images of donated items for the user to view the item.
 Posting available items for others to view.
 Removing items from the platform.
 Marking items as borrowed or taken.
-Communication via the app, email, or text to coordinate item pickup.
-Arranging pickup/drop off with the donor
+Communication via the chat-app, email, or text to coordinate item pickup/drop off to Arrange pickup/drop off with the donor
 
 ## Implementation
 
@@ -218,11 +215,12 @@ inventory_id
 
 List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
 '/users', /admin
-/login
-/signup
+POST /login
 
+POST /signup
 
-/location/get
+GET /profile
+/order
 
 '/inventories/:inventoryId'
 .getOneInventory
@@ -257,7 +255,9 @@ Your project will be marked based on what you committed to in the above document
 deploying app with cloud storage?,
 user should be able to like and make comments on the items?
 Would like to volunteer with us? volunteers page
-FAQs, Guidelines for donation
+FAQs, Guidelines for donation: Option for users/donors to donate funds for facility maintenance using their cards.
+Like/favorite functionality for users to save items for future reference by creating a profile.
+Direct messaging capability for expressing interest in items.
 
 https://libraryofthingsyxe.com/
 

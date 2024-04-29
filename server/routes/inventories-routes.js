@@ -7,10 +7,10 @@ router
   .delete(inventoriesController.deleteInventory);
 
 router
-  .route('/inventories-warehouses')
-  .get(inventoriesController.inventoryWarehouseList)
+  .route('/inventories')
+  .get(inventoriesController.inventoryList)
   .post(inventoriesController.postInventoryItem);
 
-router.route('/inventories-warehouses/:inventoryId').put(inventoriesController.updateInventoryItem);
+router.route('/inventories/:inventoryId').put(inventoriesController.updateInventoryItem);
 
 module.exports = router;

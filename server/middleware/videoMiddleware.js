@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, "public/images");
   },
-  filename: function (req, file, callback) {
+  filename: function (_req, file, callback) {
     callback(null, Date.now() + "_" + file.originalname);
   },
 });

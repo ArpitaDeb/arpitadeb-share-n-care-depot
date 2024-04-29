@@ -19,7 +19,7 @@ const isValidEmail = (email) => {
 
 const isValidInventoryData = async (req, res) => {
   const { 
-    warehouse_id,
+    user_id,
     item_name, 
     description, 
     category, 
@@ -27,12 +27,12 @@ const isValidInventoryData = async (req, res) => {
     quantity, 
   } = req.body
   const errors = []
-  if (!warehouse_id || !item_name || !description || !category || !status || quantity < 0) {
+  if (!user_id || !item_name || !description || !category || !status || quantity < 0) {
     errors.push('Missing properties in the request body')
   }
-  const warehouseExists = await knex('warehouses').where('id', warehouse_id).first()
-  if (!warehouseExists) {
-    errors.push('Warehouse_id does not exist')
+  const userExists = await knex('users').where('id', user_id).first()
+  if (!userExists) {
+    errors.push('user_id does not exist')
   }
   if(isNaN(quantity)) {
     errors.push('Quantity must be a number')
@@ -40,9 +40,9 @@ const isValidInventoryData = async (req, res) => {
   return errors
 }
 
-const isValidWarehouseData = (data) => {
+const isValidUserData = (data) => {
   const {
-    warehouse_name,
+    user_name,
     address,
     city,
     country,
@@ -53,8 +53,8 @@ const isValidWarehouseData = (data) => {
   } = data;
   const errors = [];
 
-  if (!warehouse_name) {
-    errors.push('Missing required field: warehouse_name');
+  if (!user_name) {
+    errors.push('Missing required field: user_name');
   }
   if (!address) {
     errors.push('Missing required field: address');
@@ -90,5 +90,5 @@ module.exports = {
   isValidEmail,
   isValidPhone,
   isValidInventoryData,
-  isValidWarehouseData
+  isValidUserData
 };

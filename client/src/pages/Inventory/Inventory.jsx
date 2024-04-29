@@ -22,9 +22,7 @@ const Inventory = () => {
     const sortByMap = {
       "Inventory Item": "item_name",
       "Category": "category",
-      "Status": "status",
       "Qty": "quantity",
-      "Warehouse": "warehouse_name"
     };
   
     const newSortBy = sortByMap[attr];
@@ -41,7 +39,7 @@ const Inventory = () => {
     const fetchInventories = async () => {
       try {
         const response = await axios.get(
-          `${apiURL}/api/inventories-warehouses?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`
+          `${apiURL}/api/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`
         );
         setInventoryList(response.data);
         setIsLoading(false);

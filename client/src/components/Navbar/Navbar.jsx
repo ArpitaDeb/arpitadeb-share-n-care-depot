@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Logo from "../../assets/logo/InStock-Logo.svg"
+import Logo from "../../assets/logo/ShareNCareLogo.png"
 
 import "./Navbar.scss";
 
@@ -11,7 +11,7 @@ function Navbar() {
       <div className="site-header__container">
       <div className="site-header__logo-container">
         <Link to="/">
-          <img src={Logo} className="site-header__logo" alt="InStock-Logo" />
+          <img src={Logo} className="site-header__logo" alt="Logo" />
         </Link>
       </div>
       <div className="site-header__navbar">

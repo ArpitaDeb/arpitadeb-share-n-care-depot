@@ -19,7 +19,7 @@ const InventoryList = ({
     navigate('/inventory/add-item');
   };
 
-  const inventoryHeader = ['Inventory Item', 'Category', 'Status', 'Qty', 'Warehouse', 'Actions'];
+  const inventoryHeader = ['Inventory Item', 'Category', 'Status', 'Qty', 'Image', 'Actions'];
 
   return (
     <>
@@ -127,7 +127,7 @@ const InventoryList = ({
                             ? 'inventory-product__inventory-status--in-stock'
                             : 'inventory-product__inventory-status--no-stock'
                         }`}>
-                        {inventoryItem.status}
+                        {inventoryItem.is_permanent}
                       </div>
                     </div>
 
@@ -143,9 +143,9 @@ const InventoryList = ({
                     <div className="inventory-product__header mobile-view">
                       {inventoryHeader[4]}
                     </div>
-                    <div className="inventory-product__inventory-warehouse-name">
-                      <div className="inventory-product__inventory-warehouse-column">
-                        {inventoryItem.warehouse_name}
+                    <div className="inventory-product__inventory-image-name">
+                      <div className="inventory-product__inventory-image-container">
+                        <img src={inventoryItem.image_url} alt="product"  width="375" height="500" />
                       </div>
                     </div>
                   </div>

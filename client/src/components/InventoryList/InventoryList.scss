@@ -415,7 +415,7 @@
     &-category,
     &-status,
     &-quantity,
-    &-warehouse-name {
+    &-image-name {
       font-size: 0.8rem;
       font-weight: 500;
       color: $black;
@@ -426,6 +426,10 @@
       @include desktop {
         font-size: 0.9rem;
       }
+    }
+    &-image-container {
+      height: 200px;
+      width: 200px;
     }
 
     &-name {

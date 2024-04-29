@@ -9,3 +9,6 @@ Create the .env by using .env.example as a reference: cp .env.example .env Updat
 Start the Server with : npm run dev
 
 https://drawsql.app/teams/capstone-74/diagrams/sharencare/embed
+
+APIs
+http://localhost:8080/api/inventories?sort_by=item_name&order_by=asc

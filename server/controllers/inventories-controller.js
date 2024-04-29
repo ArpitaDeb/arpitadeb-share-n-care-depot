@@ -18,7 +18,7 @@ const getOneInventory = async (req, res) => {
   }
 };
 
-const inventoryWarehouseList = async (req, res) => {
+const inventoryList = async (req, res) => {
   try {
     const { sort_by, order_by, s } = req.query;
     let query = knex
@@ -26,13 +26,13 @@ const inventoryWarehouseList = async (req, res) => {
         'inventories.id',
         'inventories.item_name',
         'inventories.description',
-        'inventories.category',
-        'inventories.status',
+        'inventories.is_permanent',
         'inventories.quantity',
-        'warehouses.warehouse_name as warehouse_name',
+        'inventories.image_url',
+        'category.name as category',
       )
       .from('inventories')
-      .join('warehouses', 'inventories.warehouse_id', 'warehouses.id');
+      .join('category', 'inventories.category_id', 'category.id');
 
     if (sort_by && typeof sort_by === 'string' && sort_by.trim() !== '') {
       query = query.orderBy(sort_by, order_by || 'asc');
@@ -44,8 +44,6 @@ const inventoryWarehouseList = async (req, res) => {
         this.where('inventories.item_name', 'like', searchTerm)
           .orWhere('inventories.description', 'like', searchTerm)
           .orWhere('inventories.category', 'like', searchTerm)
-          .orWhere('inventories.status', 'like', searchTerm)
-          .orWhere('warehouses.warehouse_name', 'like', searchTerm);
       });
     }
 
@@ -108,7 +106,7 @@ const deleteInventory = async (req, res) => {
 };
 
 module.exports = {
-  inventoryWarehouseList,
+  inventoryList,
   postInventoryItem,
   updateInventoryItem,
   getOneInventory,
