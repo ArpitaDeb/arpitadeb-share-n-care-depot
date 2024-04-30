@@ -2,7 +2,7 @@ module.exports = [
   {
     id: 1,
     name: "Arpita Deb",
-    email: "Arpitadeb1990@gmail.com",
+    email: "arpitadeb1990@gmail.com",
     password: "strongpass",
     phone: '+1 (306) 241-4180',
     role: "admin",

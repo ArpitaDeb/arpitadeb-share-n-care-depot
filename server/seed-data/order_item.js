@@ -2,7 +2,7 @@ module.exports = [
   {
     id: 1,
     inventory_id: 3,
-    quantity: 2,
+    quantity: 1,
     order_id: 1,
     taken_at: new Date(), 
     return_at: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),

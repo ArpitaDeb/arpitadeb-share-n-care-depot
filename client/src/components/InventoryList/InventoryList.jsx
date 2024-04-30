@@ -1,25 +1,28 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import sortImg from '../../assets/icons/sort-24px.svg';
-import searchImg from '../../assets/icons/search-24px.svg';
-import deleteImg from '../../assets/icons/delete_outline-24px.svg';
-import editImg from '../../assets/icons/edit-24px.svg';
-import chevronImg from '../../assets/icons/chevron_right-24px.svg';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import sortImg from "../../assets/icons/sort-24px.svg";
+import searchImg from "../../assets/icons/search-24px.svg";
+import deleteImg from "../../assets/icons/delete_outline-24px.svg";
+import editImg from "../../assets/icons/edit-24px.svg";
+import chevronImg from "../../assets/icons/chevron_right-24px.svg";
 
-import './InventoryList.scss';
+import "./InventoryList.scss";
 
-const InventoryList = ({
-  inventoryList,
-  handleOnClick,
-  handleSearch,
-}) => {
+const InventoryList = ({ inventoryList, handleOnClick, handleSearch }) => {
   const navigate = useNavigate();
 
   const handleAddOnClick = () => {
-    navigate('/inventory/add-item');
+    navigate("/inventory/add-item");
   };
 
-  const inventoryHeader = ['Inventory Item', 'Category', 'Status', 'Qty', 'Image', 'Actions'];
+  const inventoryHeader = [
+    "Inventory Item",
+    "Category",
+    "Status",
+    "Qty",
+    "Image",
+    "Actions",
+  ];
 
   return (
     <>
@@ -60,12 +63,15 @@ const InventoryList = ({
             </div>
 
             <div className="search-panel__add">
-              <button className="search-panel__add-button" onClick={handleAddOnClick}>
+              <button
+                className="search-panel__add-button"
+                onClick={handleAddOnClick}
+              >
                 + Add New Item
               </button>
             </div>
           </div>
-          <div className="inventory-labels">
+          {/* <div className="inventory-labels">
             <div className="inventory-labels__container">
               {inventoryHeader.map((column, index) => (
                 <div className="inventory-labels__column-header" key={column}>
@@ -85,86 +91,15 @@ const InventoryList = ({
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="inventory-product">
             {inventoryList.map((inventoryItem) => (
-              <div key={inventoryItem.id} className="inventory-product__row">
-                <div className="inventory-product__mobile-block-1">
-                  <div className="inventory-product__column-1">
-                    <div className="inventory-product__header mobile-view">
-                      {inventoryHeader[0]}
-                    </div>
-                    <div className="inventory-product__inventory-name">
-                      <Link to={`/inventory/${inventoryItem.id}`}>
-                        <div className="inventory-product__inventory-name-container">
-                          {inventoryItem.item_name}
-                          <img
-                            src={chevronImg}
-                            alt="chevron icon"
-                            className="inventory-product__inventory-name-chevron"
-                          />
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="inventory-product__header mobile-view">
-                      {inventoryHeader[1]}
-                    </div>
-
-                    <div className="inventory-product__inventory-category">
-                      {inventoryItem.category}
-                    </div>
-                  </div>
-                  <div className="inventory-product__column-2">
-                    <div className="inventory-product__header mobile-view">
-                      {inventoryHeader[2]}
-                    </div>
-
-                    <div className="inventory-product__inventory-status">
-                      <div
-                        className={`inventory-product__inventory-status-tag ${
-                          inventoryItem.quantity !== 0
-                            ? 'inventory-product__inventory-status--in-stock'
-                            : 'inventory-product__inventory-status--no-stock'
-                        }`}>
-                        {inventoryItem.is_permanent}
-                      </div>
-                    </div>
-
-                    <div className="inventory-product__header mobile-view">
-                      {inventoryHeader[3]}
-                    </div>
-                    <div className="inventory-product__inventory-quantity-container">
-                      <div className="inventory-product__inventory-quantity">
-                        {inventoryItem.quantity}
-                      </div>
-                    </div>
-
-                    <div className="inventory-product__header mobile-view">
-                      {inventoryHeader[4]}
-                    </div>
-                    <div className="inventory-product__inventory-image-name">
-                      <div className="inventory-product__inventory-image-container">
-                        <img src={inventoryItem.image_url} alt="product"  width="375" height="500" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="inventory-product__mobile-block-2">
-                  <div className="inventory-product__inventory-actions">
-                    <div className="inventory-product__inventory-actions-delete">
-                      <Link to={`/inventory/delete-item/${inventoryItem.id}`}>
-                        <img src={deleteImg} alt="delete icon" />
-                      </Link>
-                    </div>
-                    <Link to={`/inventory/edit-item/${inventoryItem.id}`}>
-                      <div className="inventory-product__inventory-actions-edit">
-                        <img src={editImg} alt="edit icon" />
-                      </div>
-                    </Link>
-                  </div>
-                </div>
+              <div
+                key={inventoryItem.id}
+                className="inventory-product__row"
+              >
+                <div className="inventory-product__imgbox"><img className="inventory-product__invimg" src={inventoryItem.image_url} alt="product" /></div>
               </div>
             ))}
           </div>

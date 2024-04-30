@@ -4,28 +4,27 @@ import axios from "axios";
 
 export default function Profile({ setIsUserLoggedIn }) {
   const [user, setUser] = useState(null);
-
-  // useEffect (as soon as the component mounts)
+  const [error, setError] = useState(null);
   useEffect(() => {
     const fetchProfile = async () => {
-      // get the token from local storage
-      const token = localStorage.getItem("authToken");
-
-      // make a GET request to /profile
-      // add it as a header
-      const response = await axios.get("http://localhost:8080/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      console.log(response);
-
-      setUser(response.data);
+      try {
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get("http://localhost:8080/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        setError(error.response.data);
+      }
     };
 
     fetchProfile();
   }, []);
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   if (!user) {
     return <>Loading user details...</>;
@@ -33,19 +32,24 @@ export default function Profile({ setIsUserLoggedIn }) {
 
   return (
     <main className="profile-page">
-      <h2>Welcome back, {user.name}!</h2>
-
-      <p>You have {user.likes} likes.</p>
-
-      <button
-        className="logout-button"
-        onClick={() => {
-          localStorage.removeItem("authToken");
-          setIsUserLoggedIn(false);
-        }}
-      >
-        Log out
-      </button>
+      {user.role === "admin" ? (
+        <>
+          <h2>Welcome back, {user.name}!</h2>
+          <button
+            className="logout-button"
+            onClick={() => {
+              localStorage.removeItem("authToken");
+              setIsUserLoggedIn(false);
+            }}
+          >
+            Log out
+          </button>{" "}
+        </>
+      ) : (
+        <div>
+          <p>You don't have permission to access this page.</p>
+        </div>
+      )}
     </main>
   );
 }

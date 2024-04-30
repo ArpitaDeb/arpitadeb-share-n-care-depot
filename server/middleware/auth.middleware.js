@@ -2,44 +2,34 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 const tokenVerify = (req, res, next) => {
-    // validate the token
-    //extracting the token from the headers
     const { authorization } = req.headers;
-
     if (!authorization) {
         return res.status(401).send('Unauthenticated');
     }
+  const [prefix, token] = authorization.split(" ");
 
-    //verify the token
-    const token = authorization.split(' ')[1];
-    console.log(token);
-
+  if (prefix !== "Bearer") {
+    return res.sendStatus(403);
+  }
     try {
         const payload = jwt.verify(token, process.env.SECRET_KEY);
-        console.log(payload);
-
-        //if it is valuid, call next(), passing the payload through
-        // the role lookup potentially
+        //if it is valid, call next(), passing the payload through the role lookup potentially
         req.userObj = payload;
-
         next();
-
     } catch (error) {
         console.log(error);
         res.status(401).send("Invalid token");
     }
 }
 
-// this makes sure that user has educator role
-const educatorOnly = (req, res, next) => {
-    if (req.userObj.role !== 'educator') {
+const adminOnly = (req, res, next) => {
+    if (req.userObj.role !== 'admin') {
        return res.status(403).send("No rights to access this")
     }
-
     next();
 }
 
 module.exports = {
     tokenVerify,
-    educatorOnly
+    adminOnly
 };

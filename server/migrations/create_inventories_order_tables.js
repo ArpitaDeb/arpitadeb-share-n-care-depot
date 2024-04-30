@@ -27,8 +27,8 @@ exports.up = function (knex) {
     .createTable('user', (table) => {
       table.increments('id').primary();
       table.string('name').notNullable();
-      table.string('password').notNullable();
       table.string('email').notNullable();
+      table.string('password').notNullable();
       table.string('phone').notNullable();
       table.enum('role', ['user', 'admin']).defaultTo('user');
       table.timestamp('created_at').defaultTo(knex.fn.now());
