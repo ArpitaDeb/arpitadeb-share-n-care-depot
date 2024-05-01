@@ -18,7 +18,6 @@ exports.up = function (knex) {
         .onDelete('CASCADE');
       table.string('item_name').notNullable();
       table.string('description').notNullable();
-      table.boolean('is_permanent').notNullable();
       table.integer('quantity').notNullable();
       table.string('image_url');
       table.timestamp('created_at').defaultTo(knex.fn.now());
@@ -42,7 +41,6 @@ exports.up = function (knex) {
         .references('user.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      table.string('status').notNullable();
     })
     .createTable('order_item', (table) => {
       table.increments('id').primary();
@@ -59,9 +57,10 @@ exports.up = function (knex) {
         .references('order.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      table.timestamp('taken_at').defaultTo(knex.fn.now());
-      table.timestamp('return_at').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-    });
+      table.string('status').notNullable();
+      table.timestamp('start_date').defaultTo(knex.fn.now());
+      table.timestamp('end_date').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+    })
 };
 
 /**

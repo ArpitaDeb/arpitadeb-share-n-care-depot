@@ -19,21 +19,18 @@ const isValidEmail = (email) => {
 
 const isValidInventoryData = async (req, res) => {
   const { 
-    user_id,
+    image_url,
     item_name, 
     description, 
-    category, 
-    status, 
+    category_id,  
     quantity, 
   } = req.body
   const errors = []
-  if (!user_id || !item_name || !description || !category || !status || quantity < 0) {
+  console.log("29", req.body)
+  if ( !item_name || !description || !category_id ) {
     errors.push('Missing properties in the request body')
   }
-  const userExists = await knex('users').where('id', user_id).first()
-  if (!userExists) {
-    errors.push('user_id does not exist')
-  }
+
   if(isNaN(quantity)) {
     errors.push('Quantity must be a number')
   }

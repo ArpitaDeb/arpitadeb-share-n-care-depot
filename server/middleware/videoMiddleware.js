@@ -1,12 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const multer = require("multer");
-const router = express.Router();
 
-const readVideosData = () => {
-    const videosData = fs.readFileSync("./data/videos.json",  "utf-8");
-    return JSON.parse(videosData);
-};
+const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -17,9 +13,7 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
-
 module.exports = {
   router,
-  readVideosData,
   upload
 };

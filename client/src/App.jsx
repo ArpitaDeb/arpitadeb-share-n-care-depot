@@ -44,7 +44,7 @@ function App() {
             />
             <Route path="/signup" element={<SignUp setIsUserLoggedIn={setIsUserLoggedIn} />} />
             <Route path="/inventory" element={<Inventory />} />
-            <Route path="/inventory" element={<Inventory />} />
+            
             <Route
               path="/inventory/:inventoryId"
               element={<ItemDetailPage />}

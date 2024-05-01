@@ -102,7 +102,7 @@
     outline: none;
     resize: none;
     &:focus {
-      border: 2px solid $indigo;
+      border: 1px solid $indigo;
     }
     &::placeholder {
       color: $black;
@@ -121,11 +121,11 @@
     height: 110px;
     margin-bottom: 1rem;
     @include tablet {
-      margin-bottom: 1.5rem;
+      margin-bottom: .8rem;
       height: 80px;
     }
     @include desktop {
-      margin-bottom: 4.1rem;
+      margin-bottom: 1rem;
     }
   }
 

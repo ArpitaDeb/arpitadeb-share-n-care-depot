@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./UploadPage.scss";
+import { storage } from "../../services/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Button from "../../components/Button/Button";
 import uploadPreview from "../../assets/images/Upload-preview.jpeg";
 import DropdownSelect from "../../components/Dropdown/Dropdown";
@@ -7,75 +9,110 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const apiURL = process.env.REACT_APP_API_URL;
+
 export const UploadPage = () => {
   const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [categoryId, setCategoryId] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const [selectFile, setSelectFile] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
   const [preview, setPreview] = useState(uploadPreview);
 
   const handleChangeItemName = (event) => {
     setItemName(event.target.value);
   };
+
   const handleChangeDesc = (event) => {
     setDescription(event.target.value);
   };
+
   const handleChangeCategory = (selectedCategory) => {
     setCategory(selectedCategory);
+    setCategoryId(getCategoryId(selectedCategory));
   };
+
+  const handleChangeQuantity = (event) => {
+    const value = parseInt(event.target.value);
+    if (!isNaN(value)) {
+      setQuantity(value);
+    }
+  };
+
   const isValid = (value, minLength) => value && value.length > minLength;
 
   const isItemNameValid = () => isValid(itemName, 3);
   const isDescriptionValid = () => isValid(description, 5);
-  const isFileValid = () => {
-    if (selectFile) {
-      return true;
-    }
-    return false;
-  };
-  const isFormValid = () => {
-    if (!isItemNameValid() && !isDescriptionValid() && !isFileValid()) {
-      alert("Please enter valid item name, description and image file.");
-      return false;
-    } else if (!isItemNameValid()) {
-      alert("Please enter a valid item name of minimum 3 characters.");
-      return false;
-    } else if (!isDescriptionValid()) {
-      alert("Please enter a valid description of minimum 5 characters.");
-      return false;
-    } else if (!isFileValid()) {
-      alert("Please make sure to insert the image file on the input box!");
-      return false;
-    }
-    return true;
-  };
+  const isFileValid = () => !!selectFile;
 
   const handleOnClick = () => {
     navigate("/");
   };
 
+  const getCategoryId = (name) => {
+    const categories = {
+      Electronics: 1,
+      "Outdoor Gear": 2,
+      Hobbies: 3,
+      Apparel: 4,
+      Accessories: 5,
+      "BBQ tools": 6,
+      "Cleaning supplies": 7,
+      "Grilling baskets or trays": 8,
+      Helmet: 9,
+      "Roller skates": 10,
+      "Camp stove": 11,
+      "Portable grill": 12,
+      Miscellaneous: 13,
+    };
+    return categories[name] || null;
+  };
+
+  const handleImageUpload = async (uploadedImage) => {
+    try {
+      let imageName = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+      const directoryPath = "images";
+      const storageRef = ref(storage, `${directoryPath}/${imageName}`);
+      const snapshot = await uploadBytes(storageRef, uploadedImage);
+      const uploadedImageUrl = await getDownloadURL(snapshot.ref);
+      return uploadedImageUrl;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error;
+    }
+  };
+
   const handlePublish = async (e) => {
     e.preventDefault();
-    if (isFormValid()) {
-      try {
-        const formData = new FormData();
-        formData.append("image", selectFile);
-        formData.append("item_name", itemName);
-        formData.append("description", description);
-        formData.append("category", category);
+    try {
+      if (isFormValid()) {
+        const uploadedImage = selectFile;
+        const imageUrl = await handleImageUpload(uploadedImage);
+        const formData = {
+          image_url: imageUrl,
+          item_name: itemName,
+          description: description,
+          category_id: categoryId,
+          quantity: Number(quantity),
+        };
 
-        await axios.post(`${apiURL}/apis/inventories`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        alert("item Successfully Uploaded!");
+        await axios.post(`${apiURL}/api/inventories`, formData);
+        alert("Item Successfully Uploaded!");
         navigate("/");
-      } catch (error) {
-        console.error("Error uploading item:", error);
       }
+    } catch (error) {
+      console.error("Error uploading item:", error);
     }
+  };
+
+  const isFormValid = () => {
+    if (!isItemNameValid() || !isDescriptionValid() || !isFileValid()) {
+      alert("Please enter valid item name, description, and image file.");
+      return false;
+    }
+    return true;
   };
 
   const onImageChange = (e) => {
@@ -89,6 +126,7 @@ export const UploadPage = () => {
       imgReader.readAsDataURL(uploadedImage);
     }
   };
+
   return (
     <div className="upload">
       <form onSubmit={handlePublish} className="upload__form">
@@ -143,34 +181,21 @@ export const UploadPage = () => {
                 onChange={handleChangeDesc}
                 value={description}
               ></textarea>
-              {/* <DropdownSelect
-                labelName="Category"
-                items={[
-                  "Please select a category",
-                  "Electronics",
-                  "Outdoor Gear",
-                  "Apparel",
-                  "Accessories",
-                  "BBQ tools",
-                  "Portable grill",
-                  "miscellaneous",
-                ]}
-                defaultValue="Please select a category"
-                fieldName="category"
-                name="category"
-                id="category"
-                onChange={handleChangeCategory}
-                value={category}
-              /> */}
               <DropdownSelect
                 labelName="Category"
                 items={[
                   "Please select a category",
                   "Electronics",
                   "Outdoor Gear",
+                  "Hobbies",
                   "Apparel",
                   "Accessories",
                   "BBQ tools",
+                  "Cleaning supplies",
+                  "Grilling baskets or trays",
+                  "Helmet",
+                  "Roller skates",
+                  "Camp stove",
                   "Portable grill",
                   "miscellaneous",
                 ]}
@@ -178,6 +203,18 @@ export const UploadPage = () => {
                 fieldName="category"
                 onChange={handleChangeCategory}
                 value={category}
+              />
+              <label className="upload__text" htmlFor="qty">
+                Quantity
+              </label>
+              <input
+                className={"input upload__name-input"}
+                type="number"
+                name="quantity"
+                id="quantity"
+                placeholder="enter quantity"
+                onChange={handleChangeQuantity}
+                value={quantity}
               />
             </div>
           </div>

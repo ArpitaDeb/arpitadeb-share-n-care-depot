@@ -9,46 +9,50 @@ module.exports = [
   },
   {
     id: 2,
-    name: 'Outdoor Gear', 
+    name: 'Outdoor Gear',
   },
   {
     id: 3,
-    name: 'Hobbies', 
+    name: 'Hobbies',
   },
   {
     id: 4,
-    name: 'Apparel', 
+    name: 'Apparel',
   },
   {
     id: 5,
-    name: 'Accessories', 
+    name: 'Accessories',
   },
   {
     id: 6,
-    name: 'BBQ tools', 
+    name: 'BBQ tools',
   },
   {
     id: 7,
-    name: 'Cleaning supplies', 
+    name: 'Cleaning supplies',
   },
   {
     id: 8,
-    name: 'Grilling baskets or trays', 
+    name: 'Grilling baskets or trays',
   },
   {
     id: 9,
-    name: 'Helmet', 
+    name: 'Helmet',
   },
   {
     id: 10,
-    name: 'Roller skates', 
+    name: 'Roller skates',
   },
   {
     id: 11,
-    name: 'Camp stove', 
+    name: 'Camp stove',
   },
   {
     id: 12,
-    name: 'Portable grill', 
+    name: 'Portable grill',
+  },
+  {
+    id: 13,
+    name: 'Miscellaneous',
   },
 ];
