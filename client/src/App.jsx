@@ -14,6 +14,7 @@ import EditWarehouse from "./components/WarehouseComponent/editWarehouse";
 import { ItemDetailPage } from "./pages/ItemDetailsPage/ItemDetailpage";
 import { DeleteWarehouse } from "./components/ModalWindows/deleteWarehouse";
 import { DeleteInventory } from "./components/ModalWindows/deleteInventory";
+import UploadPage from "./pages/UploadPage/UploadPage";
 
 import "./styles/partials/_global.scss";
 
@@ -33,6 +34,7 @@ function App() {
               path="/"
               element={<Profile setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
+            <Route path="/upload" element={<UploadPage />} />
           </Routes>
         ) : (
           <Routes>

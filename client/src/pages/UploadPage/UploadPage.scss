@@ -1,0 +1,168 @@
+@import '../../styles/partials/global';
+
+.upload {
+  &__form {
+    padding: 0 1rem;
+    border-top: 1.2px solid $cloud;
+    @include tablet {
+      padding: 0 2.25rem;
+    }
+    @include desktop {
+      padding: 0 80px;
+    }
+  }
+
+  &__container {
+    @include desktop {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+  }
+
+  &__big-wrap {
+    @include desktop {
+      display: flex;
+      gap: 1.5rem;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    @include desktop {
+      width: 100%;
+    }
+  }
+
+  &__thumbnail-info {
+    @include desktop {
+      padding-bottom: 0.1rem;
+    }
+  }
+
+  &__image {
+    display: block;
+    margin-bottom: 1.5rem;
+    @include tablet {
+      margin-bottom: 0;
+    }
+    @include desktop {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__thumbnail {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    &--display-none {
+      display: none;
+    }
+    @include tablet {
+      width: 50%;
+    }
+    @include desktop {
+      height: 172.891px;
+      width: auto;
+    }
+  }
+
+  &__heading {
+    padding-top: 1.5rem;
+    margin-top: 0;
+    @include tablet {
+      padding-top: 2.25rem;
+      padding-bottom: 1.5rem;
+      margin: 0;
+      border-bottom: 1.2px solid $cloud;
+    }
+  }
+
+  &__text {
+    display: block;
+    text-transform: uppercase;
+    color: $slate;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    @include tablet {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__name-input,
+  &__desc-input {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.625rem;
+    background-color: $white;
+    font-family: $font-primary;
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    outline: none;
+    resize: none;
+    &:focus {
+      border: 2px solid $indigo;
+    }
+    &::placeholder {
+      color: $black;
+      font-weight: 500;
+      font-size: .9rem;
+    }
+  }
+
+  &__name-input {
+    @include tablet {
+      margin-bottom: 0;
+    }
+  }
+
+  &__desc-input {
+    height: 110px;
+    margin-bottom: 1rem;
+    @include tablet {
+      margin-bottom: 1.5rem;
+      height: 80px;
+    }
+    @include desktop {
+      margin-bottom: 4.1rem;
+    }
+  }
+
+  &__name-input--error,
+  &__desc-input--error { 
+    &:focus {
+      border: 1px solid $red;
+    }
+  }
+
+  &__ending {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @include tablet {
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 5rem;
+      border-top: 1.2px solid $cloud;
+      padding: 1.5rem 0;
+    }
+  }
+
+  &__cancel {
+    color: $blue;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 2rem 0;
+    border: none;
+    font-size: .9rem;
+    background-color: $white;
+    cursor: pointer;
+    @include tablet {
+      width: auto;
+      order: -1;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

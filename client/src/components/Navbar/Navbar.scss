@@ -22,10 +22,12 @@
 .site-header__logo-container{
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .site-header__logo{
-  padding: .1rem .1rem;
+  padding: .4rem 1rem;
+  width: 100px;
   @include desktop{
    
   }
