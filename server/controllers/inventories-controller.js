@@ -57,7 +57,6 @@ const inventoryList = async (req, res) => {
 
 const postInventoryItem = async (req, res) => {
   const errors = await isValidInventoryData(req, res);
-  console.log("61")
   if (errors.length > 0) {
     return res.status(400).json({ errors });
   }
@@ -65,26 +64,15 @@ const postInventoryItem = async (req, res) => {
     category_id: req.body.category_id,
     item_name: req.body.item_name,
     description: req.body.description,
-    is_permanent: true,
     quantity: 1,
-    image_url: req.body.imageUrl,
+    image_url: req.body.image_url,
   };
-
-  console.log("73")
   try {
-    const data = await knex('inventories').insert({
-      category_id: req.body.category_id,
-      item_name: req.body.item_name,
-      description: req.body.description,
-      quantity: 1,
-      image_url: req.body.imageUrl,
-    });
+    const data = await knex('inventories').insert(postData);
     const newInventoryItem = data[0];
     const createdInventoryItem = await knex('inventories').where({ id: newInventoryItem }).first();
-    console.log("78")
     res.status(201).json({ createdInventoryItem });
   } catch (err) {
-    console.log("81")
     res.status(500).json({ message: `Error creating the inventory item` });
   }
 }

@@ -18,7 +18,6 @@ export const UploadPage = () => {
   const [categoryId, setCategoryId] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectFile, setSelectFile] = useState(null);
-  const [imageURL, setImageURL] = useState(null);
   const [preview, setPreview] = useState(uploadPreview);
 
   const handleChangeItemName = (event) => {
@@ -66,6 +65,7 @@ export const UploadPage = () => {
       "Camp stove": 11,
       "Portable grill": 12,
       Miscellaneous: 13,
+     'Small Appliances': 14
     };
     return categories[name] || null;
   };

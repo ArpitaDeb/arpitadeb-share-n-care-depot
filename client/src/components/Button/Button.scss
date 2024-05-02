@@ -48,6 +48,12 @@
       width: 150px;
     }
   }
+  &--reserve {
+    background-image: url("../../assets/icons/publish.svg");
+    @include tablet {
+      width: 150px;
+    }
+  }
 
   @include tablet {
     padding: 0 2rem;

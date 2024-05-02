@@ -30,18 +30,19 @@ Key features include:
 
 Featured items showcased on the main page for easy browsing.
 Can search items/ Category filters/ sort items enabling users to find specific items quickly.
-
-Registered users can borrow up to three items simultaneously to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know. Renewals are always accommodated as long as no one else has requested or reserved the item.
+User will reserve items through the booking calendar and after that confirmation email will be sent.
+and then reserved items will be automatically Marked as reserved or borrowed.
+Registered users can borrow up to three items simultaneously to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know by email or phone. Renewals are always accommodated as long as no one else has requested or reserved the item.
 Return the borrowed item.
-That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evning 5 to 7pm.
+That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evening 5 to 7pm.
 
 Admin privileges include:
 
-Uploading images of donated items for the user to view the item.
+Uploading images and description of donated items for the user to view the item.
 Posting available items for others to view.
-Removing items from the platform.
-Marking items as borrowed or taken.
-Communication via the chat-app, email, or text to coordinate item pickup/drop off to Arrange pickup/drop off with the donor
+Removing items from the platform if they are not usable anymore.
+
+Communication via email, or phone to coordinate item pickup/drop off with the borrower and donor.
 
 ## Implementation
 
@@ -159,22 +160,14 @@ id
 item_name:
 description:
   category:
-  status:
-  Unavailable
-  temporarily
-  available
-  quantity:1
-locationID
-borrowerID
+  quantity:
 
-admin will only see edit/del
+admin will only see ADD/del, user won't see those buttons
 
 users
 id
 username
 paswd
-item_borrowed: 1
-item_pickedup: 1
 admin
 for admin, isAdmin true, for user isAdmin false
 
@@ -258,6 +251,7 @@ Would like to volunteer with us? volunteers page
 FAQs, Guidelines for donation: Option for users/donors to donate funds for facility maintenance using their cards.
 Like/favorite functionality for users to save items for future reference by creating a profile.
 Direct messaging capability for expressing interest in items.
+
 
 https://libraryofthingsyxe.com/
 

@@ -6,23 +6,15 @@ const {
   uploadBytesResumable
 } = require("firebase/storage");
 
-// const firebaseConfig = {
-//   apiKey: process.env.FIREBASE_APIKEY,
-//   authDomain: process.env.FIREBASE_AUTHDOMAIN,
-//   projectId: process.env.FIREBASE_PROJECTID,
-//   storageBucket: process.env.FIREBASE_STORAGEBUCKET,
-//   messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
-//   appId: process.env.FIREBASE_APPID,
-// };
 const firebaseConfig = {
-  apiKey: "AIzaSyCr2sjssxJy3enrldpNFB-5E9GVnUbE3T0",
-  authDomain: "sharencare-3c4d1.firebaseapp.com",
-  projectId: "sharencare-3c4d1",
-  storageBucket: "sharencare-3c4d1.appspot.com",
-  messagingSenderId: "731929516926",
-  appId: "1:731929516926:web:3ca89fb7686e95259f712f",
-  measurementId: "G-JFM3XNZZVT"
+  apiKey: process.env.FIREBASE_APIKEY,
+  authDomain: process.env.FIREBASE_AUTHDOMAIN,
+  projectId: process.env.FIREBASE_PROJECTID,
+  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.FIREBASE_APPID,
 };
+
 const firebaseapp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseapp);
 

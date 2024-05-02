@@ -8,11 +8,16 @@ import chevronImg from "../../assets/icons/chevron_right-24px.svg";
 
 import "./InventoryList.scss";
 
-const InventoryList = ({ inventoryList, handleOnClick, handleSearch }) => {
+const InventoryList = ({
+  inventoryList,
+  handleOnClick,
+  handleSearch,
+  setIsAdminLoggedIn,
+}) => {
   const navigate = useNavigate();
 
   const handleAddOnClick = () => {
-    navigate("/inventory/add-item");
+    navigate("/inventory/upload");
   };
 
   const inventoryHeader = [
@@ -41,11 +46,13 @@ const InventoryList = ({ inventoryList, handleOnClick, handleSearch }) => {
             />
             <img src={searchImg} alt="search" />
           </div>
-          <div className="panel__add tablet-view">
-            <button className="panel__add-button" onClick={handleAddOnClick}>
-              + Add New Item
-            </button>
-          </div>
+          {
+            <div className="panel__add tablet-view">
+              <button className="panel__add-button" onClick={handleAddOnClick}>
+                + Add New Item
+              </button>
+            </div>
+          }
         </div>
       </div>
 
@@ -95,11 +102,26 @@ const InventoryList = ({ inventoryList, handleOnClick, handleSearch }) => {
 
           <div className="inventory-product">
             {inventoryList.map((inventoryItem) => (
-              <div
-                key={inventoryItem.id}
-                className="inventory-product__row"
-              >
-                <div className="inventory-product__imgbox"><img className="inventory-product__invimg" src={inventoryItem.image_url} alt="product" /></div>
+              <div>
+                <div key={inventoryItem.id} className="inventory-product__row">
+                  <div className="inventory-product__imgbox">
+                    <img
+                      className="inventory-product__invimg"
+                      src={inventoryItem.image_url}
+                      alt="product"
+                    />
+                  </div>
+                </div>
+                <Link to={`/inventory/${inventoryItem.id}`}>
+                  <div className="inventory-product__inventory-name-container">
+                    {inventoryItem.item_name}
+                    <img
+                      src={chevronImg}
+                      alt="chevron icon"
+                      className="inventory-product__inventory-name-chevron"
+                    />
+                  </div>
+                </Link>
               </div>
             ))}
           </div>

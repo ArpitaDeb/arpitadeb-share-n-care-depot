@@ -26,8 +26,7 @@ const isValidInventoryData = async (req, res) => {
     quantity, 
   } = req.body
   const errors = []
-  console.log("29", req.body)
-  if ( !item_name || !description || !category_id ) {
+  if ( !item_name || !description || !category_id || !image_url || !quantity) {
     errors.push('Missing properties in the request body')
   }
 

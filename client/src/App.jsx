@@ -8,10 +8,11 @@ import Inventory from "./pages/Inventory/Inventory";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Profile from "./pages/Profile/Profile";
-// import { WarehousePage } from './pages/Warehouse/WarehousePage';
+// import { Page } from './pages//Page';
 import { AddWarehouse } from "./components/WarehouseComponent/addWarehouse";
 import EditWarehouse from "./components/WarehouseComponent/editWarehouse";
 import { ItemDetailPage } from "./pages/ItemDetailsPage/ItemDetailpage";
+import Reservation from "./components/Reservation/Reservation";
 import { DeleteWarehouse } from "./components/ModalWindows/deleteWarehouse";
 import { DeleteInventory } from "./components/ModalWindows/deleteInventory";
 import UploadPage from "./pages/UploadPage/UploadPage";
@@ -20,6 +21,9 @@ import "./styles/partials/_global.scss";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(
+    !!localStorage.getItem("authToken")
+  );
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
     !!localStorage.getItem("authToken")
   );
   return (
@@ -34,7 +38,11 @@ function App() {
               path="/"
               element={<Profile setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
-            <Route path="/upload" element={<UploadPage />} />
+            <Route path="/inventory/upload" element={<UploadPage />} />
+            <Route
+              path="/inventory/delete/:inventoryId"
+              element={<DeleteInventory />}
+            />
           </Routes>
         ) : (
           <Routes>
@@ -42,23 +50,22 @@ function App() {
               path="/"
               element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
-            <Route path="/signup" element={<SignUp setIsUserLoggedIn={setIsUserLoggedIn} />} />
-            <Route path="/inventory" element={<Inventory />} />
-            
+            <Route
+              path="/signup"
+              element={<SignUp setIsUserLoggedIn={setIsUserLoggedIn} />}
+            />
             <Route
               path="/inventory/:inventoryId"
               element={<ItemDetailPage />}
             />
-            <Route
-            path="/inventory/delete-item/:inventoryId"
-            element={<DeleteInventory />}
-          />
-           {/* <Route path="/inventory/add-item" element={<AddInventory />} />
+            <Route path="/inventory/reserve/:inventoryId" element={<Reservation />} />
+            {/* <Route path="/inventory/add-item" element={<AddInventory />} />
           <Route path="/inventory/edit-item/:inventoryId" element={<EditInventory />} /> */}
             {/* Other routes for non-logged-in users */}
           </Routes>
         )}
         <Routes>
+          <Route path="/inventory" setIsAdminLoggedIn={setIsAdminLoggedIn} element={<Inventory />} />
         </Routes>
         <footer>
           <Footer />
