@@ -11,6 +11,7 @@ router
   .get(inventoriesController.inventoryList)
   .post(inventoriesController.postInventoryItem);
 
-router.route('/inventories/:inventoryId').put(inventoriesController.updateInventoryItem);
+router.route('/inventories/:inventoryId/order_item').get(inventoriesController.inventoryOrderItems);
+
 
 module.exports = router;

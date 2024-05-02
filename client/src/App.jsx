@@ -9,11 +9,9 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Profile from "./pages/Profile/Profile";
 // import { Page } from './pages//Page';
-import { AddWarehouse } from "./components/WarehouseComponent/addWarehouse";
-import EditWarehouse from "./components/WarehouseComponent/editWarehouse";
+
 import { ItemDetailPage } from "./pages/ItemDetailsPage/ItemDetailpage";
-import Reservation from "./components/Reservation/Reservation";
-import { DeleteWarehouse } from "./components/ModalWindows/deleteWarehouse";
+import ReservationPage from "./pages/Reservation/ReservationPage";
 import { DeleteInventory } from "./components/ModalWindows/deleteInventory";
 import UploadPage from "./pages/UploadPage/UploadPage";
 
@@ -58,7 +56,7 @@ function App() {
               path="/inventory/:inventoryId"
               element={<ItemDetailPage />}
             />
-            <Route path="/inventory/reserve/:inventoryId" element={<Reservation />} />
+            <Route path="/inventory/reserve/:inventoryId" element={<ReservationPage />} />
             {/* <Route path="/inventory/add-item" element={<AddInventory />} />
           <Route path="/inventory/edit-item/:inventoryId" element={<EditInventory />} /> */}
             {/* Other routes for non-logged-in users */}

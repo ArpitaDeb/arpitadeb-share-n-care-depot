@@ -110,10 +110,33 @@ const deleteInventory = async (req, res) => {
   }
 };
 
+const inventoryOrderItems = async (req, res) => {
+  try {
+    const foundInventory = await knex('inventories').where({ id: req.params.inventory_id });
+
+    if (!foundInventory.length) {
+      return res.status(404).json({ message: 'Inventory was not found' });
+    }
+    const inventoryOrderItem = await knex('order_item')
+      .where({
+        inventory_id: foundInventory[0].id,
+      })
+      .select('*');
+    if (inventoryOrderItem.length === 0) {
+      res.status(500).json({ message: 'Inventory is empty!' });
+    } else {
+      res.status(200).json(inventoryOrderItem);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 module.exports = {
   inventoryList,
   postInventoryItem,
   updateInventoryItem,
   getOneInventory,
   deleteInventory,
+  inventoryOrderItems
 };

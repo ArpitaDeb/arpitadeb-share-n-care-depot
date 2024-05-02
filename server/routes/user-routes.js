@@ -10,8 +10,7 @@ router
   .route('/user/:user_id')
   .get(userController.singleUser)
   .delete(userController.deleteUser)
-  .put(userController.updateUser);
 
-router.route('/user/:user_id/inventories').get(userController.inventories);
+router.route('/user/:user_id/order').get(userController.userOrderDetails);
 
 module.exports = router;

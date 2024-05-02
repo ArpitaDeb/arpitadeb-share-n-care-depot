@@ -1,0 +1,9 @@
+@import '../../styles/partials/global';
+
+.reservation {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: antiquewhite;
+  gap: 1em;
+}

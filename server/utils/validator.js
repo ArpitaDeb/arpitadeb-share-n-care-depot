@@ -36,46 +36,44 @@ const isValidInventoryData = async (req, res) => {
   return errors
 }
 
+const isValidOrderItemData = async (req, res) => {
+  const {     
+    inventory_id,  
+    quantity, 
+    start_date,
+    end_date
+  } = req.body
+  console.log(req.body, "46");
+  const errors = []
+  if ( !inventory_id || !quantity || !start_date || !end_date ) {
+    errors.push('Missing properties in the request body')
+  }
+
+  if(isNaN(quantity)) {
+    errors.push('Quantity must be a number')
+  }
+  return errors
+}
 const isValidUserData = (data) => {
   const {
-    user_name,
-    address,
-    city,
-    country,
-    contact_name,
-    contact_position,
-    contact_phone,
-    contact_email,
+    name,
+    phone,
+    email,
   } = data;
   const errors = [];
 
-  if (!user_name) {
-    errors.push('Missing required field: user_name');
+  if (!name) {
+    errors.push('Missing required field: name');
   }
-  if (!address) {
-    errors.push('Missing required field: address');
+  if (phone) {
+    errors.push('Missing required field: phone');
+  } else if (!isValidPhone(phone)) {
+    errors.push('Invalid phone number format for phone');
   }
-  if (!city) {
-    errors.push('Missing required field: city');
-  }
-  if (!country) {
-    errors.push('Missing required field: country');
-  }
-  if (!contact_name) {
-    errors.push('Missing required field: contact_name');
-  }
-  if (!contact_position) {
-    errors.push('Missing required field: contact_position');
-  }
-  if (!contact_phone) {
-    errors.push('Missing required field: contact_phone');
-  } else if (!isValidPhone(contact_phone)) {
-    errors.push('Invalid phone number format for contact_phone');
-  }
-  if (!contact_email) {
-    errors.push('Missing required field: contact_email');
-  } else if (!isValidEmail(contact_email)) {
-    errors.push('Invalid email format for contact_email');
+  if (email) {
+    errors.push('Missing required field: email');
+  } else if (!isValidEmail(email)) {
+    errors.push('Invalid email format for email');
   }
   
   return errors;
@@ -86,5 +84,6 @@ module.exports = {
   isValidEmail,
   isValidPhone,
   isValidInventoryData,
-  isValidUserData
+  isValidUserData,
+  isValidOrderItemData
 };

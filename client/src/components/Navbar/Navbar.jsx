@@ -17,10 +17,10 @@ function Navbar() {
       <div className="site-header__navbar">
         <nav className="navbar">
           <Link to="/" className="navbar__btn">
-            Order{" "}
+            About Us{" "}
           </Link>
           <Link to="/inventory" className="navbar__btn">
-            Inventory
+            Browse Inventory
           </Link>
         </nav>
       </div>

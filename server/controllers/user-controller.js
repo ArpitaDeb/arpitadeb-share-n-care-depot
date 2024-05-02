@@ -1,6 +1,27 @@
 const knex = require('knex')(require('../knexfile'));
 const { isValidUserData } = require('../utils/validator');
 
+const userOrderDetails = async (req, res) => {
+  try {
+    const foundUser = await knex('user').where({ id: req.params.user_id });
+
+    if (!foundUser.length) {
+      return res.status(404).json({ message: 'user was not found' });
+    }
+    const userOrder = await knex('order')
+      .where({
+        borrower_id: foundUser[0].id,
+      })
+      .select('*');
+    if (userOrder.length === 0) {
+      res.status(500).json({ message: 'user is empty!' });
+    } else {
+      res.status(200).json(userOrder);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
 const index = async (req, res) => {
   try {
     const { sort_by, order_by, s } = req.query;
@@ -77,77 +98,10 @@ const postUser = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {
-  const errors = isValidUserData(req.body);
-
-  if (errors.length > 0) {
-    return res.status(400).json({ errors });
-  }
-  const {
-    user_name,
-    address,
-    city,
-    country,
-    contact_name,
-    contact_position,
-    contact_phone,
-    contact_email,
-  } = req.body;
-
-  try {
-    const rowsUpdated = await knex('user')
-      .where({ id: req.params.user_id })
-      .update({
-        user_name,
-        address,
-        city,
-        country,
-        contact_name,
-        contact_position,
-        contact_phone,
-        contact_email,
-      });
-    if (!rowsUpdated) {
-      return res.status(404).json({
-        message: `user with ID ${req.params.user_id} not found`,
-      });
-    }
-    const updateduser = await knex('user').where({ id: req.params.user_id }).first();
-    res.status(200).json(updateduser);
-  } catch (error) {
-    res.status(500).json({
-      message: `Unable to update user with ID ${req.params.user_id}: ${error}`,
-    });
-  }
-};
-
-const inventories = async (req, res) => {
-  try {
-    const founduser = await knex('user').where({ id: req.params.user_id });
-
-    if (!founduser.length) {
-      return res.status(404).json({ message: 'user was not found' });
-    }
-    const userInventories = await knex('inventories')
-      .where({
-        user_id: founduser[0].id,
-      })
-      .select('*');
-    if (userInventories.length === 0) {
-      res.status(500).json({ message: 'user is empty!' });
-    } else {
-      res.status(200).json(userInventories);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error });
-  }
-};
-
 module.exports = {
   index,
   singleUser,
   postUser,
   deleteUser,
-  inventories,
-  updateUser
+  userOrderDetails
 };
