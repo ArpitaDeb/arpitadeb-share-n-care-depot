@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -7,6 +7,7 @@ import "./Reservation.scss";
 import Button from "../../components/Button/Button";
 
 const apiURL = process.env.REACT_APP_API_URL;
+
 const ReservationPage = () => {
   const { inventoryId } = useParams();
   const [startDate, setStartDate] = useState(new Date());
@@ -21,23 +22,28 @@ const ReservationPage = () => {
     setEndDate(date);
   };
 
-  const handleBooking = () => {
+  const handleBooking = async () => {
     console.log("Booking from:", startDate);
     console.log("Booking to:", endDate);
+    const token = localStorage.getItem("authToken");
     const postData = {
       inventory_id: inventoryId,
       quantity: Number(1),
-   
       start_date: startDate,
       end_date: endDate,
     };
-    axios
-      .post(`${apiURL}/api/order_item`, postData)
-      .then((response) => {
-        alert("Warehouse Added Successfully! 🚀");
-        navigate("/");
-      })
-      .catch((error) => console.error("Error:", error));
+
+    try {
+      const response = await axios.post(`${apiURL}/api/order_item`, postData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("Reservation Added Successfully! 🚀");
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -63,11 +69,11 @@ const ReservationPage = () => {
         </div>
       </div>
       <Button
-          btnType="submit"
-          className="btn btn--book"
-          btnContent="Book"
-          handleButtonOnClick={handleBooking}
-        />
+        btnType="submit"
+        className="btn btn--book"
+        btnContent="Book"
+        handleButtonOnClick={handleBooking}
+      />
     </div>
   );
 };

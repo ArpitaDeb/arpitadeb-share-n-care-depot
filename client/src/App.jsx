@@ -9,7 +9,6 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Profile from "./pages/Profile/Profile";
 // import { Page } from './pages//Page';
-
 import { ItemDetailPage } from "./pages/ItemDetailsPage/ItemDetailpage";
 import ReservationPage from "./pages/Reservation/ReservationPage";
 import { DeleteInventory } from "./components/ModalWindows/deleteInventory";

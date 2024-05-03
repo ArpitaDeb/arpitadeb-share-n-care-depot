@@ -2,12 +2,13 @@ require("dotenv").config();
 const knex = require("knex")(require("../knexfile"));
 const express = require("express");
 const router = express.Router();
-const { tokenVerify, adminOnly } = require("../middleware/auth.middleware");
+const { tokenVerify, userOnly } = require("../middleware/auth.middleware");
 
 router.get("/",
     tokenVerify,
-    adminOnly,
+    userOnly,
     async (req, res) => {
+        console.log(req.userObj, "11")
         const user = await knex("user")
             .where({ id: req.userObj.id })
             .first();

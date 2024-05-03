@@ -28,8 +28,15 @@ const adminOnly = (req, res, next) => {
     }
     next();
 }
+const userOnly = (req, res, next) => {
+    if (req.userObj.role !== 'user' && req.userObj.role !== 'admin') {
+       return res.status(403).send("No rights to access this")
+    }
+    next();
+}
 
 module.exports = {
     tokenVerify,
-    adminOnly
+    adminOnly, 
+    userOnly
 };

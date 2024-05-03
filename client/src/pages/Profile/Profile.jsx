@@ -2,6 +2,7 @@ import "./Profile.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const apiURL = process.env.REACT_APP_API_URL;
 export default function Profile({ setIsUserLoggedIn }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -9,7 +10,7 @@ export default function Profile({ setIsUserLoggedIn }) {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("authToken");
-        const response = await axios.get("http://localhost:8080/profile", {
+        const response = await axios.get(`${apiURL}/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -32,7 +33,7 @@ export default function Profile({ setIsUserLoggedIn }) {
 
   return (
     <main className="profile-page">
-      {user.role === "admin" ? (
+      {user.role === "admin" || user.role === "user" ? (
         <>
           <h2>Welcome back, {user.name}!</h2>
           <button
