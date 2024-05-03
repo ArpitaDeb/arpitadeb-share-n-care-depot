@@ -2,16 +2,21 @@ const router = require('express').Router();
 const inventoriesController = require('../controllers/inventories-controller');
 const { tokenVerify, adminOnly, userOnly } = require("../middleware/auth.middleware");
 
-router
-  .route('/inventories/:inventoryId', tokenVerify, userOnly)
-  .get(inventoriesController.getOneInventory)
-router
-  .route('/inventories/:inventoryId', tokenVerify, adminOnly)
-  .delete(inventoriesController.deleteInventory);
+// router
+//   .route('/inventories/:inventoryId', tokenVerify, userOnly)
+//   .get(inventoriesController.getOneInventory)
+// router
+//   .route('/inventories/:inventoryId', tokenVerify, adminOnly)
+//   .delete(inventoriesController.deleteInventory);
+
+router.route('/inventories/:inventoryId')
+  .get(tokenVerify, userOnly, inventoriesController.getOneInventory)
+  .delete(tokenVerify, adminOnly, inventoriesController.deleteInventory);
 
 router
   .route('/inventories')
-  .get(inventoriesController.inventoryList)
+  .get(inventoriesController.inventoryList);
+  
 router
   .route('/inventories', tokenVerify, adminOnly)
   .post(inventoriesController.postInventoryItem);

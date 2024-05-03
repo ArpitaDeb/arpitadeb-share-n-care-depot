@@ -8,7 +8,6 @@ router.get("/",
     tokenVerify,
     userOnly,
     async (req, res) => {
-        console.log(req.userObj, "11")
         const user = await knex("user")
             .where({ id: req.userObj.id })
             .first();
@@ -18,6 +17,6 @@ router.get("/",
             email: user.email,
             role: user.role,
         });
-});
+    });
 
 module.exports = router;

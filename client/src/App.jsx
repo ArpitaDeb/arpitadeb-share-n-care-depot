@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/authContext";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -8,7 +9,6 @@ import Inventory from "./pages/Inventory/Inventory";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Profile from "./pages/Profile/Profile";
-// import { Page } from './pages//Page';
 import { ItemDetailPage } from "./pages/ItemDetailsPage/ItemDetailpage";
 import ReservationPage from "./pages/Reservation/ReservationPage";
 import { DeleteInventory } from "./components/ModalWindows/deleteInventory";
@@ -23,26 +23,21 @@ function App() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
     !!localStorage.getItem("authToken")
   );
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <header>
-          <Navbar />
-        </header>
-        {isUserLoggedIn ? (
+      <AuthProvider>
+        <BrowserRouter>
+          <header>
+            <Navbar />
+          </header>
           <Routes>
-            <Route
-              path="/"
-              element={<Profile setIsUserLoggedIn={setIsUserLoggedIn} />}
-            />
-            <Route path="/inventory/upload" element={<UploadPage />} />
-            <Route
-              path="/inventory/delete/:inventoryId"
-              element={<DeleteInventory />}
-            />
-          </Routes>
-        ) : (
-          <Routes>
+            {isUserLoggedIn && (
+              <Route
+                path="/"
+                element={<Profile setIsUserLoggedIn={setIsUserLoggedIn} />}
+              />
+            )}
             <Route
               path="/"
               element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
@@ -51,23 +46,33 @@ function App() {
               path="/signup"
               element={<SignUp setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
+            <Route path="/inventory" element={<Inventory />} />
+            <Route
+              path="/inventory/upload"
+              element={<UploadPage setIsAdminLoggedIn={setIsAdminLoggedIn} />}
+            />
+            <Route
+              path="/inventory/delete/:inventoryId"
+              element={
+                <DeleteInventory setIsAdminLoggedIn={setIsAdminLoggedIn} />
+              }
+            />
             <Route
               path="/inventory/:inventoryId"
-              element={<ItemDetailPage />}
+              element={<ItemDetailPage setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
-            <Route path="/inventory/reserve/:inventoryId" element={<ReservationPage />} />
-            {/* <Route path="/inventory/add-item" element={<AddInventory />} />
-          <Route path="/inventory/edit-item/:inventoryId" element={<EditInventory />} /> */}
-            {/* Other routes for non-logged-in users */}
+            <Route
+              path="/inventory/reserve/:inventoryId"
+              element={
+                <ReservationPage setIsUserLoggedIn={setIsUserLoggedIn} />
+              }
+            />
           </Routes>
-        )}
-        <Routes>
-          <Route path="/inventory" setIsAdminLoggedIn={setIsAdminLoggedIn} element={<Inventory />} />
-        </Routes>
-        <footer>
-          <Footer />
-        </footer>
-      </BrowserRouter>
+          <footer>
+            <Footer />
+          </footer>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

@@ -1,9 +1,12 @@
 import "./Profile.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../context/authContext";
 
 const apiURL = process.env.REACT_APP_API_URL;
-export default function Profile({ setIsUserLoggedIn }) {
+
+const Profile = ({ setIsUserLoggedIn }) => {
+  const { userId, userRole, logOut } = useAuth();
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -33,13 +36,15 @@ export default function Profile({ setIsUserLoggedIn }) {
 
   return (
     <main className="profile-page">
-      {user.role === "admin" || user.role === "user" ? (
+      {userRole === "admin" || userRole === "user" ? (
         <>
           <h2>Welcome back, {user.name}!</h2>
           <button
             className="logout-button"
             onClick={() => {
               localStorage.removeItem("authToken");
+              localStorage.removeItem("userId");
+              localStorage.removeItem("userRole");
               setIsUserLoggedIn(false);
             }}
           >
@@ -53,4 +58,6 @@ export default function Profile({ setIsUserLoggedIn }) {
       )}
     </main>
   );
-}
+};
+
+export default Profile;

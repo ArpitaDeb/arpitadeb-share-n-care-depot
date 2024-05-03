@@ -2,7 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.scss";
 import axios from "axios";
 
-export default function SignUp({ setIsUserLoggedIn }) {
+const apiURL = process.env.REACT_APP_API_URL;
+const SignUp = ({ setIsUserLoggedIn }) => {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -12,14 +14,17 @@ export default function SignUp({ setIsUserLoggedIn }) {
     const phone = event.target.phone.value;
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/signup", {
+      const response = await axios.post(`${apiURL}/auth/signup`, {
         name: name,
         email: email,
         password: password,
         phone: phone,
       });
       localStorage.setItem("authToken", response.data.access_token);
+      localStorage.setItem('userId', response.data.id);
+      localStorage.setItem('userRole', response.data.role);
       setIsUserLoggedIn(true);
+      navigate('/')
     } catch (error) {
       console.error(error);
     }
@@ -60,3 +65,4 @@ export default function SignUp({ setIsUserLoggedIn }) {
     </main>
   );
 }
+export default SignUp;

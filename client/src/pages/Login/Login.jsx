@@ -15,6 +15,9 @@ export default function Login({ setIsUserLoggedIn }) {
         password: password,
       });
       localStorage.setItem("authToken", response.data.access_token);
+      localStorage.setItem('userId', response.data.id);
+      localStorage.setItem('userRole', response.data.role);
+   
       setIsUserLoggedIn(true);
     } catch (error) {
       console.error(error);

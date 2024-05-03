@@ -25,6 +25,7 @@ router.post('/login', async (req, res) => {
     res.status(200).json({
         access_token: token,
         role: user.role,
+        id: user.id
     });
 });
 
@@ -66,6 +67,7 @@ router.post('/signup', async (req, res) => {
     res.status(200).json({
         access_token: token,
         role: newUser.role,
+        id: newUser.id
     });
 });
 

@@ -29,18 +29,12 @@ List the functionality that your app will include. These can be written as user 
 Key features include:
 
 Featured items showcased on the main page for easy browsing.
-Can search items/ Category filters/ sort items enabling users to find specific items quickly.
+Can search items enabling users to find specific items quickly.
 User will reserve items through the booking calendar and after that confirmation email will be sent.
 and then reserved items will be automatically Marked as reserved or borrowed.
 Registered users can borrow up to three items simultaneously to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know by email or phone. Renewals are always accommodated as long as no one else has requested or reserved the item.
 Return the borrowed item.
 That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evening 5 to 7pm.
-
-Admin privileges include:
-
-Uploading images and description of donated items for the user to view the item.
-Posting available items for others to view.
-Removing items from the platform if they are not usable anymore.
 
 Communication via email, or phone to coordinate item pickup/drop off with the borrower and donor.
 
@@ -61,7 +55,7 @@ Own API
 
 List the pages of your app with brief descriptions. You can show this visually, or write it out.
 
-### Browse the inventory
+### Browse the inventory, Registered user would be able to reserve available items to borrow, after reserving they will receive confirmation email to come and pick up at a specific time/day.
 
 Reusable Camping Items:
 
@@ -108,21 +102,12 @@ BBQ tools (spatula, tongs, BBQ brush)
 Grilling baskets or trays
 Cleaning supplies (grill brush, cleaner)
 
-### Borrow an item from the location
+### Borrow item from the location, reserved items will be shown as Due date/checked out in booking calendar
 
-### Volunteer
+### Admin Add new item with images and item details, Removing items from the platform if they are not usable anymore/get damaged.
 
-Volunteers are what continue to make the Depot a success! Join our team and help us build a more resilient community.
+### FAQs with Home Page where brief description of how to use the facility
 
-### Donate Funds with stripe
-
-### Users and admin profile
-
-### Add new item with images and item details
-
-### Schedule appointment to pickup ?
-
-### Donate things, arrange pickup for heavy items, if any or drop off at convenient time
 
 items at the top of wishlist
 Folding plastic table (4ft, 6ft, lightweight)
@@ -144,7 +129,6 @@ Tent (quick set-up)
 Camping Lanterns (battery operated, or rechargeable)
 Crafting tools (decorative punches, stamps, fabric scissors)
 
-### FAQs
 
 ### Mockups
 
@@ -169,12 +153,7 @@ id
 username
 paswd
 admin
-for admin, isAdmin true, for user isAdmin false
 
-admin has access to everything
-id 
-adminname
-paswd
 
 location if location is same and not changing no need to have it in db, it will be just in the frontend
 
@@ -244,6 +223,19 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
 ## Nice-to-haves
 
 Your project will be marked based on what you committed to in the above document. Under nice-to-haves, you can list any additional features you may complete if you have extra time, or after finishing.
+### Admin privileges include:
+in Admin dashboard we can see features like:
+Uploading images and description of donated items for the user to view the item.
+Posting available items for others to view.
+
+### Volunteer
+
+Volunteers are what continue to make the Depot a success! Join our team and help us build a more resilient community.
+###    Donate things, arrange pickup for heavy items, if any or drop off at convenient time
+
+### Donate Funds with stripe
+
+### Users and admin profile
 
 deploying app with cloud storage?,
 user should be able to like and make comments on the items?

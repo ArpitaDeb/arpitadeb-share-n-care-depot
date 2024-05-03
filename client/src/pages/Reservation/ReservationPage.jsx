@@ -26,6 +26,7 @@ const ReservationPage = () => {
     console.log("Booking from:", startDate);
     console.log("Booking to:", endDate);
     const token = localStorage.getItem("authToken");
+    const borrowerId = localStorage.getItem("userId");
     const postData = {
       inventory_id: inventoryId,
       quantity: Number(1),
