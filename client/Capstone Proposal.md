@@ -36,7 +36,7 @@ Registered users can borrow up to three items simultaneously to ensure fair acce
 Return the borrowed item.
 That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evening 5 to 7pm.
 
-Communication via email, or phone to coordinate item pickup/drop off with the borrower and donor.
+Communication via email to coordinate item pickup/drop off with the borrower and donor.
 
 ## Implementation
 
@@ -108,28 +108,6 @@ Cleaning supplies (grill brush, cleaner)
 
 ### FAQs with Home Page where brief description of how to use the facility
 
-
-items at the top of wishlist
-Folding plastic table (4ft, 6ft, lightweight)
-Folding chairs (Not upholstered)
-Plates, bowls and cups for events (durable and lightweight is preferred)
-Outdoor Games
-Sandwich board chalk board
-Party lights (solar, or plug-in)
-Beach umbrella
-Garden tools (Shovels, rake, etc.)
-Hand held garden tiller
-Manual lawn aerator
-Pole tree trimmer
-Electric leaf blower
-Electric Hedge trimmer
-Stackable mixing bowls
-Electric Hot pot
-Tent (quick set-up)
-Camping Lanterns (battery operated, or rechargeable)
-Crafting tools (decorative punches, stamps, fabric scissors)
-
-
 ### Mockups
 
 Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
@@ -145,7 +123,6 @@ item_name:
 description:
   category:
   quantity:
-
 admin will only see ADD/del, user won't see those buttons
 
 users
@@ -154,15 +131,7 @@ username
 paswd
 admin
 
-
 location if location is same and not changing no need to have it in db, it will be just in the frontend
-
-id
-name
-contact info
-address
-inventoryId
-
 
 borrower table
 id
@@ -179,10 +148,6 @@ category table
 id
 name
 
-permanent item
-id
-taken_at
-inventory_id
 ### Endpoints
 
 List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
@@ -199,13 +164,10 @@ GET /profile
 .deleteInventory;
 
 .route('/inventories')
-.get(inventoryLocationList)
+
 .postInventoryItem;
 
-.put updateInventoryItem;
 /upload("image")
-/pickup
-"/:id/likes
 
 ### Auth
 
@@ -244,6 +206,29 @@ FAQs, Guidelines for donation: Option for users/donors to donate funds for facil
 Like/favorite functionality for users to save items for future reference by creating a profile.
 Direct messaging capability for expressing interest in items.
 
+items at the top of wishlist
+Folding plastic table (4ft, 6ft, lightweight)
+Folding chairs (Not upholstered)
+Plates, bowls and cups for events (durable and lightweight is preferred)
+Outdoor Games
+Sandwich board chalk board
+Party lights (solar, or plug-in)
+Beach umbrella
+Garden tools (Shovels, rake, etc.)
+Hand held garden tiller
+Manual lawn aerator
+Pole tree trimmer
+Electric leaf blower
+Electric Hedge trimmer
+Stackable mixing bowls
+Electric Hot pot
+Tent (quick set-up)
+Camping Lanterns (battery operated, or rechargeable)
+Crafting tools (decorative punches, stamps, fabric scissors)
+
+/pickup
+"/:id/likes
+.put updateInventoryItem;
 
 https://libraryofthingsyxe.com/
 
