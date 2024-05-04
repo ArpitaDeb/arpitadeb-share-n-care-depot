@@ -8,7 +8,6 @@ const inventoriesRoutes = require('./routes/inventories-routes');
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const reservationRoutes = require('./routes/reservation-routes');
-const orderRoutes = require('./routes/order-routes');
 
 const PORT = process.env.PORT;
 
@@ -25,7 +24,6 @@ app.use('/api', inventoriesRoutes);
 app.use("/auth", authRouter);
 app.use("/profile", profileRouter);
 app.use('/api', reservationRoutes);
-app.use('/api', orderRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server is listening on ${PORT}`);
