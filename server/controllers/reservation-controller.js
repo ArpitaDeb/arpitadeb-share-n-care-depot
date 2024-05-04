@@ -1,6 +1,8 @@
 const knex = require('knex')(require('../knexfile'));
 const { isValidOrderItemData } = require('../utils/validator');
-const sendNotification = require('../service/email/sendNotification')
+// const sendMail = require('../service/email/sendMail')
+const nodemailer = require("nodemailer");
+ const { confirmationTemplate } = require("../service/email/confirmationTemplate");
 
 const index = async (req, res) => {
   try {
@@ -11,30 +13,68 @@ const index = async (req, res) => {
     res.status(400).send(`Error retrieving order items: ${err}`);
   }
 };
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
+const sendMail = async (transporter, newOrderItem, start_date, end_date, item_name, recipientEmail) => {
+    const mailOptions = {
+      from: process.env.SMTP_FROM,
+      to: recipientEmail,
+      subject: "Notification regarding your reservation request at Share N Care Depot",
+      // html:' <p> html code </p>'
+      html: confirmationTemplate(newOrderItem, start_date, end_date, item_name),
+    };
+    try {
+    await transporter.sendMail(mailOptions);
+   
+  } catch (error) {
+    console.error("Error sending the email:", error);
+  }
+}
 const postOrderItem = async (req, res) => {
   const errors = await isValidOrderItemData(req, res);
   if (errors.length > 0) {
     return res.status(400).json({ errors });
   }
+  const borrower_id = req.body.borrower_id;
+  const inventory_id = req.body.inventory_id;
+  const quantity = req.body.quantity;
+  const start_date = req.body.start_date;
+  const end_date = req.body.end_date;
 
   const postData = {
-    borrower_id: req.body.borrower_id,
-    inventory_id: req.body.inventory_id,
-    quantity: req.body.quantity,
-    start_date: req.body.start_date,
-    end_date: req.body.end_date,
+    borrower_id,
+    inventory_id,
+    quantity,
+    start_date,
+    end_date,
   };
 
   try {
-    const item_name = await knex('inventories').where({ id: req.body.inventory_id });
-    const recipientEmail = await knex('user').where({ id: req.body.borrower_id });
+    const item = await knex
+      .select('inventories.item_name')
+      .from('inventories')
+      .where({ id: inventory_id }).first();
+    const item_name = item.item_name;
+    const recipient = await knex
+      .select('user.email')
+      .from('user')
+      .where({ id: borrower_id }).first();
+    const recipientEmail = recipient.email;
     const data = await knex('order').insert(postData);
     const newOrderItem = data[0];
     const createdOrderItem = await knex('order').where({ id: newOrderItem }).first();
-    console.log(newOrderItem, start_date, end_date, item_name, recipientEmail);
-    // await sendNotification(newOrderItem, start_date, end_date, item_name, recipientEmail)
-    
 
+    // console.log(newOrderItem, start_date, end_date, item_name, recipientEmail);
+    await sendMail(transporter, newOrderItem, start_date, end_date, item_name, recipientEmail);
+    // await sendMail(transporter, recipientEmail);
     res.status(201).json({ createdOrderItem });
   } catch (err) {
     res.status(500).json({ message: `Error creating the Order item` });

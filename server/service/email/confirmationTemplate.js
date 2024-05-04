@@ -1,5 +1,4 @@
-const confirmationTemplate = (newOrderItem, start_date, end_date, item_name) => 
-`<!DOCTYPE html>
+const confirmationTemplate = (newOrderItem, start_date, end_date, item_name) => { return `<!DOCTYPE html>
 <html>
 
 <head>
@@ -179,13 +178,13 @@ const confirmationTemplate = (newOrderItem, start_date, end_date, item_name) =>
                         <td align="center" bgcolor="#1a82e2" style="border-radius: 30px;
                             background-image: linear-gradient(to right, #fff, #ffffffe0 100%);
                             padding: 20px;">
-                          <h2 style="color: black; margin-bottom: 10px;">RESERVATION #${newOrderItem}</h2>
+                          <h2 style="color: black; margin-bottom: 10px;">RESERVATION # ${newOrderItem}</h2>
                           <p style="color: black; font-size: 16px; line-height: 1.5;">
                             Item: ${item_name}
                           </p>
                           <ul style="list-style-type: none; padding-left: 0; margin-bottom: 16px;">
-                            <li style="margin-bottom:6px;">Pick Up Date: ${start_date}</li>
-                            <li style="margin-bottom:6px;">Due Back: ${end_date}</li>
+                            <li style="margin-bottom:6px;">Pick Up Date: ${new Date(start_date).toDateString()}</li>
+                            <li style="margin-bottom:6px;">Due Back: ${new Date(end_date).toDateString()}</li>
                           </ul>
                           <h2 style="color: black; margin-bottom: 10px;">LOCATION</h2>
                           <p style="color: black; font-size: 16px; line-height: 1.5;">
@@ -238,8 +237,8 @@ const confirmationTemplate = (newOrderItem, start_date, end_date, item_name) =>
 </body>
 
 </html>
-`;
-
+`
+};
 module.exports = {
   confirmationTemplate
 };
