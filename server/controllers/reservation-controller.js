@@ -1,5 +1,6 @@
 const knex = require('knex')(require('../knexfile'));
 const { isValidOrderItemData } = require('../utils/validator');
+const sendNotification = require('../service/email/sendNotification')
 
 const index = async (req, res) => {
   try {
@@ -18,17 +19,22 @@ const postOrderItem = async (req, res) => {
 
   const postData = {
     borrower_id: req.body.borrower_id,
-    inventory_id: req.body.inventory_id,  
-    quantity: req.body.quantity, 
+    inventory_id: req.body.inventory_id,
+    quantity: req.body.quantity,
     start_date: req.body.start_date,
     end_date: req.body.end_date,
   };
-  
+
   try {
+    const item_name = await knex('inventories').where({ id: req.body.inventory_id });
+    const recipientEmail = await knex('user').where({ id: req.body.borrower_id });
     const data = await knex('order').insert(postData);
     const newOrderItem = data[0];
-
     const createdOrderItem = await knex('order').where({ id: newOrderItem }).first();
+    console.log(newOrderItem, start_date, end_date, item_name, recipientEmail);
+    // await sendNotification(newOrderItem, start_date, end_date, item_name, recipientEmail)
+    
+
     res.status(201).json({ createdOrderItem });
   } catch (err) {
     res.status(500).json({ message: `Error creating the Order item` });
@@ -98,6 +104,6 @@ const orderItemsInventory = async (req, res) => {
 module.exports = {
   index,
   postOrderItem,
-  singleOrder, 
+  singleOrder,
   orderItemsInventory
 };
