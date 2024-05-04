@@ -68,3 +68,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+PLEASE GENERATE SECRET_KEY
+Open your terminal or command prompt.
+Run the following Node.js script to generate a random string:
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"

@@ -41,9 +41,6 @@ exports.up = function (knex) {
         .references('user.id')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-    })
-    .createTable('order_item', (table) => {
-      table.increments('id').primary();
       table
         .integer('inventory_id')
         .unsigned()
@@ -51,15 +48,8 @@ exports.up = function (knex) {
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
       table.integer('quantity').notNullable();
-      table
-        .integer('order_id')
-        .unsigned()
-        .references('order.id')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      table.string('status').notNullable();
-      table.timestamp('start_date').defaultTo(knex.fn.now());
-      table.timestamp('end_date').defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+      table.timestamp('start_date').notNullable();
+      table.timestamp('end_date').notNullable();
     })
 };
 
@@ -68,7 +58,7 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('order_item')
+  return knex.schema
     .dropTable('order')
     .dropTable('user').dropTable('inventories').dropTable('category');
 };

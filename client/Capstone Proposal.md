@@ -32,8 +32,8 @@ Featured items showcased on the main page for easy browsing.
 Can search items enabling users to find specific items quickly.
 User will reserve items through the booking calendar and after that confirmation email will be sent.
 and then reserved items will be automatically Marked as reserved or borrowed.
-Registered users can borrow up to three items simultaneously to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know by email or phone. Renewals are always accommodated as long as no one else has requested or reserved the item.
-Return the borrowed item.
+Registered users can borrow items and return  the item on time to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know by email or phone. Renewals are always accommodated as long as no one else has requested or reserved the item.
+
 That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evening 5 to 7pm.
 
 Communication via email to coordinate item pickup/drop off with the borrower and donor.

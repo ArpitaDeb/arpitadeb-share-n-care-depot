@@ -37,20 +37,26 @@ const isValidInventoryData = async (req, res) => {
 }
 
 const isValidOrderItemData = async (req, res) => {
-  const {     
+  const { 
+    borrower_id,    
     inventory_id,  
     quantity, 
     start_date,
     end_date
   } = req.body
-  console.log(req.body, "46");
+  
   const errors = []
-  if ( !inventory_id || !quantity || !start_date || !end_date ) {
+  if ( !borrower_id || !inventory_id || !quantity || !start_date || !end_date ) {
     errors.push('Missing properties in the request body')
   }
-
   if(isNaN(quantity)) {
     errors.push('Quantity must be a number')
+  }
+  if(isNaN( borrower_id)) {
+    errors.push('user Id must be a number')
+  }
+  if(isNaN(inventory_id)) {
+    errors.push('inventory Id must be a number')
   }
   return errors
 }

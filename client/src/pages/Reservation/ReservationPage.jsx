@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import moment from 'moment';
 import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -28,10 +29,11 @@ const ReservationPage = () => {
     const token = localStorage.getItem("authToken");
     const borrowerId = localStorage.getItem("userId");
     const postData = {
-      inventory_id: inventoryId,
+      borrower_id: Number(borrowerId),
+      inventory_id: Number(inventoryId),
       quantity: Number(1),
-      start_date: startDate,
-      end_date: endDate,
+      start_date: moment(startDate).format('YYYY-MM-DD'),
+      end_date: moment(endDate).format('YYYY-MM-DD'),
     };
 
     try {
@@ -72,7 +74,7 @@ const ReservationPage = () => {
       <Button
         btnType="submit"
         className="btn btn--book"
-        btnContent="Book"
+        btnContent="Add To Cart"
         handleButtonOnClick={handleBooking}
       />
     </div>
