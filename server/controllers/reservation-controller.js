@@ -1,6 +1,8 @@
 const knex = require('knex')(require('../knexfile'));
+const moment = require('moment');
 const { isValidOrderItemData } = require('../utils/validator');
-// const sendMail = require('../service/email/sendMail')
+const { calculateAvailability } = require('../utils/Availability');
+
 const nodemailer = require("nodemailer");
  const { confirmationTemplate } = require("../service/email/confirmationTemplate");
 
@@ -28,7 +30,6 @@ const sendMail = async (transporter, newOrderItem, start_date, end_date, item_na
       from: process.env.SMTP_FROM,
       to: recipientEmail,
       subject: "Notification regarding your reservation request at Share N Care Depot",
-      // html:' <p> html code </p>'
       html: confirmationTemplate(newOrderItem, start_date, end_date, item_name),
     };
     try {
@@ -118,32 +119,67 @@ const orderItemsInventory = async (req, res) => {
     res.status(500).json({ error: error });
   }
 };
+const availability = async (req, res) => {
+  try {
+    const itemAvailability = await knex
+    .select('order.start_date', 'order.end_date')
+    .from('order')
+    .where({ id:  req.params.inventory_id }).first();
+    
+    // const duration = ;
+    res.status(200).json(duration);
+  } catch (err) {
+    res.status(400).send(`Error retrieving order items: ${err}`);
+  }
+};
 
-// router.get('/availability/:inventoryId/:startDate/:endDate', async (req, res) => {
-//   const { inventoryId, startDate, endDate } = req.params;
+const durationAvailability = async (req, res) => {
+  const { inventoryId } = req.params;
 
-//   try {
-//     // Retrieve reservations from the database that overlap with the specified duration and match the inventory ID
-//     const reservations = await OrderItem.find({
-//       inventory_id: inventoryId,
-//       start_date: { $lte: endDate },
-//       end_date: { $gte: startDate }
-//     });
+  try {
+    // Retrieve reservations from the database that overlap with the specified duration and match the inventory ID
+    const reservations = await knex
+    .select('order.start_date', 'order.end_date')
+    .from('order')
+    .where({ id: inventoryId });
+    console.log("reservations", reservations);
+    const today = new Date();
+    const endDate = moment(today).add(1, "month").toDate();
+    console.log("resendDate", endDate);
+    let date = today;
+    let array= [];
+    while (date <=endDate) {
+      date = moment(date).add(1, "day").toDate();
+      // console.log("152", date)
+      let match = false;
+      for(const reservation of reservations) {
+        if ((date >= new Date(reservation.start_date)) && (date <= new Date(reservation.end_date) )) {
+          match= true;
+          break;
+        } 
+      } if (!match) {
+        array.push(date);
+      }
+    }
 
-//     // Calculate availability status
-//     const availabilityMap = calculateAvailability(reservations, startDate, endDate);
 
-//     res.json({ availabilityMap });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
+    // Calculate availability status
+    // const availabilityMap = calculateAvailability(reservations, startDate, endDate);
+
+    res.json( array );
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 
 module.exports = {
   index,
   postOrderItem,
   singleOrder,
-  orderItemsInventory
+  orderItemsInventory,
+  availability,
+  durationAvailability
 };

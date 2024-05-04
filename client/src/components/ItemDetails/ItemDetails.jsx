@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 
@@ -9,11 +9,19 @@ import './itemDetails.scss';
 
 export const ItemDetails = ({inventory}) => {
   const navigate = useNavigate();
+  const [quantity, setQuantity] = useState(1);
+  
+  const handleChangeQuantity = (event) => {
+    const value = parseInt(event.target.value);
+    if (!isNaN(value)) {
+      setQuantity(value);
+    }
+  };
   const handleEditInventory = () => {
     navigate(`/inventory/edit-item/${inventory.id}`);
   }
   const handleOnClickReservation = () => {
-    navigate(`/inventory/reserve/${inventory.id}`);
+    navigate(`/inventory/reserve/${inventory.id}?quantity=${quantity}`);
   }
   return inventory ? (
     <div className="inventory-item">
@@ -51,8 +59,22 @@ export const ItemDetails = ({inventory}) => {
                 <p className='in-stock-inventory'>Available</p>
               </div>
               <div className="inventory-item__quantity-group">
-                <h4 className="inventory-item__description-title">QUANTITY:</h4>
+                <h4 className="inventory-item__description-title">STOCK:</h4>
                 <p>{inventory.quantity}</p>
+              </div>
+              <div>
+              <label className="upload__text" htmlFor="qty">
+                Quantity
+              </label>
+              <input
+                className={"input upload__name-input"}
+                type="number"
+                name="quantity"
+                id="quantity"
+                placeholder="enter quantity"
+                onChange={handleChangeQuantity}
+                value={quantity}
+              />
               </div>
               <div className="">
             <Button
