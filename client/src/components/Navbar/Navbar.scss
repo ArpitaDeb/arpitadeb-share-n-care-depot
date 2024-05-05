@@ -1,78 +1,128 @@
 @import '../../styles/partials/global';
 
-.site-header{
-  background-color: $graphite;
-  @include tablet {
-  flex-direction: row;
-  justify-content: space-between;
+.navigation {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: $orange;
+    padding-top: 1.5rem;
+    @include tablet {
+      flex-direction: row;
+      vertical-align: middle;
+      gap: 1em;
+      padding-top: 1rem;
+    }
+    @include desktop {
+      margin: 0 auto;
+      width: 1280px;
+      vertical-align: middle;
+      padding-top: 1.2rem;
+    }
   }
-}
-
-.site-header__container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  @include tablet{
-    flex-direction: row;
-    padding: 0;
+  &__logo {
+    height: 50px;
+    margin-bottom: 0.1rem;
+    &:hover {
+      animation: tilt-shaking 0.5s infinite;
+    }
+    @keyframes tilt-shaking {
+      0% {
+        transform: rotate(0);
+      }
+      25% {
+        transform: rotate(5deg);
+      }
+      50% {
+        transform: rotate(0);
+      }
+      75% {
+        transform: rotate(-5deg);
+      }
+      100% {
+        transform: rotate(0);
+      }
+    }
+    @include tablet {
+      justify-content: flex-start;
+      vertical-align: middle;
+      margin-bottom: 0;
+      height: 60px;
+      margin-left: 1rem;
+      padding: 1rem;
+    }
+    @include desktop {
+      justify-content: flex-start;
+      vertical-align: middle;
+      height: 60px;
+    }
   }
-}
-
-.site-header__logo-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.site-header__logo{
-  padding: .4rem 1rem;
-  width: 100px;
-  @include desktop{
-   
+  &__navbar {
+    text-align: center;
+    width: 100vw;
   }
-}
-
-.site-header__navbar{
-  width: 100%;
-  padding: 0rem 1rem;
-  @include tablet{
-    padding: 0rem;
+  &__list {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-top: 0.1rem;
+    list-style-type: none;
+    gap: 3rem;
+    @include tablet {
+      justify-content: flex-start;
+      margin-left: 2rem;
+      padding-top: 1rem;
+    }
+    @include desktop {
+      justify-content: flex-start;
+    }
   }
-  @include desktop{
-    padding: 0rem 1rem;
-  }
-}
-
-.navbar{
-  display: flex;
-  justify-content: space-evenly;
-  justify-items: center;
-  padding-bottom: 1.5rem;
-  gap: 1rem;
-  @include tablet{
-    justify-content: end;
-    padding: 1rem 0rem;
-  }
-}
-
-.navbar__btn{
-  color: $cloud;
-  width: 50%;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  &:hover {
-    background-color: #13182c;
+  &__item {
     color: $white;
-    border-radius: 20px;
-   }
-   @include tablet{
-    width: 15%;
-    padding: 0.5rem;
-   }
-   @include desktop{
-    width: 10%;
-   }
+    width: 50%;
+    transition: 0.5s;
+    text-decoration: none;
+    font-size: 1rem;
+    @include tablet {
+      left: 2rem;
+      font-size: 1.1rem;
+      width: unset;
+    }
+    @include desktop {
+      left: 0;
+      font-size: 1.3rem;
+    }
+    &:hover {
+      font-weight: 800;
+      color: $silver;
+    }
+  }
+  &__button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  &__active {
+    border-bottom: 3px solid $white;
+    padding-bottom: 1rem;
+    font-weight: 800;
+    width: 50%;
+    transition: 0.5s;
+    &:hover {
+      border-bottom: 4px solid $silver;
+    }
+    @include tablet {
+      width: auto;
+      font-weight: 600;
+      border-bottom: 4px solid $white;
+    }
+    @include desktop {
+      font-weight: bold;
+    }
+  }
 }
 
 

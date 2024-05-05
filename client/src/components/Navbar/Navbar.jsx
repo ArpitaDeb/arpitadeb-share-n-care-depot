@@ -1,32 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo/ShareNCareLogo.png"
 
 import "./Navbar.scss";
-
-function Navbar() {
+const Navbar = () => {
+  const navigate = useNavigate();
+  
+  const handleButtonOnClick = () => {
+    navigate('/');
+    
+  };
+  const handleOnClick = () => {
+    navigate('/inventory');
+  };
   return (
-    <header className="site-header">
-      <div className="site-header__container">
-      <div className="site-header__logo-container">
-        <Link to="/">
-          <img src={Logo} className="site-header__logo" alt="Logo" />
-        </Link>
-      </div>
-      <div className="site-header__navbar">
-        <nav className="navbar">
-          <Link to="/" className="navbar__btn">
-            About Us{" "}
-          </Link>
-          <Link to="/inventory" className="navbar__btn">
-            Browse Inventory
-          </Link>
-        </nav>
-      </div>
+    <header className="navigation">
+      <div className="navigation__wrapper">
+      <Link to="/">
+      <img className="navigation__logo" src={Logo} alt="logo" />
+      </Link>
+      <nav className="navigation__navbar">
+        <ul className="navigation__list">
+          <li className="navigation__active">
+            <button onClick={handleButtonOnClick} className="navigation__item navigation__button"> About Us{" "}</button>
+          </li>
+          <li className="navigation__item">
+            <button onClick={handleOnClick} className="navigation__item navigation__button"> Browse Inventory</button>
+          </li>
+        </ul>
+      </nav>
       </div>
     </header>
   );
-}
+};
 
 export default Navbar;
