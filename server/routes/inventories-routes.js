@@ -14,6 +14,6 @@ router
   .route('/inventories', tokenVerify, adminOnly)
   .post(inventoriesController.postInventoryItem);
 
-router.route('/inventories/:inventoryId/order_item', tokenVerify, userOnly).get(inventoriesController.inventoryOrderItems);
+router.route('/inventories/:inventoryId/order_item', tokenVerify).get(inventoriesController.inventoryOrderItems);
 
 module.exports = router;

@@ -23,3 +23,4 @@ const calculateAvailability = (reservations, startDate, endDate) => {
 
   return availabilityMap;
 };
+module.exports = {calculateAvailability};

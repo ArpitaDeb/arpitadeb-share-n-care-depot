@@ -30,11 +30,12 @@ Key features include:
 
 Featured items showcased on the main page for easy browsing.
 Can search items enabling users to find specific items quickly.
-User will reserve items through the booking calendar and after that confirmation email will be sent.
-and then reserved items will be automatically Marked as reserved or borrowed.
-Registered users can borrow items and return  the item on time to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know by email or phone. Renewals are always accommodated as long as no one else has requested or reserved the item.
+User will reserve items through the booking calendar and after that confirmation email will be sent in their registered email. 
+In the Calendar reserved dates will be disabled for that item and other dates will be enabled.
 
-That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evening 5 to 7pm.
+Registered users can borrow items and return the item on time to ensure fair access for all.The length of borrowing time is flexible, and if you still need the item after the due date, just let us know by email or phone. Renewals are always accommodated as long as no one else has requested or reserved the item.
+
+That’s it! When you’re done with the item or when the due date arrives, simply drop it off for the next borrower to use. Items can be returned directly to our location, everyday evening.
 
 Communication via email to coordinate item pickup/drop off with the borrower and donor.
 
@@ -102,7 +103,7 @@ BBQ tools (spatula, tongs, BBQ brush)
 Grilling baskets or trays
 Cleaning supplies (grill brush, cleaner)
 
-### Borrow item from the location, reserved items will be shown as Due date/checked out in booking calendar
+### Borrow item from the location, reserve items in booking calendar
 
 ### Admin Add new item with images and item details, Removing items from the platform if they are not usable anymore/get damaged.
 
@@ -185,6 +186,8 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
 ## Nice-to-haves
 
 Your project will be marked based on what you committed to in the above document. Under nice-to-haves, you can list any additional features you may complete if you have extra time, or after finishing.
+
+Reserve Items will be shown with Due date, which will Mark it as reserved or borrowed.
 ### Admin privileges include:
 in Admin dashboard we can see features like:
 Uploading images and description of donated items for the user to view the item.
@@ -229,12 +232,6 @@ Crafting tools (decorative punches, stamps, fabric scissors)
 /pickup
 "/:id/likes
 .put updateInventoryItem;
-
-https://libraryofthingsyxe.com/
-
-https://karrotmarket.com/?in=toronto-11052
-
-https://brainstation.io/hiring-brainstation-graduates
 
 https://www.pexels.com/
 
