@@ -15,7 +15,6 @@ const ReservationPage = () => {
   const [availability, setAvailability] = useState([]);
   const queryParams = new URLSearchParams(location.search)
   const [startDate, setStartDate] = useState(new Date());
-  // let [searchParams, setSearchParams] = useSearchParams();
   const  quantity = queryParams.get("quantity");
   const [endDate, setEndDate] = useState(null);
   const navigate = useNavigate();
@@ -35,29 +34,17 @@ const ReservationPage = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          
         });
       //  console.log("40", res)
         setAvailability(res.data);
-      //date format in react calendar date  
-      const date = "Fri May 10 2024 00:00:00 GMT-0600 (Central Standard Time)";
-      //date coming from the backend  
-      const avail = "2024-05-11T01:14:42.520Z";
-     
-    // const dateMoment = moment(date).format("MMM Do YY");
-    const availMoment = moment(avail).format("LLLL");
-    console.log("dateMoment", date, "availMoment", availMoment);
       } catch (error) {
         console.error("Error:", error);
-      }
-      
+      } 
     }; 
     getAvailability();
 }, [inventoryId]);
   
   const handleBooking = async () => {
-    console.log("Booking from:", startDate);
-    console.log("Booking to:", endDate);
     const token = localStorage.getItem("authToken");
     const borrowerId = localStorage.getItem("userId");
     const postData = {
@@ -68,7 +55,6 @@ const ReservationPage = () => {
       end_date: moment(endDate).format('YYYY-MM-DD'),
     };
     
-
     try {
       const response = await axios.post(`${apiURL}/api/order_item`, postData, {
         headers: {
@@ -92,10 +78,8 @@ const ReservationPage = () => {
             onChange={handleStartDateChange}
             value={startDate}
             minDate={new Date()}
-            tileDisabled={({ activeStartDate, date, view }) => { 
-              // console.log("activeStartDate", activeStartDate,"dt", date, "vw",view);
+            tileDisabled={({ date }) => { 
               for (const availableDate of availability ) {
-                
                if (moment(date).isSame(availableDate, "day")) {
                 return false;
                }
@@ -110,9 +94,8 @@ const ReservationPage = () => {
             value={endDate}
             minDate={startDate}
             disabled={!startDate}
-            tileDisabled={({ activeEndDate, date, view }) => {
+            tileDisabled={({ date }) => {
               for (const availableDate of availability ) {
-                // const availMoment = moment(availableDate, "YYYY-MM-DD");
                if (moment(date).isSame(availableDate, "day")) {
                 return false;
                }

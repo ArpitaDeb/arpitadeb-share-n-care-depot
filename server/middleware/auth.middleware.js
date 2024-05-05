@@ -13,7 +13,6 @@ const tokenVerify = (req, res, next) => {
   }
     try {
         const payload = jwt.verify(token, process.env.SECRET_KEY);
-        //if it is valid, call next(), passing the payload through the role lookup potentially
         req.userObj = payload;
         next();
     } catch (error) {

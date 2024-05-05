@@ -73,9 +73,7 @@ const postOrderItem = async (req, res) => {
     const newOrderItem = data[0];
     const createdOrderItem = await knex('order').where({ id: newOrderItem }).first();
 
-    // console.log(newOrderItem, start_date, end_date, item_name, recipientEmail);
     await sendMail(transporter, newOrderItem, start_date, end_date, item_name, recipientEmail);
-    // await sendMail(transporter, recipientEmail);
     res.status(201).json({ createdOrderItem });
   } catch (err) {
     res.status(500).json({ message: `Error creating the Order item` });
@@ -117,19 +115,6 @@ const orderItemsInventory = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: error });
-  }
-};
-const availability = async (req, res) => {
-  try {
-    const itemAvailability = await knex
-      .select('order.start_date', 'order.end_date')
-      .from('order')
-      .where({ id: req.params.inventory_id }).first();
-
-    // const duration = ;
-    res.status(200).json(duration);
-  } catch (err) {
-    res.status(400).send(`Error retrieving order items: ${err}`);
   }
 };
 
@@ -178,6 +163,5 @@ module.exports = {
   postOrderItem,
   singleOrder,
   orderItemsInventory,
-  availability,
   durationAvailability
 };
