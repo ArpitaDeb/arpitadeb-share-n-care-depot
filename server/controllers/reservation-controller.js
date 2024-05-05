@@ -4,7 +4,7 @@ const { isValidOrderItemData } = require('../utils/validator');
 const { calculateAvailability } = require('../utils/Availability');
 
 const nodemailer = require("nodemailer");
- const { confirmationTemplate } = require("../service/email/confirmationTemplate");
+const { confirmationTemplate } = require("../service/email/confirmationTemplate");
 
 const index = async (req, res) => {
   try {
@@ -26,15 +26,15 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendMail = async (transporter, newOrderItem, start_date, end_date, item_name, recipientEmail) => {
-    const mailOptions = {
-      from: process.env.SMTP_FROM,
-      to: recipientEmail,
-      subject: "Notification regarding your reservation request at Share N Care Depot",
-      html: confirmationTemplate(newOrderItem, start_date, end_date, item_name),
-    };
-    try {
+  const mailOptions = {
+    from: process.env.SMTP_FROM,
+    to: recipientEmail,
+    subject: "Notification regarding your reservation request at Share N Care Depot",
+    html: confirmationTemplate(newOrderItem, start_date, end_date, item_name),
+  };
+  try {
     await transporter.sendMail(mailOptions);
-   
+
   } catch (error) {
     console.error("Error sending the email:", error);
   }
@@ -122,10 +122,10 @@ const orderItemsInventory = async (req, res) => {
 const availability = async (req, res) => {
   try {
     const itemAvailability = await knex
-    .select('order.start_date', 'order.end_date')
-    .from('order')
-    .where({ id:  req.params.inventory_id }).first();
-    
+      .select('order.start_date', 'order.end_date')
+      .from('order')
+      .where({ id: req.params.inventory_id }).first();
+
     // const duration = ;
     res.status(200).json(duration);
   } catch (err) {
@@ -135,45 +135,43 @@ const availability = async (req, res) => {
 
 const durationAvailability = async (req, res) => {
   const { inventoryId } = req.params;
-
   try {
-    // Retrieve reservations from the database that overlap with the specified duration and match the inventory ID
     const reservations = await knex
-    .select('order.start_date', 'order.end_date')
-    .from('order')
-    .where({ id: inventoryId });
-    console.log("reservations", reservations);
+      .select('order.start_date', 'order.end_date')
+      .from('order')
+      .where({ inventory_id: inventoryId });
+
     const today = new Date();
     const endDate = moment(today).add(1, "month").toDate();
-    console.log("resendDate", endDate);
+    
     let date = today;
-    let array= [];
-    while (date <=endDate) {
-      date = moment(date).add(1, "day").toDate();
-      // console.log("152", date)
+    let array = [];
+    
+    while (date <= endDate) {
       let match = false;
-      for(const reservation of reservations) {
-        if ((date >= new Date(reservation.start_date)) && (date <= new Date(reservation.end_date) )) {
-          match= true;
+      for (const reservation of reservations) {
+        if ((date >= new Date(reservation.start_date)) && (date < new Date(reservation.end_date))) {
+          match = true;
           break;
-        } 
-      } if (!match) {
+        }
+      } 
+      if (!match && !reservations.some(reservation => moment(date).isSame(reservation.end_date, 'day'))) {
         array.push(date);
       }
+      date = moment(date).add(1, "day").toDate();
     }
-
-
-    // Calculate availability status
-    // const availabilityMap = calculateAvailability(reservations, startDate, endDate);
-
-    res.json( array );
     
+    const formattedDates = array.map(date => {
+      return moment(date).format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ [(Central Standard Time)]");
+    });
+    
+    res.json(formattedDates);    
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
 
 module.exports = {
   index,

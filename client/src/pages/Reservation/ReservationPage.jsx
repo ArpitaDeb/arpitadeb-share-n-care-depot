@@ -37,8 +37,16 @@ const ReservationPage = () => {
           },
           
         });
-       
+      //  console.log("40", res)
         setAvailability(res.data);
+      //date format in react calendar date  
+      const date = "Fri May 10 2024 00:00:00 GMT-0600 (Central Standard Time)";
+      //date coming from the backend  
+      const avail = "2024-05-11T01:14:42.520Z";
+     
+    // const dateMoment = moment(date).format("MMM Do YY");
+    const availMoment = moment(avail).format("LLLL");
+    console.log("dateMoment", date, "availMoment", availMoment);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -59,7 +67,7 @@ const ReservationPage = () => {
       start_date: moment(startDate).format('YYYY-MM-DD'),
       end_date: moment(endDate).format('YYYY-MM-DD'),
     };
-
+    
 
     try {
       const response = await axios.post(`${apiURL}/api/order_item`, postData, {
@@ -85,7 +93,9 @@ const ReservationPage = () => {
             value={startDate}
             minDate={new Date()}
             tileDisabled={({ activeStartDate, date, view }) => { 
+              // console.log("activeStartDate", activeStartDate,"dt", date, "vw",view);
               for (const availableDate of availability ) {
+                
                if (moment(date).isSame(availableDate, "day")) {
                 return false;
                }
@@ -100,8 +110,9 @@ const ReservationPage = () => {
             value={endDate}
             minDate={startDate}
             disabled={!startDate}
-            tileDisabled={({ activeEndDate, date, view }) => { 
+            tileDisabled={({ activeEndDate, date, view }) => {
               for (const availableDate of availability ) {
+                // const availMoment = moment(availableDate, "YYYY-MM-DD");
                if (moment(date).isSame(availableDate, "day")) {
                 return false;
                }
