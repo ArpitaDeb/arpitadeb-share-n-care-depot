@@ -66,11 +66,8 @@ const Home = () => {
           </div>
         </div>
         <div className="offers__step">
-          <div className="offers__step-image">
-            <img src={borrow} alt="borrow" />
-          </div>
-          <div className="offers__step-number">
-            <img src={two} className="offers__step-number" alt="one" />
+        <div className="offers__step-number">
+            <img src={two} className="offers__step-number" alt="two" />
           </div>
           <div className="offers__step-para">
             <h2>
@@ -78,10 +75,13 @@ const Home = () => {
               Reserve items and pick them up during operating hours.
             </h2>
           </div>
+          <div className="offers__step-image">
+            <img src={borrow} alt="borrow" />
+          </div>
         </div>
         <div className="offers__step">
           <div className="offers__step-number">
-            <img src={three} className="offers__step-number" alt="one" />
+            <img src={three} className="offers__step-number" alt="three" />
           </div>
           <div className="offers__step-para">
             <h2>

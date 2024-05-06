@@ -20,12 +20,13 @@ const ReservationPage = () => {
   const navigate = useNavigate();
   const [existingReservations, setExistingReservations] = useState([]);
   const [availableRanges, setAvailableRanges] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [availableRangeMessage, setAvailableRangeMessage] = useState("");
   const [unAvailableRange, setUnAvailableRange] = useState("");
+  const errorMessage = "Unfortunately, selected date range overlaps with an existing reservation. Please choose dates from Available Booking Ranges."
   const handleStartDateChange = (date) => {
     setStartDate(date);
-    setEndDate(null); // Reset end date when start date changes
+    setEndDate(null);
   };
 
   const handleEndDateChange = (date) => {
@@ -106,30 +107,12 @@ const ReservationPage = () => {
           end: moment(reservation.end_date),
         };
       });
-      console.log(ranges);
       setUnAvailableRange(ranges);
     };
 
     calculateUnavailableRanges();
-
     calculateAvailableRanges();
   }, [existingReservations]);
-
-  const isDateDisabled = (date) => {
-    const isOverlap = existingReservations.some((reservation) => {
-      const reservationStartDate = moment(reservation.start_date);
-      const reservationEndDate = moment(reservation.end_date);
-      return moment(date).isBetween(
-        reservationStartDate,
-        reservationEndDate,
-        null,
-        "[]"
-      );
-    });
-    return (
-      !availability.includes(moment(date).format("YYYY-MM-DD")) || isOverlap
-    );
-  };
 
   const validateBooking = () => {
     if (!startDate || !endDate) {
@@ -153,10 +136,8 @@ const ReservationPage = () => {
     for (const date of selectedDates) {
       for (const range of unAvailableRange) {
         if (date.isSameOrAfter(range.start) && date.isSameOrBefore(range.end)) {
-          console.log("Booking is not valid");
-          setError(
-            "Selected date range overlaps with an existing reservation."
-          );
+          setError(errorMessage);
+          console.log(error);
           return false;
         }
       }
@@ -193,14 +174,19 @@ const ReservationPage = () => {
         console.error("Error:", error);
       }
     } else {
-      setError(isValid);
+      setError(errorMessage);
     }
   };
 
   return (
     <div>
       <h2>Reservation</h2>
-      {error && <div className="notification">{error}</div>}
+      {error && (
+        <div className="notification">
+          <span>Error:</span> {error}
+          <button onClick={() => setError(null)}>×</button>
+        </div>
+      )}
       {availableRangeMessage && (
         <div className="available-ranges">
           <h3>Available Booking Ranges:</h3>
