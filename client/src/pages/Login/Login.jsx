@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 
 export default function Login({ setIsUserLoggedIn }) {
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     const email = event.target.email.value;
     const password = event.target.password.value;
 
@@ -19,6 +20,7 @@ export default function Login({ setIsUserLoggedIn }) {
       localStorage.setItem('userRole', response.data.role);
    
       setIsUserLoggedIn(true);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }

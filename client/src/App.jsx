@@ -21,7 +21,7 @@ function App() {
     !!localStorage.getItem("authToken")
   );
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
-    !!localStorage.getItem("authToken")
+    !!localStorage.getItem("userRole")
   );
 
   return (

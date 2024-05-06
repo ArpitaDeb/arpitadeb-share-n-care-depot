@@ -100,6 +100,36 @@
       font-weight: 800;
       color: $violet;
     }
+    &-logout {
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+    }
+    &-avatar {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      width: 40px;
+      height: 40px;
+    }
+    &-handlog {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+    &-dropdown-content {
+      display: none;
+      position: absolute;
+      top: 58px; /* Adjust as needed */
+      right: 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
   }
   &__button {
     border: none;

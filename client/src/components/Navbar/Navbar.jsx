@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo/ShareNCareLogo.png";
+import userimg from "../../assets/images/healthicons_ui-user-profile.svg";
 
 import "./Navbar.scss";
 const Navbar = () => {
@@ -8,6 +9,16 @@ const Navbar = () => {
   const location = useLocation();
   const handleNavigation = (route) => {
     navigate(route);
+  };
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth-token");
+    navigate("/");
+  };
+
+  const handleImageClick = () => {
+    setIsDropdownVisible(!isDropdownVisible);
   };
 
   return (
@@ -41,21 +52,23 @@ const Navbar = () => {
               </button>
             </li>
             <li className="navigation__item">
-            {localStorage.getItem("auth-token") ? (
-              <button className="navigation__login navigation__item"
-                onClick={() => {
-                  localStorage.removeItem("auth-token");
-                  window.location.replace("/");
-                }}
-              >
-                Logout
-              </button>
-            ) : (
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                <button>Login</button>
-              </Link>
-            )}
-          </li>
+              {localStorage.getItem("authToken") ? (
+                  <button
+                    className="navigation__item navigation__button"
+                    onClick={()=>{localStorage.removeItem('authToken');window.location.replace("/");}}
+                  >
+                    LogOut
+                  </button>
+              ) : (
+                <Link to="/login">
+                  <button
+                    className="navigation__item navigation__button"
+                  >
+                    Login
+                  </button>
+                </Link>
+              )}
+            </li>
           </ul>
         </nav>
       </div>
@@ -64,3 +77,56 @@ const Navbar = () => {
 };
 
 export default Navbar;
+            
+              /* 
+              // className={`navigation__item navigation__button ${
+                    //   location.pathname === "/logout"
+                    //     ? "navigation__button--active"
+                    //     : ""
+                    // }`}{localStorage.getItem("auth-token") ? (
+                <div className="navigation__item-logout">
+                  <div className="relative">
+                    <button onClick={handleImageClick}>
+                      <img
+                        src={userimg}
+                        alt="avatar"
+                        className={`navigation__item-avatar ${
+                          isDropdownVisible ? "avatar--active" : ""
+                        }`}
+                      />
+                    </button>
+                    {isDropdownVisible && (
+                      <div className="navigation__item-dropdown-content">
+                        <Link to="/profile">My Profile</Link>
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className={`navigation__item-handlog navigation__button ${
+                      location.pathname === "/logout"
+                        ? "navigation__button--active" : ""
+                    }`}
+                  >
+                    Logout
+                  </button>
+                </div> */
+                // <div className="navigation__item-logout">
+                //   <div className="relative">
+                //     <button onClick={handleImageClick}>
+                //       <img
+                //         src={userimg}
+                //         alt="avatar"
+                //         className={`navigation__item-avatar ${
+                //           isDropdownVisible ? "avatar--active" : ""
+                //         }`}
+                //       />
+                //     </button>
+                //     {isDropdownVisible && (
+                //       <div className="navigation__item-dropdown-content">
+                //         <Link to="/profile">My Profile</Link>
+                //       </div>
+                //     )}
+                //   </div>}
+                
+

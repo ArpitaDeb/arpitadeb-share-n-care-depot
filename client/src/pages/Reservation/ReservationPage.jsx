@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import moment from 'moment';
+import moment from "moment";
 import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -13,64 +13,200 @@ const ReservationPage = () => {
   const { inventoryId } = useParams();
   const location = useLocation();
   const [availability, setAvailability] = useState([]);
-  const queryParams = new URLSearchParams(location.search)
+  const queryParams = new URLSearchParams(location.search);
   const [startDate, setStartDate] = useState(new Date());
-  const  quantity = queryParams.get("quantity");
+  const quantity = queryParams.get("quantity");
   const [endDate, setEndDate] = useState(null);
   const navigate = useNavigate();
-
+  const [existingReservations, setExistingReservations] = useState([]);
+  const [availableRanges, setAvailableRanges] = useState([]);
+  const [error, setError] = useState(null);
+  const [availableRangeMessage, setAvailableRangeMessage] = useState("");
+  const [unAvailableRange, setUnAvailableRange] = useState("");
   const handleStartDateChange = (date) => {
     setStartDate(date);
+    setEndDate(null); // Reset end date when start date changes
   };
 
   const handleEndDateChange = (date) => {
     setEndDate(date);
   };
+
   useEffect(() => {
-    const getAvailability = async() => {
+    const getAvailability = async () => {
       const token = localStorage.getItem("authToken");
       try {
-        const res = await axios.get(`${apiURL}/api/availability/${inventoryId}`,  {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-      //  console.log("40", res)
+        const res = await axios.get(
+          `${apiURL}/api/availability/${inventoryId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setAvailability(res.data);
       } catch (error) {
         console.error("Error:", error);
-      } 
-    }; 
-    getAvailability();
-}, [inventoryId]);
-  
-  const handleBooking = async () => {
-    const token = localStorage.getItem("authToken");
-    const borrowerId = localStorage.getItem("userId");
-    const postData = {
-      borrower_id: Number(borrowerId),
-      inventory_id: Number(inventoryId),
-      quantity: Number(quantity),
-      start_date: moment(startDate).format('YYYY-MM-DD'),
-      end_date: moment(endDate).format('YYYY-MM-DD'),
+      }
     };
-    
-    try {
-      const response = await axios.post(`${apiURL}/api/order_item`, postData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+
+    const fetchExistingReservations = async () => {
+      try {
+        const res = await axios.get(
+          `${apiURL}/api/reservations/${inventoryId}`
+        );
+        setExistingReservations(res.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchExistingReservations();
+    getAvailability();
+  }, [inventoryId]);
+
+  useEffect(() => {
+    const calculateAvailableRanges = () => {
+      const ranges = [];
+      for (const reservation of existingReservations) {
+        const startDate = moment(reservation.start_date);
+        const endDate = moment(reservation.end_date);
+        ranges.push({ start: startDate, end: endDate });
+      }
+      const available = [];
+      let prevEnd = moment().subtract(1, "day");
+      for (const range of ranges) {
+        if (range.start.diff(prevEnd, "days") > 1) {
+          available.push({
+            start: moment(prevEnd).add(1, "day"),
+            end: moment(range.start).subtract(1, "day"),
+          });
+        }
+        prevEnd = moment(range.end);
+      }
+      if (prevEnd.diff(moment(), "days") > 0) {
+        available.push({
+          start: moment(prevEnd).add(1, "day"),
+          end: moment().add(1, "month"),
+        });
+      }
+      setAvailableRanges(available);
+      const message = available.map((range) => (
+        <p key={range.start.format("YYYY-MM-DD")}>
+          You can book from {range.start.format("MMM DD, YYYY")} to{" "}
+          {range.end.format("MMM DD, YYYY")}
+        </p>
+      ));
+      setAvailableRangeMessage(message);
+    };
+    const calculateUnavailableRanges = () => {
+      const ranges = existingReservations.map((reservation) => {
+        return {
+          start: moment(reservation.start_date),
+          end: moment(reservation.end_date),
+        };
       });
-      alert("Reservation Added Successfully! 🚀");
-      navigate("/");
-    } catch (error) {
-      console.error("Error:", error);
+      console.log(ranges);
+      setUnAvailableRange(ranges);
+    };
+
+    calculateUnavailableRanges();
+
+    calculateAvailableRanges();
+  }, [existingReservations]);
+
+  const isDateDisabled = (date) => {
+    const isOverlap = existingReservations.some((reservation) => {
+      const reservationStartDate = moment(reservation.start_date);
+      const reservationEndDate = moment(reservation.end_date);
+      return moment(date).isBetween(
+        reservationStartDate,
+        reservationEndDate,
+        null,
+        "[]"
+      );
+    });
+    return (
+      !availability.includes(moment(date).format("YYYY-MM-DD")) || isOverlap
+    );
+  };
+
+  const validateBooking = () => {
+    if (!startDate || !endDate) {
+      setError("Please select both start and end dates.");
+      return false;
+    }
+
+    const selectedRange = (startDate, endDate, type) => {
+      let fromDate = moment(startDate);
+      let toDate = moment(endDate);
+      let diff = toDate.diff(fromDate, type);
+      let range = [];
+      for (let i = 0; i <= diff; i++) {
+        range.push(moment(startDate).add(i, type));
+      }
+      return range;
+    };
+
+    const selectedDates = selectedRange(startDate, endDate, "days");
+
+    for (const date of selectedDates) {
+      for (const range of unAvailableRange) {
+        if (date.isSameOrAfter(range.start) && date.isSameOrBefore(range.end)) {
+          console.log("Booking is not valid");
+          setError(
+            "Selected date range overlaps with an existing reservation."
+          );
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
+  const handleBooking = async () => {
+    const isValid = validateBooking();
+    if (isValid === true) {
+      const token = localStorage.getItem("authToken");
+      const borrowerId = localStorage.getItem("userId");
+      const postData = {
+        borrower_id: Number(borrowerId),
+        inventory_id: Number(inventoryId),
+        quantity: Number(quantity),
+        start_date: moment(startDate).format("YYYY-MM-DD"),
+        end_date: moment(endDate).format("YYYY-MM-DD"),
+      };
+
+      try {
+        const response = await axios.post(
+          `${apiURL}/api/order_item`,
+          postData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        alert("Reservation Added Successfully! 🚀");
+        navigate("/");
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    } else {
+      setError(isValid);
     }
   };
 
   return (
     <div>
       <h2>Reservation</h2>
+      {error && <div className="notification">{error}</div>}
+      {availableRangeMessage && (
+        <div className="available-ranges">
+          <h3>Available Booking Ranges:</h3>
+          {availableRangeMessage}
+        </div>
+      )}
       <div className="reservation">
         <div>
           <p>Select start date:</p>
@@ -78,12 +214,13 @@ const ReservationPage = () => {
             onChange={handleStartDateChange}
             value={startDate}
             minDate={new Date()}
-            tileDisabled={({ date }) => { 
-              for (const availableDate of availability ) {
-               if (moment(date).isSame(availableDate, "day")) {
-                return false;
-               }
-            }  return true;
+            tileDisabled={({ date }) => {
+              for (const availableDate of availability) {
+                if (moment(date).isSame(availableDate, "day")) {
+                  return false;
+                }
+              }
+              return true;
             }}
           />
         </div>
@@ -95,15 +232,17 @@ const ReservationPage = () => {
             minDate={startDate}
             disabled={!startDate}
             tileDisabled={({ date }) => {
-              for (const availableDate of availability ) {
-               if (moment(date).isSame(availableDate, "day")) {
-                return false;
-               }
-            }  return true;
+              for (const availableDate of availability) {
+                if (moment(date).isSame(availableDate, "day")) {
+                  return false;
+                }
+              }
+              return true;
             }}
           />
         </div>
       </div>
+
       <Button
         btnType="submit"
         className="btn btn--book"
