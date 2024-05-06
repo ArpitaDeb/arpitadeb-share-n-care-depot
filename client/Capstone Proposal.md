@@ -28,7 +28,7 @@ List the functionality that your app will include. These can be written as user 
 
 Key features include:
 
-Featured items showcased on the main page for easy browsing.
+All existing items shows up on the Collection page with pagination for easy browsing.
 Can search items enabling users to find specific items quickly.
 User will reserve items through the booking calendar and after that confirmation email will be sent in their registered email. 
 In the Calendar reserved dates will be disabled for that item and other dates will be enabled.
@@ -58,56 +58,11 @@ List the pages of your app with brief descriptions. You can show this visually, 
 
 ### Browse the inventory, Registered user would be able to reserve available items to borrow, after reserving they will receive confirmation email to come and pick up at a specific time/day.
 
-Reusable Camping Items:
-
-Tent
-Sleeping bag
-Sleeping pad or air mattress
-Camp stove or portable grill
-Cooking utensils and pots/pans
-Lantern or flashlight
-First aid kit
-Multi-tool or pocket knife
-Water bottles
-Portable camping chairs or seating
-Portable camping table
-Backpack or camping gear storage
-Reusable Skiing Items:
-
-Skis or snowboard
-Ski or snowboard boots
-Ski poles (if skiing)
-Ski helmet
-Ski goggles
-Ski or snowboard jacket and pants
-Base layers (thermal underwear)
-Mid layers (fleece or insulated jacket)
-Gloves or mittens
-Neck gaiter or balaclava
-Ski socks
-Backpack or ski gear bag
-Reusable Skating Items:
-
-Ice skates or roller skates/inline skates
-Helmet (especially for beginners or children)
-Knee and elbow pads
-Wrist guards
-Skating socks
-Sweater or jacket for warmth
-Water bottle or hydration pack
-Skate bag or backpack for carrying gear
-Reusable BBQ Oven Items:
-
-BBQ grill or oven
-BBQ tools (spatula, tongs, BBQ brush)
-Grilling baskets or trays
-Cleaning supplies (grill brush, cleaner)
-
 ### Borrow item from the location, reserve items in booking calendar
 
 ### Admin Add new item with images and item details, Removing items from the platform if they are not usable anymore/get damaged.
 
-### FAQs with Home Page where brief description of how to use the facility
+### How to Start with Home Page where brief description of how to use the facility
 
 ### Mockups
 
@@ -173,7 +128,7 @@ GET /profile
 ### Auth
 
 Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
-OAuth, JWT
+ JWT
 
 ## Roadmap
 
@@ -228,6 +183,50 @@ Electric Hot pot
 Tent (quick set-up)
 Camping Lanterns (battery operated, or rechargeable)
 Crafting tools (decorative punches, stamps, fabric scissors)
+Reusable Camping Items:
+
+Tent
+Sleeping bag
+Sleeping pad or air mattress
+Camp stove or portable grill
+Cooking utensils and pots/pans
+Lantern or flashlight
+First aid kit
+Multi-tool or pocket knife
+Water bottles
+Portable camping chairs or seating
+Portable camping table
+Backpack or camping gear storage
+Reusable Skiing Items:
+
+Skis or snowboard
+Ski or snowboard boots
+Ski poles (if skiing)
+Ski helmet
+Ski goggles
+Ski or snowboard jacket and pants
+Base layers (thermal underwear)
+Mid layers (fleece or insulated jacket)
+Gloves or mittens
+Neck gaiter or balaclava
+Ski socks
+Backpack or ski gear bag
+Reusable Skating Items:
+
+Ice skates or roller skates/inline skates
+Helmet (especially for beginners or children)
+Knee and elbow pads
+Wrist guards
+Skating socks
+Sweater or jacket for warmth
+Water bottle or hydration pack
+Skate bag or backpack for carrying gear
+Reusable BBQ Oven Items:
+
+BBQ grill or oven
+BBQ tools (spatula, tongs, BBQ brush)
+Grilling baskets or trays
+Cleaning supplies (grill brush, cleaner)
 
 /pickup
 "/:id/likes

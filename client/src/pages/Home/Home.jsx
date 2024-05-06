@@ -21,14 +21,7 @@ const Home = () => {
   // const handleOnClick = () => {#85c9e9fb
   //   navigate("/inventory");
   // };
-  const startSteps = {
-    step1:
-      "Join Us! Begin by registering an account on our website. Visit the ShareNCare with a valid photo ID to activate your account.",
-    step2:
-      "Explore inventory and borrow items hassle-free! Use our website to Reserve items and pick them up during operating hours.",
-    step3:
-      "Use & Return! Enjoy flexible borrowing times. Simply drop them off for the next borrower. Returns are accepted every evening",
-  };
+ 
   return (
     <>
       <div className="hero">
@@ -37,7 +30,7 @@ const Home = () => {
           <div>
             <div className="hero__hand-icon">
               <p>While borrowing is accessible to everyone.</p>
-              <img src={hand_icon} alt="" />
+              <img src={hand_icon} alt="hand" />
             </div>
             <p>Discover the item you desire,</p>
             <p>Borrow what you require.</p>
@@ -45,7 +38,7 @@ const Home = () => {
           <Link to="/inventory">
             <div className="hero__latest-btn">
               <div>Browse Collection</div>
-              <img src={arrow_icon} alt="" />
+              <img src={arrow_icon} alt="collection" />
             </div>
           </Link>
         </div>

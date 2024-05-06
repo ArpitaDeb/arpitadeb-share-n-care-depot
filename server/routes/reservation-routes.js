@@ -2,7 +2,7 @@ const router = require('express').Router();
 const reservationController = require('../controllers/reservation-controller');
 const { tokenVerify, userOnly } = require("../middleware/auth.middleware");
 
-router.route('/availability/:inventoryId').get(reservationController.durationAvailability);
+router.route('/availability/:inventoryId', tokenVerify, userOnly).get(reservationController.durationAvailability);
 router
   .route('/order_item', tokenVerify, userOnly)
   .get(reservationController.index)

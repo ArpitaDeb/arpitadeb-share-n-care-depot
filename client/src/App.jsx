@@ -39,7 +39,7 @@ function App() {
               />
             )}
             <Route
-              path="/profile"
+              path="/login"
               element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
             <Route

@@ -40,6 +40,22 @@ const Navbar = () => {
                 Collection
               </button>
             </li>
+            <li className="navigation__item">
+            {localStorage.getItem("auth-token") ? (
+              <button className="navigation__login navigation__item"
+                onClick={() => {
+                  localStorage.removeItem("auth-token");
+                  window.location.replace("/");
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <button>Login</button>
+              </Link>
+            )}
+          </li>
           </ul>
         </nav>
       </div>
