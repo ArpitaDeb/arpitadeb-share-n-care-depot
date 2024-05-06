@@ -3,6 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import hero from "../../assets/images/hero.png";
 import member from "../../assets/images/member.jpg";
+import borrow from "../../assets/images/borrow.png";
+import one from "../../assets/images/One.jpg";
+import two from "../../assets/images/Two.jpg";
+import three from "../../assets/images/Three.jpg";
+import use from "../../assets/images/use.PNG"
 import hand_icon from "../../assets/images/hand_icon.png";
 import arrow_icon from "../../assets/images/arrow.png";
 
@@ -13,13 +18,16 @@ const apiURL = process.env.REACT_APP_API_URL;
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const handleOnClick = () => {
-    navigate("/inventory");
-  };
+  // const handleOnClick = () => {#85c9e9fb
+  //   navigate("/inventory");
+  // };
   const startSteps = {
-    step1: "Join Us! Begin by registering an account on our website. Visit the ShareNCare with a valid photo ID to activate your account.",
-    step2: "Explore inventory and borrow items hassle-free! Use our website to Reserve items and pick them up during operating hours.",
-    step3: "Use & Return! Enjoy flexible borrowing times. Simply drop them off for the next borrower. Returns are accepted every evening",
+    step1:
+      "Join Us! Begin by registering an account on our website. Visit the ShareNCare with a valid photo ID to activate your account.",
+    step2:
+      "Explore inventory and borrow items hassle-free! Use our website to Reserve items and pick them up during operating hours.",
+    step3:
+      "Use & Return! Enjoy flexible borrowing times. Simply drop them off for the next borrower. Returns are accepted every evening",
   };
   return (
     <>
@@ -51,20 +59,46 @@ const Home = () => {
           <p>Borrowing is hassle-free, secure, and at no cost!</p>
         </div>
         <div className="offers__step">
-          <div className="offers__step-left">
-          <h2>Join Us! Begin by registering an account on our website. Visit the ShareNCare with a valid photo ID to activate your account.
-          </h2>
+          <div className="offers__step-number">
+            <img src={one} className="offers__step-number" alt="one" />
           </div>
-          <div className="offers__step-right">
+          <div className="offers__step-para">
+            <h2>
+              Join Us! Begin by registering an account on our website. Visit the
+              ShareNCare with a valid photo ID to activate your account.
+            </h2>
+          </div>
+          <div className="offers__step-image">
             <img src={member} alt="member" />
           </div>
         </div>
-      </div>
-      <div className="newsletter">
-        <h2></h2>
-        <p></p>
-        <div>
-          <StartStep />
+        <div className="offers__step">
+          <div className="offers__step-image">
+            <img src={borrow} alt="borrow" />
+          </div>
+          <div className="offers__step-number">
+            <img src={two} className="offers__step-number" alt="one" />
+          </div>
+          <div className="offers__step-para">
+            <h2>
+              Explore inventory and borrow items hassle-free! Use our website to
+              Reserve items and pick them up during operating hours.
+            </h2>
+          </div>
+        </div>
+        <div className="offers__step">
+          <div className="offers__step-number">
+            <img src={three} className="offers__step-number" alt="one" />
+          </div>
+          <div className="offers__step-para">
+            <h2>
+            Use & Return! Enjoy flexible borrowing times.
+            Simply drop them off for the next borrower. Returns are accepted every evening.
+            </h2>
+          </div>
+          <div className="offers__step-image">
+            <img src={use} alt="use" />
+          </div>
         </div>
       </div>
     </>

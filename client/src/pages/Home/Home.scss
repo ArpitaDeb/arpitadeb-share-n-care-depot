@@ -8,9 +8,10 @@
 }
 .hero {
   height: 100vh;
-  background: linear-gradient(180deg, #e261eb, #e1ffea22 60%);
+  background: linear-gradient(180deg, #80cdf7f1, #e1ffea22 60%);
   display: flex;
   flex-direction: column;
+  margin-bottom: 12px;
   @include tablet {
     flex-direction: row;
   }
@@ -102,11 +103,11 @@
     align-items: center;
     justify-content: center;
     img {
+      border-radius: 10%;
       @include tablet {
         width: 300px;
       }
       @include desktop {
-        padding-left: 3rem;
         width: 360px;
       }
     }
@@ -118,21 +119,23 @@
   flex-direction: column;
   margin: auto;
   padding: 0px 20px;
-  height: 60vh;
+  height: 180vh;
   margin-bottom: 10px;
-  background: linear-gradient(180deg, #efddef 0%, #e1ffea22 60%);
+  // background: linear-gradient(180deg, #b7def4f1, #e1ffea22 60%);
+  background: $white;
   @include tablet {
+    height: 170vh
   }
   @include desktop {
     padding: 0px 20px;
     margin-bottom: 10px;
-    height: 80vh;
+    height: 120vh;
   }
   &__start {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem;
+    padding: 1rem;
     h1 {
       color: #171717;
       font-size: 16px;
@@ -161,48 +164,70 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    @include description;
     @include tablet {
+      @include section-wrap(750px);
+      display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
-      gap: 12px;
-      align-items: center;
-      margin: 2rem 0;
+      font-size: 1.2rem;
+      width: 75vw;
+      padding: 1rem 0;
+      @include hPadding(2rem, 2rem);
     }
     @include desktop {
-    
+      @include wrapper(1000px);
+      font-size: 1.3rem;
+      width: auto;
+      width: 80vw;
     }
-    &-left {
+    &-number {
+      width: 60px;
+      margin-left: 4rem ;
+    }
+    &-para {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      @include tablet {
-      }
-      @include desktop {
+      h2 {
+        margin-top: 1rem;
+        color: #454545;
+        font-size: 12px;
+        font-weight: 600;
+        @include tablet {
+          font-size: 16px;
+        }
+        @include desktop {
+          font-size: 18px;
+        }
       }
     }
-    &-right {
+    &-image {
       flex: 1;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      width:300px;
+      justify-content: center;
+      width: 300px;
+      margin-bottom: 1rem;
       @include tablet {
+        padding-top: 5px;
       }
       @include desktop {
         padding-top: 10px;
       }
       img {
         width: 120px;
+        border-radius: 5%;
         @include tablet {
           width: 180px;
         }
         @include desktop {
-          width: 200px;
+          width: 180px;
         }
       }
     }
-  }}
+  }
+}
 
 .newsletter {
   width: 100%;

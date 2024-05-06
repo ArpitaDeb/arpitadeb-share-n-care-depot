@@ -97,7 +97,7 @@
     }
     &:hover {
       font-weight: 800;
-      color: $blackish;
+      color: $violet;
     }
   }
   &__button {
@@ -110,7 +110,7 @@
       width: 50%;
       transition: 0.5s;
       &:hover {
-        border-bottom: 4px solid $blackish;
+        border-bottom: 4px solid $violet;
       }
       @include tablet {
         width: auto;
