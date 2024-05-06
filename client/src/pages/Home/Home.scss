@@ -6,3 +6,277 @@
   background-color: $light-grey;
   padding: 1rem 0;
 }
+.hero {
+  height: 100vh;
+  background: linear-gradient(180deg, #e261eb, #e1ffea22 60%);
+  display: flex;
+  flex-direction: column;
+  @include tablet {
+    flex-direction: row;
+  }
+  &__left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding-left: 180px;
+    line-height: 1.1;
+    @include tablet {
+      padding-left: 30px;
+    }
+    @include desktop {
+      padding-left: 100px;
+    }
+  }
+  &__left h2 {
+    color: #090909;
+    font-size: 18px;
+    font-weight: 600;
+    @include tablet {
+      font-size: 16px;
+    }
+    @include desktop {
+      font-size: 22px;
+    }
+  }
+  &__left p {
+    color: #171717;
+    font-size: 10px;
+    font-weight: 700;
+    @include tablet {
+      font-size: 16px;
+    }
+    @include desktop {
+      font-size: 20px;
+    }
+  }
+  &__hand-icon {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    img {
+      width: 55px;
+      @include tablet {
+        width: 50px;
+      }
+      @include desktop {
+        width: 80px;
+      }
+    }
+  }
+  &__latest-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 200px;
+    height: 45px;
+    font-size: 14px;
+    border-radius: 75px;
+    margin-top: 30px;
+    background: $sweet;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    @include tablet {
+      width: 175px;
+      height: 40px;
+      font-size: 13px;
+    }
+    @include desktop {
+      gap: 10px;
+      width: 250px;
+      height: 60px;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  }
+  &__latest-btn:hover div {
+    padding: 10px;
+    transition: 1s;
+  }
+  &__right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      @include tablet {
+        width: 300px;
+      }
+      @include desktop {
+        padding-left: 3rem;
+        width: 360px;
+      }
+    }
+  }
+}
+.offers {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 0px 20px;
+  height: 60vh;
+  margin-bottom: 10px;
+  background: linear-gradient(180deg, #efddef 0%, #e1ffea22 60%);
+  @include tablet {
+  }
+  @include desktop {
+    padding: 0px 20px;
+    margin-bottom: 10px;
+    height: 80vh;
+  }
+  &__start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    h1 {
+      color: #171717;
+      font-size: 16px;
+      font-weight: 600;
+      @include tablet {
+        font-size: 22px;
+      }
+      @include desktop {
+        font-size: 30px;
+      }
+    }
+    p {
+      color: #171717;
+      font-size: 12px;
+      font-weight: 500;
+      padding-top: 1rem;
+      @include tablet {
+        font-size: 14px;
+      }
+      @include desktop {
+        font-size: 18px;
+      }
+    }
+  }
+  &__step {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-evenly;
+      gap: 12px;
+      align-items: center;
+      margin: 2rem 0;
+    }
+    @include desktop {
+    
+    }
+    &-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include tablet {
+      }
+      @include desktop {
+      }
+    }
+    &-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width:300px;
+      @include tablet {
+      }
+      @include desktop {
+        padding-top: 10px;
+      }
+      img {
+        width: 120px;
+        @include tablet {
+          width: 180px;
+        }
+        @include desktop {
+          width: 200px;
+        }
+      }
+    }
+  }}
+
+.newsletter {
+  width: 100%;
+  padding: 0;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 5px;
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+  @include tablet {
+    margin-bottom: 10px;
+    height: 25vh;
+  }
+  @include desktop {
+    padding: 0px 80px;
+    margin-bottom: 10px;
+    gap: 20px;
+  }
+}
+.newsletter h2 {
+  color: #454545;
+  font-size: 16px;
+  font-weight: 600;
+  @include tablet {
+    font-size: 18px;
+  }
+  @include desktop {
+    font-size: 36px;
+  }
+}
+.newsletter p {
+  color: #454545;
+  font-size: 20px;
+  font-size: 13px;
+  max-width: 200px;
+  text-align: center;
+  @include tablet {
+    font-size: 18px;
+    max-width: 400px;
+  }
+  @include desktop {
+    font-size: 20px;
+    max-width: 600px;
+  }
+}
+
+.newsletter div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  width: 300px;
+  height: 300px;
+  @include tablet {
+    width: 500px;
+  }
+  @include desktop {
+    width: 731px;
+  }
+}
+
+// .newsletter div button {
+//   width: 212px;
+//   height: 69px;
+//   border-radius: 80px;
+//   height: 25vh;
+//   width: 100%;
+//   padding: 0;
+//   gap: 15px;
+//   background: #000;
+//   color: white;
+//   font-size: 16px;
+//   cursor: pointer;
+// }

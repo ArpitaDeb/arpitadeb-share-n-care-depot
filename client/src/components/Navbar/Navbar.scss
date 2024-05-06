@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: $orange;
+    background-color: $white;
     padding-top: 1.5rem;
     @include tablet {
       flex-direction: row;
@@ -74,14 +74,14 @@
     @include tablet {
       justify-content: flex-start;
       margin-left: 2rem;
-      padding-top: 1rem;
+      padding: 1rem;
     }
     @include desktop {
       justify-content: flex-start;
     }
   }
   &__item {
-    color: $white;
+    color: $maroon;
     width: 50%;
     transition: 0.5s;
     text-decoration: none;
@@ -97,30 +97,29 @@
     }
     &:hover {
       font-weight: 800;
-      color: $silver;
+      color: $blackish;
     }
   }
   &__button {
     border: none;
     background: none;
     cursor: pointer;
-  }
-  &__active {
-    border-bottom: 3px solid $white;
-    padding-bottom: 1rem;
-    font-weight: 800;
-    width: 50%;
-    transition: 0.5s;
-    &:hover {
-      border-bottom: 4px solid $silver;
-    }
-    @include tablet {
-      width: auto;
-      font-weight: 600;
-      border-bottom: 4px solid $white;
-    }
-    @include desktop {
-      font-weight: bold;
+    &--active {
+      border-bottom: 3px solid $maroon;
+      font-weight: 800;
+      width: 50%;
+      transition: 0.5s;
+      &:hover {
+        border-bottom: 4px solid $blackish;
+      }
+      @include tablet {
+        width: auto;
+        font-weight: 600;
+        border-bottom: 4px solid $maroon;
+      }
+      @include desktop {
+        font-weight: bold;
+      }
     }
   }
 }

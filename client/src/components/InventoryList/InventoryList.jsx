@@ -112,7 +112,7 @@ const InventoryList = ({
 }) => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items to display per page
+  const itemsPerPage = 8;
 
   const handleAddOnClick = () => {
     navigate("/inventory/upload");
@@ -131,7 +131,6 @@ const InventoryList = ({
     "Actions",
   ];
 
-  // Calculate the index range for the current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = inventoryList.slice(indexOfFirstItem, indexOfLastItem);
@@ -196,8 +195,6 @@ const InventoryList = ({
           </div>
         </div>
       </div>
-
-      {/* Render pagination component */}
       <Pagination
         pageCount={Math.ceil(inventoryList.length / itemsPerPage)}
         currentPage={currentPage}

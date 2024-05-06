@@ -34,12 +34,12 @@ function App() {
           <Routes>
             {isUserLoggedIn && (
               <Route
-                path="/"
+                path="/profile"
                 element={<Profile setIsUserLoggedIn={setIsUserLoggedIn} />}
               />
             )}
             <Route
-              path="/"
+              path="/profile"
               element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
             <Route
@@ -67,6 +67,10 @@ function App() {
                 <ReservationPage setIsUserLoggedIn={setIsUserLoggedIn} />
               }
             />
+            <Route
+                path="/"
+                element={<Home />}
+              />
           </Routes>
           <footer>
             <Footer />

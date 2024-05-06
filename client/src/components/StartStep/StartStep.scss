@@ -1,0 +1,29 @@
+@import '../../styles/partials/global';
+.step {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  &__list {
+  align-items: flex-start;
+  gap:0px;
+  @include tablet {
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 12px;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  @include desktop {
+  
+  }
+  }
+  &__item{
+    background-color: $light-pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 1.5rem;
+  }
+}
