@@ -21,9 +21,10 @@ const ReservationPage = () => {
   const [existingReservations, setExistingReservations] = useState([]);
   const [availableRanges, setAvailableRanges] = useState([]);
   const [error, setError] = useState(false);
-  const [availableRangeMessage, setAvailableRangeMessage] = useState("");
+  const [availableRangeMessage, setAvailableRangeMessage] = useState([]);
   const [unAvailableRange, setUnAvailableRange] = useState("");
-  const errorMessage = "Unfortunately, selected date range overlaps with an existing reservation. Please choose dates from Available Booking Ranges."
+  const errorMessage =
+    "Unfortunately, selected date range overlaps with an existing reservation. Please choose dates from Available Booking Ranges.";
   const handleStartDateChange = (date) => {
     setStartDate(date);
     setEndDate(null);
@@ -94,8 +95,8 @@ const ReservationPage = () => {
       setAvailableRanges(available);
       const message = available.map((range) => (
         <p key={range.start.format("YYYY-MM-DD")}>
-          You can book from {range.start.format("MMM DD, YYYY")} to{" "}
-          {range.end.format("MMM DD, YYYY")}
+          Kindly reserve a date frame from {range.start.format("MMM DD, YYYY")}{" "}
+          to {range.end.format("MMM DD, YYYY")}
         </p>
       ));
       setAvailableRangeMessage(message);
@@ -178,62 +179,77 @@ const ReservationPage = () => {
   };
 
   return (
-    <div>
-      <h2>Reservation</h2>
-      {error && (
-        <div className="notification">
-          <span>Error:</span> {error}
-          <button onClick={() => setError(null)}>×</button>
-        </div>
-      )}
-      {availableRangeMessage && (
-        <div className="available-ranges">
-          <h3>Available Booking Ranges:</h3>
-          {availableRangeMessage}
-        </div>
-      )}
-      <div className="reservation">
-        <div>
-          <p>Select start date:</p>
-          <Calendar
-            onChange={handleStartDateChange}
-            value={startDate}
-            minDate={new Date()}
-            tileDisabled={({ date }) => {
-              for (const availableDate of availability) {
-                if (moment(date).isSame(availableDate, "day")) {
-                  return false;
+    <div className="reservation">
+      <div className="reservation__wrapper">
+        <h2 className="reservation__title">Reserve Item</h2>
+        {error && (
+          <div className="reservation__notification">
+            <span>Error:</span> {error}
+            <button onClick={() => setError(null)}>X</button>
+          </div>
+        )}
+        {availableRangeMessage.length > 0 ? (
+          <div className="reservation__available-ranges">
+            <h3 className="reservation__title">Available Booking Range:</h3>
+            {availableRangeMessage.map((message, index) => (
+              <p key={index} className="reservation__para">
+                {message}
+              </p>
+            ))}
+          </div>
+        ) : (
+          <div className="reservation__available-ranges">
+            <h3 className="reservation__title">Available Booking Range:</h3>
+            <p className="reservation__para">
+              Item can be reserved only 1 month in advance.
+            </p>
+          </div>
+        )}
+
+        <div className="reservation__group">
+          <div className="reservation__calendar">
+            <h2 className="reservation__calendar-title">Select Start Date:</h2>
+            <Calendar
+              onChange={handleStartDateChange}
+              value={startDate}
+              minDate={new Date()}
+              tileDisabled={({ date }) => {
+                for (const availableDate of availability) {
+                  if (moment(date).isSame(availableDate, "day")) {
+                    return false;
+                  }
                 }
-              }
-              return true;
-            }}
-          />
-        </div>
-        <div>
-          <p>Select end date:</p>
-          <Calendar
-            onChange={handleEndDateChange}
-            value={endDate}
-            minDate={startDate}
-            disabled={!startDate}
-            tileDisabled={({ date }) => {
-              for (const availableDate of availability) {
-                if (moment(date).isSame(availableDate, "day")) {
-                  return false;
+                return true;
+              }}
+            />
+          </div>
+          <div className="reservation__calendar">
+            <h2 className="reservation__calendar-title">Select End Date:</h2>
+            <Calendar
+              onChange={handleEndDateChange}
+              value={endDate}
+              minDate={startDate}
+              disabled={!startDate}
+              tileDisabled={({ date }) => {
+                for (const availableDate of availability) {
+                  if (moment(date).isSame(availableDate, "day")) {
+                    return false;
+                  }
                 }
-              }
-              return true;
-            }}
+                return true;
+              }}
+            />
+          </div>
+        </div>
+        <div className="reservation__book">
+          <Button
+            btnType="submit"
+            className="btn btn--book"
+            btnContent="Confirm"
+            handleButtonOnClick={handleBooking}
           />
         </div>
       </div>
-
-      <Button
-        btnType="submit"
-        className="btn btn--book"
-        btnContent="Add To Cart"
-        handleButtonOnClick={handleBooking}
-      />
     </div>
   );
 };

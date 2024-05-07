@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { isValidEmail, isValidPhone } from "../../utils/validator";
 import "./SignUp.scss";
 import axios from "axios";
 
