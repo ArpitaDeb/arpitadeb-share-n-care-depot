@@ -1,14 +1,13 @@
 import "./Profile.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../../context/authContext";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
 const Profile = ({ setIsUserLoggedIn }) => {
-  const { userId, userRole, logOut } = useAuth();
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const userRole = localStorage.getItem("userRole");
   useEffect(() => {
     const fetchProfile = async () => {
       try {
