@@ -218,7 +218,7 @@ export const UploadPage = () => {
                   "Roller skates",
                   "Camp stove",
                   "Portable grill",
-                  "miscellaneous",
+                  "Miscellaneous",
                 ]}
                 defaultValue="Please select a category"
                 fieldName="category"
