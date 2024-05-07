@@ -5,17 +5,14 @@
   height: 22.813rem;
   margin: 0 auto;
   border-radius: 4px;
+  
   box-shadow: 0px 2px 2px 1px rgba(19, 24, 44, 0.1);
-
   p {
     font-size: $p2-mobile;
     line-height: 20px;
   }
-
   @include tablet {
     width:  100%;
-    height: 20em;
-
     p {
       font-size: $p2-tabdesk;
     }
@@ -23,23 +20,21 @@
 
   @include desktop {
     width: 100%;
-    height: 20rem;
   }
 
   &__wrapper {
-    background-color: $white;
+    background: linear-gradient(180deg, #7fc8eff1, #e1ffea22 60%);
   }
 
   &__header {
-    padding: 2rem 1.5rem 1.45rem 1.5rem;
+    padding: 2rem 1.5rem 1.45rem 2.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid $cloud;
-
     @include tablet {
-      padding: 2rem 2rem 1.45rem 2rem;
+      padding: 2rem 2rem 1.45rem 6rem;
     }
   }
 
@@ -47,13 +42,24 @@
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+    color: $maroon;
   }
 
   &__description-title {
-    color: $slate;
-    margin-bottom: 2px;
+    color: $maroon;
+    margin-bottom: .6rem;
+    line-height: 2rem;
+    &--login {
+      border-radius: 10px;
+      padding: .3rem;
+      border: 2px solid $maroon;
+      cursor: pointer;
+    }
   }
-
+  &__description-group {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
   &__button-back {
     padding-top: 7px;
     cursor: pointer;
@@ -94,11 +100,11 @@
     background-color: $graphite;
   }
   &__container {
-    max-width: 1100px;
+    @include wrapper($desktop-breakpoint);
   }
 
   &__main-group {
-    padding: 1rem 1rem 1.5rem 1rem;
+    padding: 1rem 1rem 3.5rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -134,7 +140,7 @@
     }
   }
 
-  &__status-quant-group {
+  &__status-group {
     display: flex;
     flex-direction: row;
     gap: 6rem;
@@ -181,10 +187,4 @@
   @include tablet {
     width: 6.7rem;
   }
-}
-.upload__text {
-  min-width: 19px;
-}
-.input {
-  min-width: 30px;
 }

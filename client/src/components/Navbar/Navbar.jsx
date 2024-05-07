@@ -53,17 +53,20 @@ const Navbar = () => {
             </li>
             <li className="navigation__item">
               {localStorage.getItem("authToken") ? (
-                  <button
-                    className="navigation__item navigation__button"
-                    onClick={()=>{localStorage.removeItem('authToken');window.location.replace("/");}}
-                  >
-                    LogOut
-                  </button>
+                <button
+                  className="navigation__item navigation__button"
+                  onClick={() => {
+                    localStorage.removeItem("authToken");
+                    localStorage.removeItem("userId");
+                    localStorage.removeItem("userRole");
+                    navigate("/");
+                  }}
+                >
+                  LogOut
+                </button>
               ) : (
                 <Link to="/login">
-                  <button
-                    className="navigation__item navigation__button"
-                  >
+                  <button className="navigation__item navigation__button">
                     Login
                   </button>
                 </Link>
@@ -77,8 +80,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
-            
-              /* 
+
+/* 
               // className={`navigation__item navigation__button ${
                     //   location.pathname === "/logout"
                     //     ? "navigation__button--active"
@@ -111,22 +114,20 @@ export default Navbar;
                     Logout
                   </button>
                 </div> */
-                // <div className="navigation__item-logout">
-                //   <div className="relative">
-                //     <button onClick={handleImageClick}>
-                //       <img
-                //         src={userimg}
-                //         alt="avatar"
-                //         className={`navigation__item-avatar ${
-                //           isDropdownVisible ? "avatar--active" : ""
-                //         }`}
-                //       />
-                //     </button>
-                //     {isDropdownVisible && (
-                //       <div className="navigation__item-dropdown-content">
-                //         <Link to="/profile">My Profile</Link>
-                //       </div>
-                //     )}
-                //   </div>}
-                
-
+// <div className="navigation__item-logout">
+//   <div className="relative">
+//     <button onClick={handleImageClick}>
+//       <img
+//         src={userimg}
+//         alt="avatar"
+//         className={`navigation__item-avatar ${
+//           isDropdownVisible ? "avatar--active" : ""
+//         }`}
+//       />
+//     </button>
+//     {isDropdownVisible && (
+//       <div className="navigation__item-dropdown-content">
+//         <Link to="/profile">My Profile</Link>
+//       </div>
+//     )}
+//   </div>}
