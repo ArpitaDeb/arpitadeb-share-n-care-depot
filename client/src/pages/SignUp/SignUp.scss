@@ -65,3 +65,19 @@
   font-weight: 500;
   font-size: 1rem;
 }
+.error {
+  color: $red;
+  font-size: 12px;
+  display: flex;
+  font-weight: 200;
+  gap: 0.1rem;
+  padding-bottom: 0;
+
+  &-icon {
+    width: 1.3rem;
+  }
+
+  &-input {
+    border: 1px solid $red;
+  }
+}

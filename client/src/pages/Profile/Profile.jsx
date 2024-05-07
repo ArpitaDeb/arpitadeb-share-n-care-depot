@@ -29,7 +29,6 @@ const Profile = ({ setIsUserLoggedIn }) => {
   if (error) {
     return <div>{error}</div>;
   }
-
   if (!user) {
     return <>Loading user details...</>;
   }

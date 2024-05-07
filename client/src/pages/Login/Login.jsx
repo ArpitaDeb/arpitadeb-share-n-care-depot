@@ -1,14 +1,42 @@
+import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { isValidEmail } from "../../utils/validator";
 import "./Login.scss";
 
-export default function Login({ setIsUserLoggedIn }) {
+const Login = ({ setIsUserLoggedIn }) => {
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     
     const email = event.target.email.value;
     const password = event.target.password.value;
+
+    let formErrors = {};
+    let hasErrors = false;
+
+    if (!email) {
+      formErrors.email = "Email is required";
+      hasErrors = true;
+    } else if (!isValidEmail(email)) {
+      formErrors.email = "Invalid email format";
+      hasErrors = true;
+    }
+
+    if (!password) {
+      formErrors.password = "Password is required";
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
+      setErrors(formErrors);
+      return;
+    }
 
     try {
       const response = await axios.post("http://localhost:8080/auth/login", {
@@ -33,21 +61,25 @@ export default function Login({ setIsUserLoggedIn }) {
         <label htmlFor="email" className="login__field">
           Email:
           <input className="login__input" type="email" name="email" />
+          {errors.email && <p className="error">{errors.email}</p>}
         </label>
         <label htmlFor="password" className="login__field">
           Password:
           <input className="login__input" type="password" name="password" />
+          {errors.password && <p className="error">{errors.password}</p>}
         </label>
         <button className="login__button" type="submit">Log in</button>
         <div className="signup">
-        <p>
-          Doesn&apos;t have an account?{" "}
-          <Link to={'/signup'}>
-            Sign Up<span>!</span>
-          </Link>
-        </p>
-      </div>
+          <p>
+            Doesn&apos;t have an account?{" "}
+            <Link to={'/signup'}>
+              Sign Up<span>!</span>
+            </Link>
+          </p>
+        </div>
       </form>
     </main>
   );
-}
+};
+
+export default Login;

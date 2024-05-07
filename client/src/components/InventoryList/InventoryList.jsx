@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import sortImg from "../../assets/icons/sort-24px.svg";
 import searchImg from "../../assets/icons/search-24px.svg";
 import deleteImg from "../../assets/icons/delete_outline-24px.svg";
 import editImg from "../../assets/icons/edit-24px.svg";
@@ -20,7 +19,6 @@ const InventoryList = ({
   const itemsPerPage = 8;
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
-  console.log("in", inventoryList);
   const handleAddOnClick = () => {
     navigate("/inventory/upload");
   };

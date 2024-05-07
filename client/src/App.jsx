@@ -47,10 +47,12 @@ function App() {
               element={<SignUp setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
             <Route path="/inventory" element={<Inventory />} />
+
             <Route
-              path="/inventory/upload"
-              element={<UploadPage setIsAdminLoggedIn={setIsAdminLoggedIn} />}
+              path="/upload"
+              element={<UploadPage />}
             />
+
             <Route
               path="/inventory/delete/:inventoryId"
               element={
@@ -67,10 +69,7 @@ function App() {
                 <ReservationPage setIsUserLoggedIn={setIsUserLoggedIn} />
               }
             />
-            <Route
-                path="/"
-                element={<Home />}
-              />
+            <Route path="/" element={<Home />} />
           </Routes>
           <footer>
             <Footer />

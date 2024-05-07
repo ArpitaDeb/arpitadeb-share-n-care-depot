@@ -11,7 +11,6 @@ import axios from "axios";
 const apiURL = process.env.REACT_APP_API_URL;
 
 export const UploadPage = () => {
-  
   const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
@@ -20,18 +19,22 @@ export const UploadPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectFile, setSelectFile] = useState(null);
   const [preview, setPreview] = useState(uploadPreview);
+  const [error, setError] = useState({});
 
   const handleChangeItemName = (event) => {
     setItemName(event.target.value);
+    setError((prevState) => ({ ...prevState, itemName: "" }));
   };
 
   const handleChangeDesc = (event) => {
     setDescription(event.target.value);
+    setError((prevState) => ({ ...prevState, description: "" }));
   };
 
   const handleChangeCategory = (selectedCategory) => {
     setCategory(selectedCategory);
     setCategoryId(getCategoryId(selectedCategory));
+    setError((prevState) => ({ ...prevState, category: "" }));
   };
 
   const handleChangeQuantity = (event) => {
@@ -39,13 +42,8 @@ export const UploadPage = () => {
     if (!isNaN(value)) {
       setQuantity(value);
     }
+    setError((prevState) => ({ ...prevState, quantity: "" }));
   };
-
-  const isValid = (value, minLength) => value && value.length > minLength;
-
-  const isItemNameValid = () => isValid(itemName, 3);
-  const isDescriptionValid = () => isValid(description, 5);
-  const isFileValid = () => !!selectFile;
 
   const handleOnClick = () => {
     navigate("/");
@@ -66,7 +64,7 @@ export const UploadPage = () => {
       "Camp stove": 11,
       "Portable grill": 12,
       Miscellaneous: 13,
-     'Small Appliances': 14
+      "Small Appliances": 14,
     };
     return categories[name] || null;
   };
@@ -100,20 +98,37 @@ export const UploadPage = () => {
         };
 
         await axios.post(`${apiURL}/api/inventories`, formData);
-        alert("Item Successfully Uploaded!");
-        navigate("/");
+        navigate("/inventory");
       }
     } catch (error) {
       console.error("Error uploading item:", error);
     }
   };
-
   const isFormValid = () => {
-    if (!isItemNameValid() || !isDescriptionValid() || !isFileValid()) {
-      alert("Please enter valid item name, description, and image file.");
-      return false;
+    let isValid = true;
+    let errors = {};
+
+    if (!itemName || itemName.length < 3) {
+      errors.itemName = "Item name must be at least 3 characters";
+      isValid = false;
     }
-    return true;
+
+    if (!description || description.length < 15) {
+      errors.description = "Description must be at least 15 characters";
+      isValid = false;
+    }
+
+    if (!selectFile) {
+      errors.selectFile = "Please select an image";
+      isValid = false;
+    }
+    if (!category) {
+      errors.selectFile = "Please select category";
+      isValid = false;
+    }
+
+    setError(errors);
+    return isValid;
   };
 
   const onImageChange = (e) => {
@@ -132,10 +147,10 @@ export const UploadPage = () => {
     <div className="upload">
       <form onSubmit={handlePublish} className="upload__form">
         <div className="upload__container">
-          <h1 className="upload__heading">Add New Inventory Item</h1>
+          <h1 className="upload__heading">Add New Product</h1>
           <div className="upload__big-wrap">
             <div className="upload__thumbnail-info">
-              <p className="upload__text">Inventory thumbnail</p>
+              <p className="upload__text">Product thumbnail</p>
               <img
                 className="upload__thumbnail"
                 src={preview}
@@ -149,6 +164,7 @@ export const UploadPage = () => {
                 accept="image/*"
                 onChange={onImageChange}
               />
+              {error.selectFile && <p className="error">{error.selectFile}</p>}
             </div>
             <div className="upload__wrapper">
               <label className="upload__text" htmlFor="item_name">
@@ -156,9 +172,9 @@ export const UploadPage = () => {
               </label>
               <input
                 className={
-                  isItemNameValid()
-                    ? "input upload__name-input"
-                    : "input upload__name-input upload__name-input--error"
+                  error.itemName
+                    ? "input upload__name-input upload__name-input--error"
+                    : "input upload__name-input"
                 }
                 type="text"
                 name="item_name"
@@ -167,14 +183,15 @@ export const UploadPage = () => {
                 onChange={handleChangeItemName}
                 value={itemName}
               />
+              {error.itemName && <p className="error">{error.itemName}</p>}
               <label className="upload__text" htmlFor="desc">
                 Add an Item description
               </label>
               <textarea
                 className={
-                  isDescriptionValid()
-                    ? "input upload__desc-input"
-                    : "input upload__desc-input upload__desc-input--error"
+                  error.description
+                    ? "input upload__desc-input upload__desc-input--error"
+                    : "input upload__desc-input"
                 }
                 name="description"
                 id="desc"
@@ -182,6 +199,9 @@ export const UploadPage = () => {
                 onChange={handleChangeDesc}
                 value={description}
               ></textarea>
+              {error.description && (
+                <p className="error">{error.description}</p>
+              )}
               <DropdownSelect
                 labelName="Category"
                 items={[
@@ -205,11 +225,12 @@ export const UploadPage = () => {
                 onChange={handleChangeCategory}
                 value={category}
               />
+              {error.category && <p className="error">{error.category}</p>}
               <label className="upload__text" htmlFor="qty">
                 Quantity
               </label>
               <input
-                className={"input upload__name-input"}
+                className="input upload__name-input"
                 type="number"
                 name="quantity"
                 id="quantity"
@@ -217,13 +238,14 @@ export const UploadPage = () => {
                 onChange={handleChangeQuantity}
                 value={quantity}
               />
+              {error.quantity && <p className="error">{error.quantity}</p>}
             </div>
           </div>
           <div className="upload__ending">
             <Button
               btnType="submit"
               className="btn btn--upload"
-              btnContent="publish"
+              btnContent="Add"
             />
             <button className="upload__cancel" onClick={handleOnClick}>
               cancel

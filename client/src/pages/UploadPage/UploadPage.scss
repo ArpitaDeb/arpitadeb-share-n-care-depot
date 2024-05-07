@@ -1,6 +1,7 @@
 @import '../../styles/partials/global';
 
 .upload {
+  background: linear-gradient(180deg, #7fc8eff1, #e1ffea22 60%);
   &__form {
     padding: 0 1rem;
     border-top: 1.2px solid $cloud;
@@ -163,5 +164,21 @@
       margin: 0;
       padding: 0;
     }
+  }
+}
+.error {
+  color: $red;
+  font-size: 12px;
+  display: flex;
+  font-weight: 200;
+  gap: 0.1rem;
+  padding-bottom: 0;
+
+  &-icon {
+    width: 1.3rem;
+  }
+
+  &-input {
+    border: 1px solid $red;
   }
 }

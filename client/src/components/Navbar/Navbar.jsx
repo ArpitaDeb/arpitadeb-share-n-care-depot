@@ -12,11 +12,8 @@ const Navbar = () => {
   };
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem("auth-token");
-    navigate("/");
-  };
-
+  const userRole = localStorage.getItem("userRole");
+  const isLoggedIn = localStorage.getItem("authToken");
   const handleImageClick = () => {
     setIsDropdownVisible(!isDropdownVisible);
   };
@@ -52,7 +49,25 @@ const Navbar = () => {
               </button>
             </li>
             <li className="navigation__item">
-              {localStorage.getItem("authToken") ? (
+            {userRole === "admin" &&
+              <button
+                className={`navigation__item navigation__button ${
+                  location.pathname === "/upload"
+                    ? "navigation__button--active"
+                    : ""
+                }`}
+                onClick={() => handleNavigation("/upload")}
+              >
+                Add Product
+              </button> }
+            </li>
+            <li className="navigation__item">
+              {isLoggedIn ? (
+                <div className="navigation__item-avatar-container">
+                <img
+                src={userimg}
+                alt="avatar"
+                className="navigation__item-avatar" />
                 <button
                   className="navigation__item navigation__button"
                   onClick={() => {
@@ -64,6 +79,7 @@ const Navbar = () => {
                 >
                   LogOut
                 </button>
+                </div>
               ) : (
                 <Link to="/login">
                   <button className="navigation__item navigation__button">
@@ -80,54 +96,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-/* 
-              // className={`navigation__item navigation__button ${
-                    //   location.pathname === "/logout"
-                    //     ? "navigation__button--active"
-                    //     : ""
-                    // }`}{localStorage.getItem("auth-token") ? (
-                <div className="navigation__item-logout">
-                  <div className="relative">
-                    <button onClick={handleImageClick}>
-                      <img
-                        src={userimg}
-                        alt="avatar"
-                        className={`navigation__item-avatar ${
-                          isDropdownVisible ? "avatar--active" : ""
-                        }`}
-                      />
-                    </button>
-                    {isDropdownVisible && (
-                      <div className="navigation__item-dropdown-content">
-                        <Link to="/profile">My Profile</Link>
-                      </div>
-                    )}
-                  </div>
-                  <button
-                    onClick={handleLogout}
-                    className={`navigation__item-handlog navigation__button ${
-                      location.pathname === "/logout"
-                        ? "navigation__button--active" : ""
-                    }`}
-                  >
-                    Logout
-                  </button>
-                </div> */
-// <div className="navigation__item-logout">
-//   <div className="relative">
-//     <button onClick={handleImageClick}>
-//       <img
-//         src={userimg}
-//         alt="avatar"
-//         className={`navigation__item-avatar ${
-//           isDropdownVisible ? "avatar--active" : ""
-//         }`}
-//       />
-//     </button>
-//     {isDropdownVisible && (
-//       <div className="navigation__item-dropdown-content">
-//         <Link to="/profile">My Profile</Link>
-//       </div>
-//     )}
-//   </div>}

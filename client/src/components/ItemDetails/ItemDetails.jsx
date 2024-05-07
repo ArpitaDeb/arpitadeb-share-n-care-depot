@@ -52,11 +52,11 @@ export const ItemDetails = ({ inventory }) => {
                 <h3 className="inventory-item__description-group">{inventory.description}</h3>
               </div>
               <div>
-                <label className="upload__text" htmlFor="qty">
+                <label className="inventory-item__qua" htmlFor="qty">
                   Quantity
                 </label>
                 <input
-                  className={"upload__name-input"}
+                  className={"inventory-item__input"}
                   type="number"
                   name="quantity"
                   id="quantity"
