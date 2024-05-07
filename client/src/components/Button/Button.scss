@@ -8,7 +8,7 @@
   font-size: .8rem;
   text-transform: uppercase;
   color: $white;
-  background-color: $blue;
+  background-color: $sky;
   background-image: url("../../assets/icons/upload.svg");
   background-repeat: no-repeat;
   background-size: 1.2rem;
@@ -18,7 +18,7 @@
   font-weight: 500;
   letter-spacing: .02rem;
   &:hover {
-    background-color: $indigo;
+    background-color: $bluish;
   }
   @include tablet {
     padding: 0 32px;
@@ -52,6 +52,7 @@
     background-image: url("../../assets/icons/publish.svg");
     @include tablet {
       width: 150px;
+      
     }
   }
 
@@ -63,6 +64,7 @@
     @include tablet {
       width: 150px;
       align-items: center;
+      font-size: 1.25rem;
     }
   }
 }

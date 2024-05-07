@@ -3,7 +3,7 @@ module.exports = [
     id: 1,
     name: "arpita",
     email: 'Arpitadeb1990@gmail.com',
-    password: "$2b$10$WPeet3Hoh4icKKMYsXYiaep.4EGIxSX2wLgjscibs3HiTYyQ4x0uy",
+    password: "$2b$10$tW701p6i8UKnJG1AjQws9uRacmYPR2fOttTsVMO.m13nJWZaDrvOa",
     phone: '+1 (306) 241-4180',
     role: "admin",
   },

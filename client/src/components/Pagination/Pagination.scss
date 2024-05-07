@@ -1,0 +1,30 @@
+@import "../../styles/partials/global";
+
+.container {
+  padding: 0.5rem;
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+  }
+  &__item-button {
+    background-color: $white;
+    border: 1px solid $silver;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &--current {
+      border: 1px solid $bluish;
+      color: $bluish;
+    }
+  }
+}

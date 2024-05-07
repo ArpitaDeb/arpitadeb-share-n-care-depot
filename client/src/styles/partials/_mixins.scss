@@ -65,4 +65,48 @@ p {
         font-size: 1rem;
         line-height: 1.75rem;
     }
-}    
+}  
+@mixin hPadding($top, $bottom) {
+    $padding-left: $top;
+    $padding-right: $bottom;
+  }
+  @mixin section-wrap($tablet-breakpoint) {
+    max-width: $tablet-breakpoint;
+    padding: 0 1rem;
+  }
+  
+  @mixin wrapper($desktop-breakpoint) {
+    max-width: $desktop-breakpoint;
+    margin: 0 auto;
+    width: 85%;
+    padding: 0 1.75rem;
+  }
+  @mixin description {
+    font-weight: 500;
+    @include tablet {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+  }  
+  @mixin avatar {
+    display: inline;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $bluish;
+    flex-shrink: 0;
+    position: relative;
+    &--filled {
+      background-size: contain;
+    }
+    @include tablet {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  @mixin foot-wrap($desktop-breakpoint) {
+    max-width: $desktop-breakpoint;
+    margin: 0 auto;
+    width: 85%;
+    padding: 0 1rem;
+  }

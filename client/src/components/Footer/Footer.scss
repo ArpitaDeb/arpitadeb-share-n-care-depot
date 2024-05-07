@@ -4,19 +4,98 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-self:last baseline;
   width: 100%;
-  height: 150px;
-  &__text {
-    color: #5c667e;
-    font-size: 11px;
-    line-height: 16px;
-    font-weight: 400;
-    align-self: flex-end;
-    padding: 75px;
-    @include tablet {
-      font-size: 12px;
-      line-height: 18px;
+  background: linear-gradient(180deg, #f5fbff, #e1ffea22 60%);
+  color: $maroon;
+  padding: 1rem;
+  position: relative;
+    @include desktop {
+    padding-top: 1rem;
     }
-  }
+    &__wrapper {
+      @include desktop {
+        padding: 0;
+        @include foot-wrap($desktop-breakpoint);
+      }
+    }
+    &__title {
+      font-size: 2rem;
+      font-weight: 700;
+      padding: 0.5rem 0;
+      line-height: 1.75rem;
+      @include tablet {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-right: 3rem;
+        line-height: 2rem;
+      }
+      @include desktop {
+        margin-right: 6rem;
+        font-size: 3rem;
+      }
+    }
+    &__social {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.5rem 0;
+      @include tablet {
+        max-width: 80vw;
+      }
+    }
+   
+    &__container {
+      display: flex;
+      flex-direction: column;
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      @include desktop {
+        width: 80%;
+      }
+    }
+    &__card {
+      font-size: 1.2rem;
+      @include tablet {
+      }
+      &--content {
+        margin: 2rem 0;
+        font-weight: 600;
+        @include tablet {
+          margin: 2.5rem 0;
+        }
+      }
+      &--address {
+        line-height: 0.5rem;
+        margin-bottom: 2rem;
+        font-size: 1.25rem;
+        @include tablet {
+          line-height: 0.9rem;
+        }
+      }
+      &--email {
+        margin-bottom: 1rem;
+        @include tablet {
+          margin: 2rem 0;
+        }
+        a {
+          text-decoration: none;
+          color: $maroon;
+        }
+      }
+    }
+    &__copyright {
+      line-height: 1.25rem;
+      font-weight: 500;
+      font-size: 1rem;
+      margin: 1rem 0;
+      margin-bottom: 1rem;
+      @include tablet {
+        font-size: 1.25rem;
+        margin: .5rem 0;
+        padding-bottom: 1rem;
+      }
+    }
 }

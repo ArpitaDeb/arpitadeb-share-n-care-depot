@@ -21,6 +21,7 @@ const Inventory = () => {
   const handleOnClick = (attr) => {
     const sortByMap = {
       "Inventory Item": "item_name",
+      "Category": "category" 
     };
   
     const newSortBy = sortByMap[attr];

@@ -21,7 +21,7 @@ function App() {
     !!localStorage.getItem("authToken")
   );
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
-    !!localStorage.getItem("authToken")
+    !!localStorage.getItem("userRole")
   );
 
   return (
@@ -34,12 +34,12 @@ function App() {
           <Routes>
             {isUserLoggedIn && (
               <Route
-                path="/"
+                path="/profile"
                 element={<Profile setIsUserLoggedIn={setIsUserLoggedIn} />}
               />
             )}
             <Route
-              path="/"
+              path="/login"
               element={<Login setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
             <Route
@@ -47,10 +47,12 @@ function App() {
               element={<SignUp setIsUserLoggedIn={setIsUserLoggedIn} />}
             />
             <Route path="/inventory" element={<Inventory />} />
+
             <Route
-              path="/inventory/upload"
-              element={<UploadPage setIsAdminLoggedIn={setIsAdminLoggedIn} />}
+              path="/upload"
+              element={<UploadPage />}
             />
+
             <Route
               path="/inventory/delete/:inventoryId"
               element={
@@ -67,6 +69,7 @@ function App() {
                 <ReservationPage setIsUserLoggedIn={setIsUserLoggedIn} />
               }
             />
+            <Route path="/" element={<Home />} />
           </Routes>
           <footer>
             <Footer />

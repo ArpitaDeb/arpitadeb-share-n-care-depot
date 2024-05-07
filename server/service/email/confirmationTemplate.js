@@ -188,7 +188,7 @@ const confirmationTemplate = (newOrderItem, start_date, end_date, item_name) => 
                           </ul>
                           <h2 style="color: black; margin-bottom: 10px;">LOCATION</h2>
                           <p style="color: black; font-size: 16px; line-height: 1.5;">
-                            Come by our Avens Rd Makerspace situated in Moose Jaw, SK, S6J 1C9, Canada.
+                            Come by our Avens Rd MakerSpace situated in Moose Jaw, SK, S6J 1C9, Canada.
                             Please ensure to pick up and drop off items within your reserved Date frame.
                             Here are our operational hours:
                           </p>

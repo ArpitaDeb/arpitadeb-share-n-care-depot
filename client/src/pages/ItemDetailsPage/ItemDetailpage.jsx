@@ -12,13 +12,9 @@ export const ItemDetailPage = () => {
   
   useEffect(() => {
     const fetchOneInventory = async () => {
-      const token = localStorage.getItem("authToken");
+      
       try {
-        const response = await axios.get(`${apiURL}/api/inventories/${inventoryId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(`${apiURL}/api/inventories/${inventoryId}`);
         setInventory(response.data);
       } catch (error) {
         console.error('Error fetching Inventory lists:', error);

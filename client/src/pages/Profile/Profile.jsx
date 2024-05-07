@@ -29,7 +29,6 @@ const Profile = ({ setIsUserLoggedIn }) => {
   if (error) {
     return <div>{error}</div>;
   }
-
   if (!user) {
     return <>Loading user details...</>;
   }
@@ -37,20 +36,22 @@ const Profile = ({ setIsUserLoggedIn }) => {
   return (
     <main className="profile-page">
       {userRole === "admin" || userRole === "user" ? (
-        <>
-          <h2>Welcome back, {user.name}!</h2>
-          <button
-            className="logout-button"
-            onClick={() => {
-              localStorage.removeItem("authToken");
-              localStorage.removeItem("userId");
-              localStorage.removeItem("userRole");
-              setIsUserLoggedIn(false);
-            }}
-          >
-            Log out
-          </button>{" "}
-        </>
+        <div className="profile-page__wrapper">
+          <h2 className="profile-page__greet">
+            Thank you for using our service! {user.name}!
+          </h2>
+          <p className="profile-page__para">
+            {" "}
+            We've sent a confirmation email with reservation details to your
+            registered email address.
+          </p>
+          <p className="profile-page__para">
+            {" "}
+            Our platform aims to empower borrowers by reducing barriers to
+            accessing a variety of items within our community. 
+          </p>{" "}
+          <p className="profile-page__para">Please feel free to browse more.</p>
+        </div>
       ) : (
         <div>
           <p>You don't have permission to access this page.</p>
