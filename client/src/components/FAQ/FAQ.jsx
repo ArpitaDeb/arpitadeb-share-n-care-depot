@@ -1,4 +1,4 @@
-import './StartStep.scss';
+import './FAQ.scss';
 const StartStep = () => {
 
 

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React from "react";
+import { Link } from "react-router-dom";
 import hero from "../../assets/images/hero.png";
 import member from "../../assets/images/member.jpg";
 import borrow from "../../assets/images/borrow.png";
@@ -12,15 +11,8 @@ import hand_icon from "../../assets/images/hand_icon.png";
 import arrow_icon from "../../assets/images/arrow.png";
 
 import "./Home.scss";
-import StartStep from "../../components/StartStep/StartStep";
-const apiURL = process.env.REACT_APP_API_URL;
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
-  // const handleOnClick = () => {#85c9e9fb
-  //   navigate("/inventory");
-  // };
  
   return (
     <>
