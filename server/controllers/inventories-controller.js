@@ -1,6 +1,5 @@
 const knex = require('knex')(require('../knexfile'));
 const { isValidInventoryData } = require('../utils/validator');
-const { uploadImages } = require("../service/image.service");
 
 const getOneInventory = async (req, res) => {
   try {
@@ -42,8 +41,6 @@ const inventoryList = async (req, res) => {
       const searchTerm = `%${s}%`;
       query = query.where(function () {
         this.where('inventories.item_name', 'like', searchTerm)
-          .orWhere('inventories.description', 'like', searchTerm)
-          .orWhere('inventories.category', 'like', searchTerm)
       });
     }
 

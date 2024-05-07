@@ -55,7 +55,7 @@ const Pagination = ({ pageCount, currentPage, onChange }) => {
           <li className="container__item">
             <button
               className="container__item-button"
-              onChange={() => onChange(currentPage + 1)}
+              onClick={() => onChange(currentPage + 1)}
             >
               <RightArrow />
             </button>

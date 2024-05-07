@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    cursor: pointer;
     &--current {
       border: 1px solid $bluish;
       color: $bluish;

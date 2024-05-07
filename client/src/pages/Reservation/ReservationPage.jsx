@@ -168,7 +168,7 @@ const ReservationPage = () => {
             },
           }
         );
-        alert("Reservation Added Successfully! 🚀");
+        alert("Confirmation email is sent for Added Reservation! 🚀");
         navigate("/");
       } catch (error) {
         console.error("Error:", error);

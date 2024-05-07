@@ -8,6 +8,8 @@ router
   .get(reservationController.index)
   .post(reservationController.postOrderItem);
 
+router.route('/reservations/:inventoryId', tokenVerify, userOnly).get(reservationController.existingReservation);
+
 router
     .route('/order/:order_id')
     .get(reservationController.singleOrder)
