@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { isValidEmail } from "../../utils/validator";
 import "./Login.scss";
 
+const apiURL = process.env.REACT_APP_API_URL;
 const Login = ({ setIsUserLoggedIn }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,7 +41,7 @@ const Login = ({ setIsUserLoggedIn }) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
+      const response = await axios.post(`${apiURL}/auth/login`, {
         email: email,
         password: password,
       });
