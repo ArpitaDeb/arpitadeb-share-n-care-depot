@@ -23,7 +23,7 @@ export const DeleteInventory = () => {
       }
     };
     fetchOneInventory();
-  }, []);
+  }, [inventoryId]);
 
   const handleDelete = () => {
     axios

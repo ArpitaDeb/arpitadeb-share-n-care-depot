@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo/ShareNCareLogo.png";
 import userimg from "../../assets/images/healthicons_ui-user-profile.svg";
@@ -10,13 +10,9 @@ const Navbar = () => {
   const handleNavigation = (route) => {
     navigate(route);
   };
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const userRole = localStorage.getItem("userRole");
   const isLoggedIn = localStorage.getItem("authToken");
-  const handleImageClick = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
 
   return (
     <header className="navigation">
