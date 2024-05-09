@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import searchImg from "../../assets/icons/search-24px.svg";
-import deleteImg from "../../assets/icons/delete_outline-24px.svg";
-import editImg from "../../assets/icons/edit-24px.svg";
 import chevronImg from "../../assets/icons/chevron_right-24px.svg";
 import Pagination from "../Pagination/Pagination";
 import DropdownSelect from "../../components/Dropdown/Dropdown";
@@ -10,19 +8,13 @@ import "./InventoryList.scss";
 
 const InventoryList = ({
   inventoryList,
-  handleOnClick,
   handleSearch,
-  setIsAdminLoggedIn,
 }) => {
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
   const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
-  const handleAddOnClick = () => {
-    navigate("/inventory/upload");
-  };
-
+ 
   const handleCategoryFilter = (selectedCategory) => {
     if (selectedCategory === "Please select a category") {
       setSelectedCategory("");
@@ -46,13 +38,6 @@ const InventoryList = ({
     setFilteredItems(filteredList);
     setCurrentPage(1);
   }, [selectedCategory, inventoryList]);
-
-  const inventoryHeader = [
-    "Inventory Item",
-    "Category",
-    "Image",
-    "Actions",
-  ];
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -93,7 +78,7 @@ const InventoryList = ({
         </div>
         <div className="inventory__indexSort">
           <p>
-            <span>Showing 1 - 8</span> out of All Products
+            <span>Showing 1 - 9</span> out of All Products
           </p>
          <div className="inventory__sort">
         <DropdownSelect

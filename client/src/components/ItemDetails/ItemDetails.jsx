@@ -2,24 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import BackIcon from "../../assets/icons/arrow_back-24px.svg";
-import editImg from "../../assets/icons/edit-24px.svg";
 import "./itemDetails.scss";
 
 export const ItemDetails = ({ inventory }) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const token = localStorage.getItem("authToken");
-
-  const handleChangeQuantity = (event) => {
-    const value = parseInt(event.target.value);
-    if (!isNaN(value)) {
-      setQuantity(value);
-    }
-  };
-
-  const handleEditInventory = () => {
-    navigate(`/inventory/edit-item/${inventory.id}`);
-  };
 
   const handleOnClickReservation = () => {
     navigate(`/inventory/reserve/${inventory.id}?quantity=${quantity}`);

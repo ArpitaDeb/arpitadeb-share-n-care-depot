@@ -3,7 +3,7 @@ import "./Dropdown.scss";
 import dropdownArrow from "../../assets/icons/arrow_drop_down-24px.svg";
 
 function DropdownSelect(props) {
-  const { items, labelName, fieldName, defaultValue, onChange, value } = props;
+  const { items, labelName, fieldName, onChange, value } = props;
 
   const handleCategoryChange = (event) => {
     onChange(event.target.value);

@@ -5,7 +5,6 @@
   height: 22.813rem;
   margin: 0 auto;
   border-radius: 4px;
-  
   box-shadow: 0px 2px 2px 1px rgba(19, 24, 44, 0.1);
   p {
     font-size: $p2-mobile;
@@ -86,40 +85,6 @@
     }
   }
 
-  &__button-edit-mobile {
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 50%;
-    background-color: $indigo;
-    cursor: pointer;
-
-    @include tablet {
-      display: none;
-    }
-  }
-
-  &__button-edit-tablet {
-    display: none;
-
-    @include tablet {
-      display: flex;
-      border-radius: 20px;
-      background-color: $indigo;
-      color: $white;
-      width: 5.063rem;
-      height: 2.375rem;
-      flex-direction: row;
-      gap: 0.25rem;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-  }
-
-  &__button-edit-mobile:hover,
-  &__button-edit-tablet:hover {
-    background-color: $graphite;
-  }
   &__container {
     @include wrapper($desktop-breakpoint);
   }
@@ -173,39 +138,5 @@
     @include desktop {
       gap: 11.875rem;
     }
-  }
-}
-
-.in-stock-inventory {
-  background-color: rgb(21, 132, 99, 0.07);
-  color: $green;
-  width: 4.5rem;
-  display: flex;
-  height: 24px;
-  border-radius: 1.25rem;
-  padding: 0 0.5rem 0;
-  font-weight: bold;
-  align-items: center;
-  text-transform: uppercase;
-
-  @include tablet {
-    width: 4.7rem;
-  }
-}
-
-.no-stock-inventory {
-  background-color: rgb(201, 69, 21, 0.07);
-  color: $red;
-  width: 7rem;
-  display: flex;
-  height: 24px;
-  border-radius: 1.25rem;
-  padding: 0 0.5rem 0;
-  font-weight: bold;
-  align-items: center;
-  text-transform: uppercase;
-
-  @include tablet {
-    width: 6.7rem;
   }
 }

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
-const Profile = ({ setIsUserLoggedIn }) => {
+const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const userRole = localStorage.getItem("userRole");

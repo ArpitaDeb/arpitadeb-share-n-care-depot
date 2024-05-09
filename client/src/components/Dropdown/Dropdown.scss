@@ -1,4 +1,4 @@
-@import '../../styles/partials/global';
+@import "../../styles/partials/global";
 .inputEl {
   display: flex;
   flex-direction: column;
@@ -6,24 +6,37 @@
   row-gap: 0.25rem;
   padding-bottom: 1rem;
   &-dropdown {
-      position: relative;
+    position: relative;
   }
   &__dropdown {
-      appearance: none;
-      display: flex;
-      border: 2px solid $cloud;
-      border-radius: 1.25rem;
-      padding: 0.5rem 1rem;
-      width: 100%;
-      &:focus, &:focus-visible {
-          outline: none;
-          border: 1px solid $indigo;
-      }
-      &__icon {
-          position: absolute;
-          top: 25%;
-          right: 1rem;
-          pointer-events: none;
-      }
+    appearance: none;
+    display: flex;
+    border: 2px solid $cloud;
+    border-radius: 1.25rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    font-size: 1.1rem;
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $indigo;
+    }
+    &__icon {
+      position: absolute;
+      top: 25%;
+      right: 1rem;
+      pointer-events: none;
+    }
+  }
+  &__label {
+    display: block;
+    text-transform: uppercase;
+    color: $slate;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    @include tablet {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
   }
 }
