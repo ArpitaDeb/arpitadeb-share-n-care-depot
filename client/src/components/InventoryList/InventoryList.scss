@@ -51,7 +51,7 @@
       display: flex;
       flex-direction: row;
       font-size: 0.8rem;
-      font-weight: 400;
+      font-weight: 500;
       width: 10rem;
       margin-right: 1.2rem;
       margin-bottom: 0.4rem;
@@ -71,6 +71,7 @@
       margin-right: auto;
       background-color: transparent;
       width: 85%;
+      font-size: 1rem;
 
       &:focus {
         outline: none;
@@ -92,34 +93,6 @@
 
     &-bar {
       display: inline;
-    }
-  }
-
-  &__add {
-    &-button {
-      transition: background-color 0.25s;
-      font-weight: 600;
-
-      &:hover {
-        background-color: $graphite;
-        color: $white;
-        transition: background-color 0.25s;
-        cursor: pointer;
-      }
-
-      @include tablet {
-        background-color: $indigo;
-        color: $white;
-        border: none;
-        border-radius: 1.25rem;
-        padding: 0.35rem 1.5rem;
-        font-size: 0.8rem;
-        margin-bottom: 0.4rem;
-      }
-      @include desktop {
-        padding: 0.6rem 2rem;
-        font-size: 1rem;
-      }
     }
   }
 }
@@ -162,8 +135,8 @@
     margin: 0.7rem 0;
     display: flex;
     flex-direction: row;
-    font-size: 0.7rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     width: 18rem;
     padding: 0.4rem 0;
     border: 1px solid $cloud;
@@ -171,7 +144,7 @@
 
     input {
       flex-shrink: 1;
-      font-size: 0.8rem;
+      font-size: 1rem;
       padding-left: 1rem;
       width: 80%;
       border: none;
@@ -191,28 +164,6 @@
       display: inline;
     }
   }
-
-  &__add {
-    &-button {
-      background-color: $indigo;
-      color: $white;
-      border: none;
-      border-radius: 1.25rem;
-      padding: 0.4rem 0;
-      font-size: 0.9rem;
-      font-weight: 600;
-      width: 18rem;
-      height: 2rem;
-      margin-bottom: 0.5rem;
-      transition: background-color 0.25s;
-      &:hover {
-        background-color: $graphite;
-        color: $white;
-        transition: background-color 0.25s;
-        cursor: pointer;
-      }
-    }
-  }
 }
 .mobile-view {
   @include tablet {
@@ -224,112 +175,6 @@
 
   @include tablet {
     display: initial;
-  }
-}
-
-.inventory-labels {
-  display: none;
-
-  @include tablet {
-    display: flex;
-    justify-content: center;
-    background-color: $light-grey;
-  }
-
-  &__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1.5rem;
-    width: 95vw;
-    background-color: $light-grey;
-    color: $slate;
-    font-size: 0.7rem;
-    z-index: 0;
-
-    @include desktop {
-      width: 65rem;
-      padding: 1rem 2rem;
-      font-size: 0.9rem;
-    }
-  }
-
-  &__column-header {
-    display: flex;
-    text-transform: uppercase;
-    font-weight: 550;
-    &:nth-of-type(1) {
-      width: 9.8rem;
-      @include tablet {
-        width: 10.3rem;
-      }
-      @include desktop {
-        width: 14.5rem;
-      }
-    }
-
-    &:nth-of-type(2) {
-      width: 9.5rem;
-      @include tablet {
-        width: 9rem;
-      }
-      @include desktop {
-        width: 13rem;
-      }
-    }
-
-    &:nth-of-type(3) {
-      width: 7.5rem;
-      @include tablet {
-        width: 8rem;
-      }
-      @include desktop {
-        width: 11rem;
-      }
-    }
-
-    &:nth-of-type(4) {
-      width: 4.4rem;
-      @include desktop {
-        width: 6rem;
-      }
-    }
-
-    &:nth-of-type(5) {
-      margin-left: auto;
-      width: 7.7rem;
-      @include desktop {
-        width: 14rem;
-      }
-    }
-
-    &:nth-of-type(6) {
-      margin-left: auto;
-      width: 4rem;
-      padding-left: 0.6rem;
-      @include desktop {
-        width: 3.5rem;
-        padding-left: 0;
-      }
-    }
-  }
-
-  &__buttons {
-    padding-left: 0.2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &__icons {
-    .inventory-labels__icon {
-      margin-top: auto;
-      width: 1rem;
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
 }
 

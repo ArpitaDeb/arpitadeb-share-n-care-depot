@@ -183,8 +183,8 @@ const confirmationTemplate = (newOrderItem, start_date, end_date, item_name) => 
                             Item: ${item_name}
                           </p>
                           <ul style="list-style-type: none; padding-left: 0; margin-bottom: 16px;">
-                            <li style="margin-bottom:6px;">Pick Up Date: ${new Date(start_date).toDateString()}</li>
-                            <li style="margin-bottom:6px;">Due Back: ${new Date(end_date).toDateString()}</li>
+                            <li style="margin-bottom:6px; color: pink;">Pick Up Date: ${new Date(start_date).toDateString()}</li>
+                            <li style="margin-bottom:6px; color: pink;">Due Back: ${new Date(end_date).toDateString()}</li>
                           </ul>
                           <h2 style="color: black; margin-bottom: 10px;">LOCATION</h2>
                           <p style="color: black; font-size: 16px; line-height: 1.5;">

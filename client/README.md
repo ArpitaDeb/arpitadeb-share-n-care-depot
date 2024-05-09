@@ -6,6 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Install dependencies on the projects client directory: npm install
 
 Create the .env by using .env.example as a reference: cp .env.example .env Update the .env file with correct information
+
 PLEASE GENERATE SECRET_KEY
 Open your terminal or command prompt.
 Run the following Node.js script to generate a random string:

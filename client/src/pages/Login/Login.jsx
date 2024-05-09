@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { isValidEmail } from "../../utils/validator";
 import "./Login.scss";
 
 const Login = ({ setIsUserLoggedIn }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -48,7 +49,8 @@ const Login = ({ setIsUserLoggedIn }) => {
       localStorage.setItem('userRole', response.data.role);
    
       setIsUserLoggedIn(true);
-      navigate('/');
+      const origin = location.state?.from?.pathname || '/';
+      navigate(origin);
     } catch (error) {
       console.error(error);
     }
