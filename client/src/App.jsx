@@ -20,9 +20,6 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(
     !!localStorage.getItem("authToken")
   );
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
-    !!localStorage.getItem("userRole")
-  );
 
   return (
     <div className="App">
@@ -56,7 +53,7 @@ function App() {
             <Route
               path="/inventory/delete/:inventoryId"
               element={
-                <DeleteInventory setIsAdminLoggedIn={setIsAdminLoggedIn} />
+                <DeleteInventory />
               }
             />
             <Route
