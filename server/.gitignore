@@ -2,3 +2,4 @@
 /node_modules
 .env
 .DS_Store
+/credentials/sharencare-422805-bf2ec8fd49b2.json
