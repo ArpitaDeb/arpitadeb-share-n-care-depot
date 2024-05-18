@@ -1,21 +1,12 @@
 const knex = require('knex')(require('../knexfile'));
 const { isValidInventoryData } = require('../utils/validator');
+const storage = require('../service/storage');
 
-const getOneInventory = async (req, res) => {
-  try {
-    const oneInventory = await knex('inventories').where({ id: req.params.inventoryId }).first();
-
-    if (!oneInventory) {
-      return res.status(404).json({
-        message: `inventory with ID ${req.params.inventoryId} not found`,
-      });
-    }
-    res.status(200).json(oneInventory);
-  } catch (error) {
-    res.status(500).json({
-      message: `Unable to retrieve data for inventory with ID ${req.params.inventoryId} error: ${error}`,
-    });
-  }
+const getFileFromBucket = async (bucketName, fileName) => {
+  const bucket = storage.bucket(bucketName);
+  const file = bucket.file(fileName);
+  const contents = await file.download();
+  return contents.toString();
 };
 
 const inventoryList = async (req, res) => {
@@ -45,13 +36,32 @@ const inventoryList = async (req, res) => {
     }
 
     const data = await query;
+    const bucketName = 'sharencaredepot';
+    const fileName = 'sharecare_inventories.sql';
+    const fileContents = await getFileFromBucket(bucketName, fileName);
+    console.log('File contents:', fileContents);
 
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ message: `Error getting the list` });
   }
 };
+const getOneInventory = async (req, res) => {
+  try {
+    const oneInventory = await knex('inventories').where({ id: req.params.inventoryId }).first();
 
+    if (!oneInventory) {
+      return res.status(404).json({
+        message: `inventory with ID ${req.params.inventoryId} not found`,
+      });
+    }
+    res.status(200).json(oneInventory);
+  } catch (error) {
+    res.status(500).json({
+      message: `Unable to retrieve data for inventory with ID ${req.params.inventoryId} error: ${error}`,
+    });
+  }
+};
 const postInventoryItem = async (req, res) => {
   const errors = await isValidInventoryData(req, res);
   if (errors.length > 0) {
