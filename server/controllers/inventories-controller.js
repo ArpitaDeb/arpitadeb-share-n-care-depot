@@ -3,49 +3,97 @@ const { isValidInventoryData } = require('../utils/validator');
 const storage = require('../service/storage');
 
 const getFileFromBucket = async (bucketName, fileName) => {
-  const bucket = storage.bucket(bucketName);
-  const file = bucket.file(fileName);
-  const contents = await file.download();
-  return contents.toString();
+  try {
+    const bucket = storage.bucket(bucketName);
+    console.log("buck", bucket);
+    const file = bucket.file(fileName);
+    const contents = await file.download();
+    return contents.toString();
+  } catch (error) {
+    console.error('Error downloading file from bucket:', error);
+    throw new Error('Failed to download file from bucket');
+  }
 };
 
 const inventoryList = async (req, res) => {
   try {
     const { sort_by, order_by, s } = req.query;
-    let query = knex
-      .select(
-        'inventories.id',
-        'inventories.item_name',
-        'inventories.description',
-        'inventories.quantity',
-        'inventories.image_url',
-        'category.name as category',
-      )
-      .from('inventories')
-      .join('category', 'inventories.category_id', 'category.id');
-
-    if (sort_by && typeof sort_by === 'string' && sort_by.trim() !== '') {
-      query = query.orderBy(sort_by, order_by || 'asc');
-    }
-
-    if (s) {
-      const searchTerm = `%${s}%`;
-      query = query.where(function () {
-        this.where('inventories.item_name', 'like', searchTerm)
-      });
-    }
-
-    const data = await query;
     const bucketName = 'sharencaredepot';
     const fileName = 'sharecare_inventories.sql';
     const fileContents = await getFileFromBucket(bucketName, fileName);
+;
     console.log('File contents:', fileContents);
 
-    res.status(200).json(data);
+    let inventories;
+    try {
+      inventories = JSON.parse(fileContents);
+    } catch (parseError) {
+      console.error('Failed to parse file contents as JSON:', parseError);
+      throw new Error('Invalid file format: expected JSON');
+    }
+
+    let filteredData = inventories;
+    if (s) {
+      const searchTerm = s.toLowerCase();
+      filteredData = filteredData.filter(inventory =>
+        inventory.item_name.toLowerCase().includes(searchTerm)
+      );
+    }
+
+    if (sort_by && typeof sort_by === 'string' && sort_by.trim() !== '') {
+      filteredData.sort((a, b) => {
+        const order = order_by === 'desc' ? -1 : 1;
+        if (a[sort_by] < b[sort_by]) return -1 * order;
+        if (a[sort_by] > b[sort_by]) return 1 * order;
+        return 0;
+      });
+    }
+
+    // Send the filtered and sorted inventory data as the response
+    res.status(200).json(filteredData);
   } catch (err) {
-    res.status(500).json({ message: `Error getting the list` });
+    console.error('Error getting the inventory list:', err);
+    res.status(500).json({ message: 'Error getting the inventory list' });
   }
 };
+
+// const inventoryList = async (req, res) => {
+//   try {
+//     const { sort_by, order_by, s } = req.query;
+//     let query = knex
+//       .select(
+//         'inventories.id',
+//         'inventories.item_name',
+//         'inventories.description',
+//         'inventories.quantity',
+//         'inventories.image_url',
+//         'category.name as category',
+//       )
+//       .from('inventories')
+//       .join('category', 'inventories.category_id', 'category.id');
+
+//     if (sort_by && typeof sort_by === 'string' && sort_by.trim() !== '') {
+//       query = query.orderBy(sort_by, order_by || 'asc');
+//     }
+
+//     if (s) {
+//       const searchTerm = `%${s}%`;
+//       query = query.where(function () {
+//         this.where('inventories.item_name', 'like', searchTerm)
+//       });
+//     }
+
+//     const data = await query;
+//     const bucketName = 'sharencaredepot';
+//     const fileName = 'sharecare_inventories.sql';
+//     const fileContents = await getFileFromBucket(bucketName, fileName);
+//     console.log('File contents:', fileContents);
+
+//     res.status(200).json(data);
+//   } catch (err) {
+//     res.status(500).json({ message: `Error getting the list` });
+//   }
+// };
 const getOneInventory = async (req, res) => {
   try {
     const oneInventory = await knex('inventories').where({ id: req.params.inventoryId }).first();
